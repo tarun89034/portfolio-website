@@ -6,8 +6,6 @@
 
 A premium, Netflix-style cinematic portfolio built for high-impact visual storytelling. This project is designed to showcase AI/ML projects and engineering expertise through an immersive, media-rich interface.
 
-![Cinematic UI](asset/screenshots/Screenshot%202026-04-15%20160054.png)
-
 ## ✨ Features
 
 - **📺 Cinematic Hero Section**: Full-screen background video loops with a dark gradient overlay and high-impact typography.
