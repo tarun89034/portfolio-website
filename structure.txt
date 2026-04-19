@@ -1,0 +1,40 @@
+Refactor target: stitch_new_project (1) as main frontend source
+
+stitch_new_project (1)/
+  assets/
+    Anime_Cityscape_Loop_Generation.mp4
+  components/
+    AudioSystem.jsx
+    HeroMediaSection.tsx
+    HeroSection.jsx
+    ProjectCard.jsx
+    ProjectModal.jsx
+    ProjectRow.jsx
+    ProjectShowcase.tsx
+    SiteFooter.tsx
+    SiteNavbar.tsx
+  data/
+    content.json
+  pages/
+    LandingPage.tsx
+    ProjectsPage.tsx
+  styles/
+    hero.module.css
+    stitch.css
+  utils/
+    siteContent.ts
+  landing_page/
+    DESIGN1.md
+    code1.html
+    screen1.png
+  project_page/
+    DESIGN.md
+    code.html
+    screen.png
+  README.md
+
+Next.js routing integration:
+app/
+  page.tsx                  -> renders stitch_new_project (1)/pages/LandingPage
+  projects/page.tsx         -> renders stitch_new_project (1)/pages/ProjectsPage
+  layout.tsx                -> imports stitch_new_project (1)/styles/stitch.css

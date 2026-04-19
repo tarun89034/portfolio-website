@@ -1,0 +1,170 @@
+{
+  "personal": {
+    "name": "TARUN YADAV",
+    "title": "AI Engineer | ML Systems | GenAI",
+    "tagline": "Building intelligent systems that feel like magic",
+    "email": "tarunyadav89034@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/tarun-yadav-a5b538251/",
+    "github": "https://github.com/tarun89034/tarun89034"
+  },
+  "featuredProjects": [
+    {
+      "id": "barista-ai",
+      "title": "Barista AI",
+      "subtitle": "Conversational Barista Assistant",
+      "description": "An intelligent AI barista built on a Hugging Face Space that helps users craft their perfect coffee order using natural language. Features multi-turn conversation, drink customization, and GenAI-powered recommendations.",
+      "category": "GenAI",
+      "tags": ["LLM", "Gradio", "HuggingFace", "NLP"],
+      "live": "https://huggingface.co/spaces/ty8890/barista-ai",
+      "github": "",
+      "color": "#6C8CFF",
+      "gradient": "from-blue-600/30 to-indigo-900/60",
+      "icon": "☕",
+      "featured": true
+    },
+    {
+      "id": "ragbot-merlin",
+      "title": "Ragbot Merlin",
+      "subtitle": "RAG-Powered Knowledge Assistant",
+      "description": "A Retrieval-Augmented Generation (RAG) chatbot that ingests documents and answers questions with cited sources. Built with LangChain, vector embeddings, and a sleek Gradio interface.",
+      "category": "GenAI",
+      "tags": ["RAG", "LangChain", "Vector DB", "Embeddings"],
+      "live": "https://huggingface.co/spaces/ty8890/Ragbot-Merlin",
+      "github": "",
+      "color": "#A855F7",
+      "gradient": "from-purple-600/30 to-violet-900/60",
+      "icon": "🧙",
+      "featured": true
+    },
+    {
+      "id": "financial-llm",
+      "title": "Financial LLM Copilot",
+      "subtitle": "AI-Powered Financial Analysis",
+      "description": "A specialized LLM copilot for financial analysis. Ask complex financial questions, get market insights, and perform quantitative analysis using a domain-fine-tuned language model.",
+      "category": "FinTech AI",
+      "tags": ["FinanceLLM", "Quantitative", "NLP", "HuggingFace"],
+      "live": "https://huggingface.co/spaces/ty8890/financial-llm-copilot",
+      "github": "",
+      "color": "#10B981",
+      "gradient": "from-emerald-600/30 to-teal-900/60",
+      "icon": "📈",
+      "featured": true
+    },
+    {
+      "id": "stock-prediction",
+      "title": "Stock Prediction Platform",
+      "subtitle": "ML-Driven Market Forecasting",
+      "description": "A full-featured stock prediction platform leveraging ML models for time-series forecasting. Integrates live market data, LSTM networks, and interactive charts for trading insights.",
+      "category": "ML / FinTech",
+      "tags": ["LSTM", "Time Series", "Pandas", "Plotly"],
+      "live": "https://huggingface.co/spaces/ty8890/stock-prediction-platform",
+      "github": "",
+      "color": "#F59E0B",
+      "gradient": "from-amber-600/30 to-yellow-900/60",
+      "icon": "📊",
+      "featured": true
+    }
+  ],
+  "aiMlProjects": [
+    {
+      "id": "option-pricing",
+      "title": "Option Pricing Engine",
+      "subtitle": "Quantitative Derivatives Calculator",
+      "description": "A production-grade option pricing web app implementing Black-Scholes, Binomial Trees, and Monte Carlo simulation for derivatives valuation. Real-time Greeks calculation and risk visualization.",
+      "category": "Quant Finance",
+      "tags": ["Black-Scholes", "Monte Carlo", "React", "Finance"],
+      "live": "https://option-pricing-snowy.vercel.app/",
+      "github": "",
+      "color": "#06B6D4",
+      "gradient": "from-cyan-600/30 to-sky-900/60",
+      "icon": "⚡"
+    },
+    {
+      "id": "nids",
+      "title": "AI-Powered NIDS",
+      "subtitle": "Network Intrusion Detection System",
+      "description": "Real-time ML-based Network Intrusion Detection System with observability. Uses ensemble ML models to classify network traffic, detect anomalies, and visualize security events on a live dashboard.",
+      "category": "ML Security",
+      "tags": ["Scikit-learn", "XGBoost", "MLflow", "Security"],
+      "live": "",
+      "github": "https://github.com/tarun89034/AI-Powered-Network-Intrusion-Detection-System-NIDS-with-Real-Time-ML-Observability",
+      "color": "#EF4444",
+      "gradient": "from-red-600/30 to-rose-900/60",
+      "icon": "🔒"
+    },
+    {
+      "id": "portfolio-opt",
+      "title": "Portfolio Optimization",
+      "subtitle": "Modern Portfolio Theory Engine",
+      "description": "Python-based portfolio optimization using Modern Portfolio Theory (MPT). Efficient frontier visualization, Sharpe ratio maximization, and multi-asset allocation strategies.",
+      "category": "Quant Finance",
+      "tags": ["MPT", "Python", "NumPy", "Matplotlib"],
+      "live": "",
+      "github": "https://github.com/tarun89034/Portfolio-optimization-using-python",
+      "color": "#8B5CF6",
+      "gradient": "from-violet-600/30 to-purple-900/60",
+      "icon": "💼"
+    },
+    {
+      "id": "credit-risk",
+      "title": "Credit Risk Analysis",
+      "subtitle": "ML-Based Loan Default Prediction",
+      "description": "End-to-end credit risk analysis pipeline using gradient boosting and logistic regression. Includes feature engineering, model explainability (SHAP), and a risk scoring dashboard.",
+      "category": "FinTech ML",
+      "tags": ["XGBoost", "SHAP", "Pandas", "Risk"],
+      "live": "",
+      "github": "https://github.com/tarun89034/Credit-Risk-Analysis",
+      "color": "#EC4899",
+      "gradient": "from-pink-600/30 to-fuchsia-900/60",
+      "icon": "🏦"
+    }
+  ],
+  "backendProjects": [
+    {
+      "id": "vendor-perf",
+      "title": "Vendor Performance Analysis",
+      "subtitle": "Supply Chain Intelligence Platform",
+      "description": "A comprehensive vendor performance analytics system with automated KPI tracking, anomaly detection, and optimization recommendations for supply chain management.",
+      "category": "Data Engineering",
+      "tags": ["Python", "SQL", "Pandas", "Analytics"],
+      "live": "",
+      "github": "https://github.com/tarun89034/Vendor-Performance-Analysis-Optimization",
+      "color": "#F97316",
+      "gradient": "from-orange-600/30 to-amber-900/60",
+      "icon": "🏭"
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "JavaScript", "TypeScript", "SQL", "Bash"],
+    "aiMl": ["PyTorch", "TensorFlow", "Scikit-learn", "LangChain", "HuggingFace", "OpenAI", "LlamaIndex"],
+    "backend": ["FastAPI", "Node.js", "PostgreSQL", "MongoDB", "Redis", "Docker"],
+    "cloud": ["AWS", "GCP", "Vercel", "HuggingFace Spaces", "MLflow"],
+    "frontend": ["React", "Next.js", "Tailwind CSS", "Framer Motion"]
+  },
+  "blogs": [
+    {
+      "id": "agentic-workflows",
+      "title": "The Future of Agentic AI Workflows",
+      "excerpt": "How multi-agent systems are redefining automation and what it means for engineers building production AI.",
+      "category": "Machine Learning",
+      "readTime": "5 min read",
+      "date": "2024-11-15"
+    },
+    {
+      "id": "rag-production",
+      "title": "Building RAG Systems That Actually Work",
+      "excerpt": "Practical lessons from deploying retrieval-augmented generation in production environments.",
+      "category": "GenAI",
+      "readTime": "8 min read",
+      "date": "2024-10-28"
+    },
+    {
+      "id": "ml-observability",
+      "title": "ML Observability: Beyond Accuracy Metrics",
+      "excerpt": "Why drift detection, feature monitoring, and model explainability matter more than your validation score.",
+      "category": "MLOps",
+      "readTime": "6 min read",
+      "date": "2024-09-10"
+    }
+  ]
+}

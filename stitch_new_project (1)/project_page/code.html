@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TARUN YADAV | THE CELESTIAL EDITOR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&amp;family=Inter:wght@300;400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#d6a9ff",
+                    "tertiary-fixed": "#ffddb9",
+                    "surface": "#0f131e",
+                    "on-primary-fixed": "#001550",
+                    "primary": "#b6c4ff",
+                    "tertiary-fixed-dim": "#ffb962",
+                    "on-tertiary": "#472a00",
+                    "on-primary": "#002780",
+                    "tertiary-container": "#ce8200",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#ddb7ff",
+                    "surface-container": "#1b1f2b",
+                    "outline-variant": "#444653",
+                    "surface-container-low": "#171b27",
+                    "on-error": "#690005",
+                    "inverse-surface": "#dfe2f2",
+                    "surface-bright": "#353945",
+                    "on-primary-container": "#002376",
+                    "error": "#ffb4ab",
+                    "tertiary": "#ffb962",
+                    "inverse-primary": "#3255c6",
+                    "on-secondary-fixed-variant": "#6900b3",
+                    "on-secondary": "#490080",
+                    "on-tertiary-fixed": "#2b1700",
+                    "inverse-on-surface": "#2c303c",
+                    "on-surface": "#dfe2f2",
+                    "secondary-fixed": "#f0dbff",
+                    "surface-tint": "#b6c4ff",
+                    "primary-container": "#6c8cff",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "secondary-container": "#6f00be",
+                    "outline": "#8e909f",
+                    "on-tertiary-fixed-variant": "#663e00",
+                    "surface-dim": "#0f131e",
+                    "secondary": "#ddb7ff",
+                    "surface-container-lowest": "#0a0e19",
+                    "on-surface-variant": "#c4c5d5",
+                    "background": "#0f131e",
+                    "on-background": "#dfe2f2",
+                    "on-secondary-fixed": "#2c0051",
+                    "on-primary-fixed-variant": "#0d3bad",
+                    "on-tertiary-container": "#412600",
+                    "primary-fixed": "#dce1ff",
+                    "error-container": "#93000a",
+                    "surface-variant": "#313441",
+                    "surface-container-highest": "#313441",
+                    "surface-container-high": "#262a36"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-particle {
+            animation: float 8s ease-in-out infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-gradient {
+            background: linear-gradient(135deg, rgba(182, 196, 255, 0.1), rgba(221, 183, 255, 0.05));
+        }
+        .cinematic-vignette {
+            background: radial-gradient(circle, transparent 20%, rgba(10, 14, 25, 0.9) 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .soft-bloom-hover:hover {
+            box-shadow: 0 0 30px 10px rgba(182, 196, 255, 0.2);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- Global Particle Overlay -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20 overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-2 h-2 bg-on-surface rounded-full floating-particle" style="animation-delay: 0s;"></div>
+<div class="absolute top-1/3 left-2/3 w-1 h-1 bg-primary rounded-full floating-particle" style="animation-delay: 2s;"></div>
+<div class="absolute top-3/4 left-1/2 w-1.5 h-1.5 bg-secondary rounded-full floating-particle" style="animation-delay: 4s;"></div>
+<div class="absolute top-1/2 left-10 w-1 h-1 bg-on-surface rounded-full floating-particle" style="animation-delay: 1s;"></div>
+<div class="absolute bottom-20 right-1/4 w-2 h-2 bg-primary-container rounded-full floating-particle" style="animation-delay: 5s;"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/40 backdrop-blur-xl flex justify-between items-center px-8 py-4">
+<div class="text-2xl font-black tracking-tighter text-indigo-100 uppercase">TARUN YADAV</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-manrope tracking-tight font-light text-indigo-200 border-b-2 border-indigo-300 pb-1 hover:scale-105 transition-transform duration-400 ease-out" href="#">Work</a>
+<a class="font-manrope tracking-tight font-light text-slate-400 hover:text-indigo-100 transition-colors duration-400 hover:scale-105" href="#">Experience</a>
+<a class="font-manrope tracking-tight font-light text-slate-400 hover:text-indigo-100 transition-colors duration-400 hover:scale-105" href="#">About</a>
+<a class="font-manrope tracking-tight font-light text-slate-400 hover:text-indigo-100 transition-colors duration-400 hover:scale-105" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-indigo-200 text-2xl cursor-pointer hover:scale-110 transition-all">account_circle</span>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<video autoplay="" class="w-full h-full object-cover" loop="" muted="" playsinline="">
+<source src="{{DATA:IMAGE:IMAGE_3}}" type="video/mp4"/>
+                Your browser does not support the video tag.
+            </video>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/60 to-transparent"></div>
+<div class="absolute inset-0 cinematic-vignette"></div>
+</div>
+<div class="relative z-10 px-8 md:px-24 max-w-5xl">
+<div class="inline-block px-4 py-1 mb-6 rounded-full glass-gradient border border-outline-variant/20">
+<p class="font-label text-[10px] tracking-[0.2em] uppercase text-secondary">Available for new opportunities</p>
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface mb-4 leading-none">
+                TARUN <span class="text-primary-container">YADAV</span>
+</h1>
+<p class="font-label text-xl md:text-2xl text-on-secondary-container mb-6 tracking-wide font-light">
+                AI Engineer | ML Systems | GenAI
+            </p>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+                Building intelligent systems that feel like magic. Transforming complex data architectures into seamless, predictive experiences.
+            </p>
+<div class="flex flex-wrap gap-6">
+<button class="px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold rounded-full hover:shadow-[0_0_20px_rgba(182,196,255,0.4)] transition-all duration-400 flex items-center gap-2 group">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+                    View Work
+                </button>
+<button class="px-8 py-4 bg-white/5 backdrop-blur-md border border-outline-variant/30 text-on-surface font-semibold rounded-full hover:bg-white/10 transition-all duration-400 flex items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                    Download Resume
+                </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+<span class="font-label text-[10px] tracking-widest uppercase">Scroll to Explore</span>
+<div class="w-px h-12 bg-gradient-to-b from-primary to-transparent"></div>
+</div>
+<button class="absolute bottom-8 right-8 z-20 w-12 h-12 rounded-full glass-gradient border border-outline-variant/30 flex items-center justify-center text-on-surface hover:bg-white/10 transition-all duration-300" id="volume-toggle">
+<span class="material-symbols-outlined" id="volume-icon">volume_off</span>
+</button>
+<script>
+            const video = document.querySelector('section.relative.h-screen video');
+            const volumeToggle = document.getElementById('volume-toggle');
+            const volumeIcon = document.getElementById('volume-icon');
+
+            volumeToggle.addEventListener('click', () => {
+                video.muted = !video.muted;
+                volumeIcon.textContent = video.muted ? 'volume_off' : 'volume_up';
+            });
+        </script>
+</section>
+<!-- Main Content -->
+<main class="relative z-10 bg-surface space-y-32 py-32">
+<!-- Featured Projects Row -->
+<section class="space-y-8">
+<div class="px-8 md:px-16 flex justify-between items-end">
+<div>
+<span class="font-label text-[10px] tracking-[0.2em] text-secondary-fixed-dim uppercase mb-2 block">Premium Selection</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight">Featured Projects</h2>
+</div>
+<div class="flex gap-4">
+<button class="p-3 rounded-full border border-outline-variant/20 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-3 rounded-full border border-outline-variant/20 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-auto px-8 md:px-16 no-scrollbar pb-8">
+<!-- Project Card 1 -->
+<div class="flex-none w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group cursor-pointer transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(108,140,255,0.2)]">
+<img alt="Neural Architect" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0mIEZYHPQ0SHh_-JEWVTv0N5MdFNYKlpWjDS0px6uB4ekA64SL0BHsVIfC3VBx_kQS8f-gRQIa3pXOJ46Q5cyIK0FdJ1PykzNNukpILKYt_76omAUZmM8BUwYdAx8qGrLdjX2wiEBJBtCAs1SY7D0SyizEKJCmF0pAAI8ZjiVgGohsYPqSqONTNYslO9aTulf3C8oAkQy8LGMmjZdbJspgQKZQ5jTLOkzeMMAHGtCkw2B_zgKXEvuBLLDPeeHQMCoEHMi_G-Sa9c"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+<div class="text-[10px] font-label text-primary tracking-[0.1em] mb-2 uppercase">GenAI &amp; NLP</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Neural Architect</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Autonomous code-generation platform leveraging custom LLM fine-tuning.</p>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="flex-none w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group cursor-pointer transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(221,183,255,0.2)]">
+<img alt="Core Nexus" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOo47NowZoGqctPtp7MbaWhWLWZwHfag_iJMY4zSEMYDdQZjDBMgjPNH8lMzcqMADbc2BVuHSqFortJ7lT3crWX63uNsFC8I22Pt12rdRPvtSylU63Vs5vUqKrHdhtcIabQEWKkfH1r95rg19CZcpmB3h9TIMYCQ9AhEiACSHq9B9nacO5cRxgmc_GAVFOsmoXexyVwury6LKUP1TQzZS9Pj5K2S3yBI5AH_toZgZW0xxOMIJOqc3jtjEuC-BTAAPuVRcoVUGCCtk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+<div class="text-[10px] font-label text-secondary tracking-[0.1em] mb-2 uppercase">MLOps</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Core Nexus</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">High-performance ML pipeline orchestration tool handling 1M+ daily inferences.</p>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="flex-none w-[320px] aspect-[2/3] relative rounded-xl overflow-hidden group cursor-pointer transition-transform duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(182,196,255,0.2)]">
+<img alt="Aura Vision" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzgpc5Ocl4jHw0PTh1-Ik-9qh6a5kYSXogeFmFmm6JvGGIkNVxVqyuyWAzxXQZvynIZDYLIBuYH9mnl7HiX6FGTY_LVZsOVEcT3qljrwtEzQCJylFWWFFXX27zyNo9gNElhBTt0KtB69wdWCqtAZpzKdWV7d27Pkzc1Ymp9qFwli5e5TmkhQzPsCAknr1JLywg-elsPuFBPuXjU3vs2V0otcbRoHyhmnC_mwffaGKz-GVO8jPuV-6cJHY-BEr-muML85ZTgI5jcOY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
+<div class="text-[10px] font-label text-primary tracking-[0.1em] mb-2 uppercase">Computer Vision</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Aura Vision</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">Real-time object detection and spatial mapping for robotic navigation.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- New Section: Technical Expertise -->
+<section class="space-y-8">
+<div class="px-8 md:px-16">
+<span class="font-label text-[10px] tracking-[0.2em] text-primary uppercase mb-2 block">Skill Matrix</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight">Technical Expertise</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 md:px-16">
+<!-- AI & Machine Learning -->
+<div class="glass-gradient border border-outline-variant/20 rounded-2xl p-8 space-y-6 hover:shadow-[0_0_20px_rgba(182,196,255,0.1)] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h3 class="font-headline text-xl font-bold">AI &amp; ML</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors">Large Language Models</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors">Computer Vision</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors">PyTorch</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors">TensorFlow</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors">NLP</span>
+</div>
+</div>
+<!-- Backend & Infrastructure -->
+<div class="glass-gradient border border-outline-variant/20 rounded-2xl p-8 space-y-6 hover:shadow-[0_0_20px_rgba(221,183,255,0.1)] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<h3 class="font-headline text-xl font-bold">Backend &amp; Infra</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors">Kubernetes</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors">Docker</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors">Go / Rust</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors">Microservices</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-secondary hover:border-secondary/40 transition-colors">gRPC</span>
+</div>
+</div>
+<!-- Tools & Clouds -->
+<div class="glass-gradient border border-outline-variant/20 rounded-2xl p-8 space-y-6 hover:shadow-[0_0_20px_rgba(255,185,98,0.1)] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">build</span>
+</div>
+<h3 class="font-headline text-xl font-bold">Tools &amp; Cloud</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-tertiary hover:border-tertiary/40 transition-colors">AWS / GCP</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-tertiary hover:border-tertiary/40 transition-colors">PostgreSQL</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-tertiary hover:border-tertiary/40 transition-colors">Redis</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-tertiary hover:border-tertiary/40 transition-colors">GitOps</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-xs font-label border border-outline-variant/10 text-on-surface-variant hover:text-tertiary hover:border-tertiary/40 transition-colors">Terraform</span>
+</div>
+</div>
+</div>
+</section>
+<!-- New Section: Milestones & Recognition -->
+<section class="space-y-8">
+<div class="px-8 md:px-16">
+<span class="font-label text-[10px] tracking-[0.2em] text-secondary uppercase mb-2 block">Global Standards</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight">Milestones &amp; Recognition</h2>
+</div>
+<div class="flex gap-6 overflow-x-auto px-8 md:px-16 no-scrollbar pb-8">
+<!-- Certificate 1 -->
+<div class="flex-none w-[400px] aspect-[16/10] relative rounded-xl overflow-hidden group soft-bloom-hover transition-all duration-500 cursor-pointer border border-outline-variant/10">
+<img alt="AWS Certificate" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQnNBpBS84PprftZOOLoCGthiE-GXGXFoE3lH7RXULEZ59WhUVxgWMVaLB4LRKhOedTmnHv_sdhoUjfjXUQzG3kLrazs1gm6Md_jeMqX6yd-XUhte6OfjabQUycFyJDsfkwMB1NMfoVxKCMtjHx4VNxr5qxSS03DMzRwtD-CEaxA8HUjPZwxMuVcUpvXAef66QiuE15xlw5VE1h2-EDIcPxdnFgucHRjRWNs6JD_-9h6NhW6pukBF_nGcDrfkdh-mHaCXfGks15_w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="text-[10px] font-label text-primary tracking-[0.2em] mb-1 uppercase">Cloud Architect</div>
+<h4 class="font-headline text-xl font-bold">AWS Solutions Architect</h4>
+<p class="text-on-surface-variant text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Professional validation of distributed cloud architecture expertise.</p>
+</div>
+</div>
+<!-- Certificate 2 -->
+<div class="flex-none w-[400px] aspect-[16/10] relative rounded-xl overflow-hidden group soft-bloom-hover transition-all duration-500 cursor-pointer border border-outline-variant/10">
+<img alt="GCP Certificate" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOo47NowZoGqctPtp7MbaWhWLWZwHfag_iJMY4zSEMYDdQZjDBMgjPNH8lMzcqMADbc2BVuHSqFortJ7lT3crWX63uNsFC8I22Pt12rdRPvtSylU63Vs5vUqKrHdhtcIabQEWKkfH1r95rg19CZcpmB3h9TIMYCQ9AhEiACSHq9B9nacO5cRxgmc_GAVFOsmoXexyVwury6LKUP1TQzZS9Pj5K2S3yBI5AH_toZgZW0xxOMIJOqc3jtjEuC-BTAAPuVRcoVUGCCtk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="text-[10px] font-label text-secondary tracking-[0.2em] mb-1 uppercase">Machine Learning</div>
+<h4 class="font-headline text-xl font-bold">Google Cloud ML Engineer</h4>
+<p class="text-on-surface-variant text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Certified specialization in production-level ML systems deployment.</p>
+</div>
+</div>
+<!-- Certificate 3 -->
+<div class="flex-none w-[400px] aspect-[16/10] relative rounded-xl overflow-hidden group soft-bloom-hover transition-all duration-500 cursor-pointer border border-outline-variant/10">
+<img alt="NVIDIA Certificate" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdnny-B9jBmWr_tKnOKRp3utSJ4PisN9JGPHAiQS3q9hYnfKTpUCkciNJh3l2TOVvclovtjzVS8UXIF85kePBzOZ1b-t57YXGULrwDExl_3W-j-1rd2i6R2Mcz0T0Ce9fpKR5nKI7FctjYt2TzgLXgLgQrpSfINAGSZ9L_3VzOypU5FOzjm-disAts4pge5K4Br1VpRfmrIbdHKR2D2oTYlBFk4Sm8_bjXrc-qYABqA7uOyOx4egp5aW2FVbuWlOUrqTwBVaUFO-s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="text-[10px] font-label text-primary-container tracking-[0.2em] mb-1 uppercase">Deep Learning</div>
+<h4 class="font-headline text-xl font-bold">NVIDIA Deep Learning Institute</h4>
+<p class="text-on-surface-variant text-xs mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Mastery in accelerating AI applications with CUDA and GPU architectures.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- AI / ML Projects (Netflix Style Horizontal Row) -->
+<section class="space-y-6">
+<div class="px-8 md:px-16">
+<h3 class="font-headline text-2xl font-semibold tracking-tight text-on-surface/80 border-l-2 border-primary pl-4">AI / Machine Learning</h3>
+</div>
+<div class="flex gap-4 overflow-x-auto px-8 md:px-16 no-scrollbar">
+<!-- Mini Card 1 -->
+<div class="flex-none w-[280px] bg-surface-container-low rounded-lg p-6 group hover:bg-surface-container transition-all cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<h4 class="font-headline text-lg font-bold mb-2">Predictive Maintenance</h4>
+<p class="text-on-surface-variant text-sm">XGBoost based prediction model for industrial IoT sensor data.</p>
+</div>
+<!-- Mini Card 2 -->
+<div class="flex-none w-[280px] bg-surface-container-low rounded-lg p-6 group hover:bg-surface-container transition-all cursor-pointer border border-transparent hover:border-outline-variant/30">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary">chat_bubble</span>
+</div>
+<h4 class="font-headline text-lg font-bold mb-2">Customer Persona GPT</h4>
+<p class="text-on-surface-variant text-sm">Fine-tuned Llama-3 for marketing automation.</p>
+</div>
+</div>
+</section>
+<!-- Backend / Systems Section -->
+<section class="px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-8">
+<h3 class="font-headline text-4xl font-extrabold tracking-tight">System <span class="text-secondary">Architecture</span></h3>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                    Focusing on scalable, reliable backend infrastructures. I design systems that handle massive concurrency without breaking a sweat.
+                </p>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<span class="font-label uppercase tracking-widest text-sm">Kubernetes &amp; Docker</span>
+<div class="w-24 h-1 bg-outline-variant rounded-full relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-primary w-4/5"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<span class="font-label uppercase tracking-widest text-sm">Go &amp; Rust (Backend)</span>
+<div class="w-24 h-1 bg-outline-variant rounded-full relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-secondary w-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden aspect-video group">
+<img alt="Workspace" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQnNBpBS84PprftZOOLoCGthiE-GXGXFoE3lH7RXULEZ59WhUVxgWMVaLB4LRKhOedTmnHv_sdhoUjfjXUQzG3kLrazs1gm6Md_jeMqX6yd-XUhte6OfjabQUycFyJDsfkwMB1NMfoVxKCMtjHx4VNxr5qxSS03DMzRwtD-CEaxA8HUjPZwxMuVcUpvXAef66QiuE15xlw5VE1h2-EDIcPxdnFgucHRjRWNs6JD_-9h6NhW6pukBF_nGcDrfkdh-mHaCXfGks15_w"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-sm">settings_input_component</span>
+</div>
+<span class="font-label text-xs uppercase tracking-widest">Optimized for scale</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Blogs Section -->
+<section class="space-y-8">
+<div class="px-8 md:px-16 flex justify-between items-center">
+<h2 class="font-headline text-3xl font-bold">Latest Insights</h2>
+<a class="text-primary font-label text-xs uppercase tracking-widest flex items-center gap-2 hover:gap-4 transition-all" href="#">View Journal <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 md:px-16">
+<article class="group cursor-pointer">
+<div class="aspect-video rounded-xl overflow-hidden mb-6">
+<img alt="Insights" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsWYdGFxsTbR1MngYvwrtKYQoF6MwaF643NY4uOuEiQPC59znqfKbwVD2ksJvvAqhAU-kbmJHTF0jj2keUl5AkI1DDwOu53fiIXAi-7f30D-UjaiOt_CyT_f9O-qzXzEQdU0I5xDtu8cR4soC1q9uaq8dyNR8en-crF5qsEf1T8CeSIcdxtdQvcBQQyFidTJY0Rnh2I8PIQyaGOhpNKivxosKQslkswTStHlRdpi6S0sekSzhn0bfc45x6ywryt052AmaA4njpjbs"/>
+</div>
+<span class="font-label text-[10px] text-tertiary-fixed-dim tracking-widest uppercase">Machine Learning • 5 Min Read</span>
+<h4 class="font-headline text-xl font-bold mt-2 group-hover:text-primary transition-colors">The Future of Agentic Workflows</h4>
+</article>
+<article class="group cursor-pointer">
+<div class="aspect-video rounded-xl overflow-hidden mb-6">
+<img alt="Serverless" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrz7Rh9f3RYoDpDJ_m9W7uttUiG48tm4eRA4NOleHQJEA5cY0Zn-3pdRMjaPfKX0xd_Pxocm1DdFap8vfMZBg3MxeWmSL_KOsC_aosFJqa59SVlteG-BPVsa0XnSWjs7GnZGMvzw-4Obglnkypw1HmmmADqewU-5kKnd_EAOMwFq3qnTA8h468lqiggXgRfJmxWiYc7FtQZ3Z7vLk_0BjB6_GIzgTTRJJsYGdM-rusvEP43IPqwhDBWx6Q2A9DxxLjq1VgH7fB1w0"/>
+</div>
+<span class="font-label text-[10px] text-primary tracking-widest uppercase">Infrastructure • 8 Min Read</span>
+<h4 class="font-headline text-xl font-bold mt-2 group-hover:text-primary transition-colors">Serverless ML Inference</h4>
+</article>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-8 md:px-16">
+<div class="relative bg-gradient-to-br from-surface-container to-surface-container-high rounded-[2rem] p-12 md:p-24 overflow-hidden text-center border border-outline-variant/10">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 blur-[100px] -mr-48 -mt-48"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 blur-[100px] -ml-48 -mb-48"></div>
+<h2 class="font-headline text-4xl md:text-6xl font-black mb-6 relative z-10">Let's Build the Future Together</h2>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10 relative z-10">
+                    Currently open to specialized AI engineering roles and high-impact freelance partnerships.
+                </p>
+<div class="flex flex-wrap justify-center gap-6 relative z-10">
+<a class="px-10 py-5 bg-on-surface text-surface font-bold rounded-full hover:scale-105 transition-transform" href="mailto:hello@tarunyadav.ai">Get In Touch</a>
+<div class="flex gap-4">
+<a class="w-14 h-14 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined">link</span></a>
+<a class="w-14 h-14 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white/5 transition-all" href="#"><span class="material-symbols-outlined">code</span></a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full py-16 px-8 tonal-shift bg-gradient-to-t from-slate-900 to-transparent">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto border-t border-outline-variant/10 pt-16">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-slate-200 mb-2 uppercase">TARUN YADAV</div>
+<div class="font-inter text-[10px] tracking-[0.1em] uppercase text-slate-500">© 2024 TARUN YADAV / THE CELESTIAL EDITOR</div>
+</div>
+<div class="flex gap-12">
+<a class="font-inter text-[10px] tracking-[0.1em] uppercase text-slate-500 hover:text-indigo-400 transition-colors" href="#">Instagram</a>
+<a class="font-inter text-[10px] tracking-[0.1em] uppercase text-slate-500 hover:text-indigo-400 transition-colors" href="#">LinkedIn</a>
+<a class="font-inter text-[10px] tracking-[0.1em] uppercase text-slate-500 hover:text-indigo-400 transition-colors" href="#">Dribbble</a>
+</div>
+</div>
+</footer>
+</body></html>

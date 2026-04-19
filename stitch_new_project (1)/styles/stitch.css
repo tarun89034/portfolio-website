@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Inter:wght@300;400;600&display=swap");
+
+:root {
+  --surface: #0f131e;
+  --surface-container: #1b1f2b;
+  --outline-variant: #444653;
+  --on-surface: #dfe2f2;
+  --on-surface-variant: #c4c5d5;
+  --primary: #b6c4ff;
+  --primary-container: #6c8cff;
+  --secondary: #ddb7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: "Manrope", sans-serif;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 10% 20%, rgba(108, 140, 255, 0.1), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 90% 80%, rgba(168, 85, 247, 0.09), transparent 62%),
+    linear-gradient(180deg, #0b0f1a 0%, #0f131e 40%, #0f131e 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a,
+button {
+  transition: color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease, background 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
