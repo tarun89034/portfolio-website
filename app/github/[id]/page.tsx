@@ -3,17 +3,19 @@
 import { useParams, useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { openSourceProjects } from "@/stitch_new_project (1)/utils/siteContent";
+import { parseDescription } from "@/stitch_new_project (1)/utils/descriptionParser";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
-import { ExternalLink, ArrowLeft, Code, Code2, Layers } from "lucide-react";
+import { ExternalLink, ArrowLeft, Code, Code2, Layers, Zap, Target } from "lucide-react";
 
 export default function GitHubProjectPage() {
   const { id } = useParams();
   const router = useRouter();
   const project = useMemo(() => openSourceProjects.find((p) => p.id === id), [id]);
+  const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
-  if (!project) {
+  if (!project || !parsed) {
     return (
       <div className="flex h-screen items-center justify-center bg-[#0f131e] text-white">
         <div className="text-center">
@@ -41,16 +43,16 @@ export default function GitHubProjectPage() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          {/* Hero Section */}
-          <section className="relative h-[85vh] w-full flex items-center overflow-hidden">
+          {/* ── HERO: Title + Tag + Buttons only ────────────────────────── */}
+          <section className="relative h-[75vh] w-full flex items-center overflow-hidden">
             <div className="absolute inset-0 z-0 bg-[#0f131e]">
               <img 
                 src={project.image} 
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-50"
+                className="absolute inset-0 w-full h-full object-cover opacity-40"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f131e] via-[#0f131e]/70 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0f131e] to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0f131e] via-[#0f131e]/80 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0f131e] to-transparent" />
             </div>
 
             <div className="relative z-10 px-8 md:px-24 max-w-5xl">
@@ -59,7 +61,7 @@ export default function GitHubProjectPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 onClick={() => router.back()}
-                className="mb-8 flex items-center gap-2 text-sm uppercase tracking-widest text-indigo-300 transition-colors hover:text-indigo-100"
+                className="mb-8 flex items-center gap-2 text-sm uppercase tracking-widest text-violet-300 transition-colors hover:text-violet-100"
               >
                 <ArrowLeft size={16} /> Back to Projects
               </motion.button>
@@ -84,7 +86,7 @@ export default function GitHubProjectPage() {
                   </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-6">
+                <div className="mt-10 flex flex-wrap gap-5">
                   {project.github && (
                     <a
                       href={project.github}
@@ -100,109 +102,122 @@ export default function GitHubProjectPage() {
             </div>
           </section>
 
-          {/* Project Image Section */}
-          <section className="mx-auto max-w-7xl px-8 py-24 md:px-16">
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-violet-400">Preview</span></h2>
-              <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
-            </div>
-            <div className="relative rounded-3xl border border-white/10 bg-[#171b27] overflow-hidden shadow-2xl">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-auto object-cover"
-              />
+          {/* ── PROJECT PREVIEW IMAGE (reduced, centered) ───────────────── */}
+          <section className="section-cinema">
+            <div className="mx-auto max-w-7xl">
+              <div className="mb-10 px-2">
+                <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-violet-400">Preview</span></h2>
+                <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
+              </div>
+              <div className="mx-auto" style={{ maxWidth: "75%" }}>
+                <div className="relative rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
-          {/* Details Section */}
-          <section className="mx-auto max-w-7xl px-8 py-24 md:px-16 grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="md:col-span-2 space-y-12">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold">Project <span className="text-violet-400">Overview</span></h3>
-                <p className="text-lg text-slate-400 leading-relaxed">
-                  {project.description}
-                </p>
+          {/* ── STRUCTURED DESCRIPTION ───────────────────────────────────── */}
+          <section className="section-cinema">
+            <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-16">
+              {/* Main content — 2/3 */}
+              <div className="lg:col-span-2 prose-cinema space-y-2">
+                {/* Project Overview */}
+                <div>
+                  <h3 className="text-2xl font-bold !mt-0">Project <span className="text-violet-400">Overview</span></h3>
+                  <p className="text-lg leading-relaxed">{parsed.summary}</p>
+                </div>
+
+                {/* Key Highlights */}
+                {parsed.highlights.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-bold flex items-center gap-2">
+                      <Zap size={20} className="text-violet-400" /> Key Highlights
+                    </h4>
+                    <ul>
+                      {parsed.highlights.map((h, i) => (
+                        <li key={i}>
+                          {h.title && <strong className="text-slate-200">{h.title}</strong>}
+                          {h.title && h.detail && <span className="text-slate-500"> — </span>}
+                          {h.detail && <span>{h.detail}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Impact */}
+                {parsed.impact.length > 0 && (
+                  <div>
+                    <h4 className="text-xl font-bold flex items-center gap-2">
+                      <Target size={20} className="text-emerald-400" /> Impact
+                    </h4>
+                    <ul>
+                      {parsed.impact.map((line, i) => (
+                        <li key={i}>{line}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="p-8 rounded-2xl bg-[#171b27] border border-white/5 border-l-4 border-l-violet-500">
-                  <Code className="mb-4 text-violet-400" size={28} />
-                  <h4 className="font-bold text-lg mb-2">Open Source</h4>
-                  <p className="text-sm text-slate-400">Available on GitHub for contribution and review.</p>
-                </div>
-                <div className="p-8 rounded-2xl bg-[#171b27] border border-white/5 border-l-4 border-l-indigo-500">
-                  <Layers className="mb-4 text-indigo-400" size={28} />
-                  <h4 className="font-bold text-lg mb-2">Technology</h4>
-                  <p className="text-sm text-slate-400">Built with modern tools and frameworks.</p>
-                </div>
-              </div>
-            </div>
-
-            <aside className="space-y-12">
-              <div className="p-8 rounded-3xl bg-violet-500/5 border border-violet-500/10 backdrop-blur-3xl">
-                <h3 className="mb-6 flex items-center gap-2 text-xl font-bold">
-                  <Code className="text-violet-400" size={24} /> Project Details
-                </h3>
+              {/* Sidebar — 1/3 */}
+              <aside className="space-y-8">
+                {/* Highlight Cards */}
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
-                    <span className="text-slate-400">Category</span>
-                    <span className="text-white font-medium">{project.category}</span>
+                  <div className="highlight-card" style={{ borderLeftColor: "#A855F7" }}>
+                    <Code className="mb-3 text-violet-400" size={24} />
+                    <h4 className="font-bold text-base mb-1.5">Open Source</h4>
+                    <p className="text-sm text-slate-400 leading-relaxed">Available on GitHub for contribution and review.</p>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
-                    <span className="text-slate-400">Type</span>
-                    <span className="text-white font-medium">Open Source</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="text-slate-400">ID</span>
-                    <span className="text-white font-medium text-sm">{project.id}</span>
+                  <div className="highlight-card" style={{ borderLeftColor: "#6C8CFF" }}>
+                    <Layers className="mb-3 text-indigo-400" size={24} />
+                    <h4 className="font-bold text-base mb-1.5">Modern Stack</h4>
+                    <p className="text-sm text-slate-400 leading-relaxed">Built with modern tools and production-grade frameworks.</p>
                   </div>
                 </div>
-              </div>
 
-              {project.github && (
-                <div className="p-8 rounded-3xl bg-[#171b27] border border-white/5">
-                  <h3 className="mb-4 text-xl font-bold">Repository</h3>
-                  <p className="text-sm italic text-slate-500 mb-6">
-                    View the source code and contribute to this project.
-                  </p>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors"
-                  >
-                    <ExternalLink size={20} />
-                    <span>View on GitHub</span>
-                  </a>
+                {/* Tech Stack */}
+                <div className="p-6 rounded-2xl glass-card">
+                  <h3 className="mb-5 flex items-center gap-2 text-lg font-bold">
+                    <Layers className="text-violet-400" size={20} /> Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={tech}
+                        className="px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-400/40 hover:text-violet-400"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              )}
-            </aside>
-          </section>
 
-          {/* Tech Stack Section */}
-          <section className="mx-auto max-w-7xl px-8 py-24 md:px-16">
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold tracking-tight">Tech <span className="text-violet-400">Stack</span></h2>
-              <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
-            </div>
-            <div className="flex flex-wrap gap-4">
-              {project.tech.map((tech, i) => (
-                <motion.div
-                  key={tech}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="px-6 py-3 rounded-full bg-[#171b27] border border-white/10 text-slate-300 hover:border-violet-500/50 hover:text-violet-300 transition-all"
-                >
-                  {tech}
-                </motion.div>
-              ))}
+                {/* Repository Link */}
+                {project.github && (
+                  <div className="p-6 rounded-2xl glass-card">
+                    <h3 className="mb-3 text-lg font-bold">Repository</h3>
+                    <p className="text-sm text-slate-500 mb-4">View the source code and contribute.</p>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 transition-colors"
+                    >
+                      <ExternalLink size={16} /> View on GitHub
+                    </a>
+                  </div>
+                )}
+              </aside>
             </div>
           </section>
 
-          {/* Bottom CTA for navigation */}
+          {/* ── BOTTOM NAV CTA ──────────────────────────────────────────── */}
           <section className="py-24 px-8 text-center bg-gradient-to-b from-transparent to-[#0a0e19]">
             <motion.div
               whileHover={{ y: -10 }}

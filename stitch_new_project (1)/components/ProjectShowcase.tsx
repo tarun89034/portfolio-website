@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { featuredProjects } from "../utils/siteContent";
-import ProjectPosterCard from "./ProjectPosterCard";
+import MediaCard from "./MediaCard";
 
 type ProjectShowcaseProps = {
   showAll?: boolean;
@@ -31,7 +31,7 @@ export default function ProjectShowcase({ showAll = false }: ProjectShowcaseProp
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featuredProjects.slice(0, showAll ? featuredProjects.length : 3).map((project, index) => (
-          <ProjectPosterCard key={project.id} project={project} index={index} />
+          <MediaCard key={project.id} item={project} type="project" index={index} />
         ))}
       </div>
 
