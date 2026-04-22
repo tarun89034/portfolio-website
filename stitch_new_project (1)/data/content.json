@@ -5,12 +5,15 @@
       "type": "featured",
       "title": "Barista AI",
       "description": "Navigating financial markets requires more than just raw data; it requires synthesizing macro-economics, global trends, and mathematical risk metrics into actionable insights. To solve this, I built **Barista AI**, a platform that leverages multi-agent AI architecture to act as a personal, highly analytical financial advisor.\n Here are a few highlights of what I built:\n- ***High-Performance Data Ingestion:*** Engineered a robust multi-source data pipeline (Finnhub, Alpha Vantage, yfinance, FRED) with intelligent fallbacks. By implementing async batching and parallel threading, I reduced market data latency by up to **22.8x** (down to under 300ms)! \n-***Agentic AI Analysis:*** Integrated Google Gemini to power specialized AI agents (Market Monitor, Risk Analyzer, Rebalancing Advisor) that digest real-time metrics (VaR, CVaR, Sharpe) to provide clear, actionable portfolio strategies.\n - ***Sleek & Unified UI:*** Built a highly responsive, dark-mode-first dashboard using Next.js and Tailwind, served entirely from a unified FastAPI Python backend.\nDeploying this to **HuggingFace Spaces** using a custom multi-stage **Docker** pipeline was a massive learning experience in modern CI/CD and containerization.",
-      "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/206efd94-94d9-4008-a1a9-408d0c3d6f31.jpg",
       "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251087/barista_ai_ih1dzm.mp4",
       "images": [
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=70"
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193911.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193933.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193944.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194007.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194024.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194051.png"
       ],
       "github": "https://github.com/tarun89034/barista-ai",
       "live": "https://huggingface.co/spaces/ty8890/barista-ai",
@@ -50,12 +53,14 @@
       "type": "featured",
       "title": "Financial LLM Copilot",
       "description": "Finance-focused copilot for analysis, summarization, and decision support over market and report data. \n Using Streamlit and Mistral-7B (QLoRA), an AI-driven financial copilot was designed that uses concentrated GGUF model inference to provide real-time macroeconomic insights for over 80 countries and 12 key indicators.\n -Created a reliable data triangulation engine that combines economic data from the World Bank, OECD, and FRED and uses a unique validation algorithm to guarantee data consensus and assign confidence scores.\n-In order to dynamically inject multi-source financial data into LLM prompts and enable advanced regional analysis and comparative metrics for seven global regions, a Retrieval-Augmented Generation (RAG) pipeline was engineered.",
-      "image": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Financial_LLM_Copil-0.jpg",
       "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252546/financial_llm_ak5ndu.mp4",
       "images": [
-        "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=800&q=70"
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160319.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160344.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160402.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160424.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160445.png"
       ],
       "github": "https://github.com/tarun89034/finance-llm-researcher",
       "live": "https://huggingface.co/spaces/ty8890/financial-llm-copilot",
@@ -72,12 +77,15 @@
       "type": "featured",
       "title": "Stock Prediction Platform",
       "description": "QuantEdge is a comprehensive stock prediction and backtesting engine designed for global markets. The platform enables traders and investors to:\n - **Validate tickers** from 30+ international exchanges with automatic regional benchmark mapping. \n - **Track real-time prices** for 6 global indices (S&P 500, STOXX Europe 600, ASX 200, CSI 300, NIFTY 50, JSE All Share). \n- **Run backtests** with customizable strategies using vectorbt, calculating Sharpe ratio, max drawdown, and Alpha/Beta vs regional benchmarks. \n - **Generate predictions** using LSTM neural networks trained on historical OHLCV data. \n - **Convert currencies** across 17 supported currencies with live exchange rates.\n **Key Technical Achievements:\n -Implemented TwelveData API fallback for cloud deployments where yfinance is blocked (Yahoo IP restrictions).\n - Built rate-limiting system to respect free-tier API limits (8 calls/minute).\n - Achieved sub-second API response times with multi-tier caching strategy.\n- Configured multi-stage Docker build for seamless HuggingFace Spaces deployment",
-      "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output.jpg",
       "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252567/stock-prediction_backtesting_jv4mcm.mp4",
       "images": [
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1590283603915-19ae64a85661?auto=format&fit=crop&w=800&q=70"
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160505.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160544.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160711.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160731.png"
       ],
       "github": "https://github.com/tarun89034/stock-prediction-vercel",
       "live": "https://huggingface.co/spaces/ty8890/stock-prediction-platform",
@@ -95,9 +103,16 @@
       "type": "featured",
       "title": "Option Pricing",
       "description": "-Using Python and Flask, I designed a professional-grade quantitative analysis platform that uses Black-Scholes, Monte Carlo (GBM), and Binomial Tree models to price European, American, and path-dependent options (Asian, Barrier, and Lookback).\n- Developed a high-performance real-time options chain engine that offers instantaneous Greeks analysis (Delta, Gamma, Theta, and Vega) and implied volatility metrics for more than 30 countries worldwide. This engine uses optimized endpoint fetching to reduce data load times by 50 times.\n-Using Chart.js, a dynamic multi-currency visualization dashboard was created that incorporates real-time FX rate conversion for over eight major currencies, allowing for historical performance tracking across tens of thousands of global tickers and localized risk assessment.",
-      "image": "https://images.unsplash.com/photo-1642052503070-9355f4f8a5ad?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output%20(2).jpg",
       "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251046/clideo_editor_c8855c153f4c4de7b7a66d1f10175b66_tadihp.mp4",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160054.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160117.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160137.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160157.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160211.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160241.png"
+      ],
       "github": "https://github.com/tarun89034/Option-Pricing-",
       "live": "https://option-pricing-snowy.vercel.app/",
       "tech": [
@@ -113,9 +128,12 @@
       "type": "github",
       "title": "AI Powered NIDS",
       "description": "Developed a production-grade AI-NIDS that modernizes legacy Deep Packet Inspection (DPI) into a modular, real-time intelligence platform. The system captures live network traffic, extracts complex statistical flow features aligned with industry-standard benchmarks, and employs dual-layer Machine Learning (Isolation Forest for zero-day anomalies and Random Forest for known attack patterns). \n **Key Features:** \n - ***Real-World Training:*** Integrated kagglehub for automated, memory-safe ingestion and training on 250,000+ records of cleaned CICIDS2017 data.\n - ***Live Observability:*** Built a responsive React/Vite dashboard featuring protocol distribution charts, live traffic volume tracking, and prioritized security alert tables.\n - ***Privacy-First Design:*** Implemented a custom IP-hashing utility on the frontend to anonymize sensitive internal addresses, making the project safe for public portfolio galleries and LinkedIn demos.\n - ***Modular Pipeline:*** Decoupled architecture with a FastAPI backend, SQLite persistence, and a standalone packet-sniffing orchestrated via background threads.",
-      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_AI-NIDS_._Scene_Dar-0.jpg",
       "video": "",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20164926.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20165230.png"
+      ],
       "github": "https://github.com/tarun89034/AI-Powered-Network-Intrusion-Detection-System-NIDS-with-Real-Time-ML-Observability",
       "live": "",
       "tech": [
@@ -131,9 +149,11 @@
       "type": "github",
       "title": "Vendor Performance Analysis",
       "description": "Optimization-focused analytics project for evaluating and improving vendor performance outcomes.",
-      "image": "https://images.unsplash.com/photo-1556155092-8707de31f9c4?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Vendor_Performance_-0.jpg",
       "video": "",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20162213.png"
+      ],
       "github": "https://github.com/tarun89034/Vendor-Performance-Analysis-Optimization",
       "live": "",
       "tech": [
@@ -148,9 +168,12 @@
       "type": "github",
       "title": "Portfolio Optimization Using Python",
       "description": "Quantitative portfolio optimization with risk-return balancing and simulation-backed strategy evaluation.",
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_poster_for_a_project_titled_Portfolio_Optimization_._Scene_A_-0.jpg",
       "video": "",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161813.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161826.png"
+      ],
       "github": "https://github.com/tarun89034/Portfolio-optimization-using-python",
       "live": "",
       "tech": [
@@ -165,9 +188,18 @@
       "type": "github",
       "title": "Credit Risk Analysis",
       "description": "Credit risk modeling pipeline for borrower scoring, segmentation, and default probability analysis.",
-      "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Credit_Risk_Analysi-0.jpg",
       "video": "",
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160906.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160930.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160946.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161000.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161017.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161029.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161042.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20161618.png"
+      ],
       "github": "https://github.com/tarun89034/Credit-Risk-Analysis",
       "live": "",
       "tech": [
