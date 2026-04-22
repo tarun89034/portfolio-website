@@ -11,9 +11,10 @@ interface ProjectRowProps {
   title: string;
   items: ProjectItem[] | CertificateItem[];
   type?: MediaType;
+  onOpenLightbox?: (image: string) => void;
 }
 
-export default function ProjectRow({ title, items = [], type = "project" }: ProjectRowProps) {
+export default function ProjectRow({ title, items = [], type = "project", onOpenLightbox }: ProjectRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const isActive = useInViewOnce(rowRef);
   const visibleItems = useMemo(() => (isActive ? items : []), [isActive, items]);
@@ -86,6 +87,7 @@ export default function ProjectRow({ title, items = [], type = "project" }: Proj
               item={item}
               type={type}
               index={index}
+              onOpenLightbox={onOpenLightbox}
             />
           </div>
         ))}
@@ -96,4 +98,3 @@ export default function ProjectRow({ title, items = [], type = "project" }: Proj
     </section>
   );
 }
-
