@@ -104,26 +104,24 @@ export default function GitHubProjectPage() {
             </div>
           </section>
 
-          {/* ── PROJECT PREVIEW IMAGE (reduced, centered) ───────────────── */}
-          <section className="section-cinema">
-            <div className="mx-auto max-w-7xl">
-              <div className="mb-10 px-2">
-                <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-violet-400">Preview</span></h2>
-                <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
-              </div>
-              <div className="mx-auto" style={{ maxWidth: "75%" }}>
-                <button 
-                  onClick={() => setSelectedImage(project.image)}
-                  className="relative block w-full rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)] group"
-                >
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors" />
-                </button>
-              </div>
+          {/* ── PROJECT PREVIEW (Task 1-5 Enforcement) ──────────────────── */}
+          <section className="screenshot-section">
+            <div className="mb-10 px-4">
+              <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-violet-400">Preview</span></h2>
+              <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
+            </div>
+            <div className="flex justify-center px-4">
+              <button 
+                onClick={() => setSelectedImage(project.image)}
+                className="screenshot-card !w-[600px] !h-[375px] group" // Larger for main preview but still constrained
+              >
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="github-card-img" 
+                />
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors" />
+              </button>
             </div>
           </section>
 

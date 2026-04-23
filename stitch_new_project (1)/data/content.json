@@ -211,14 +211,14 @@
     }
   ],
   "skills": [
-    "Python, TypeScript, JavaScript",
+    "Languages:, Python, TypeScript, JavaScript",
     "Large Language Models",
     "RAG Systems",
     "MLOps",
-    "PyTorch, TensorFlow, LangChain, RAG Systems, LLM Fine-tuning (QLoRA), GGUF Inference, Mistral-7B",
-    "PostgreSQL, MySQL",
-    "React.js, Next.js, Node.js, Express.js, FastAPI, Tailwind CSS, REST APIs",
-    "AWS (EC2, S3, Lambda), Google Cloud (Vertex AI, Gemini), Docker, Kubernetes, CI/CD",
+    "AI & ML:, PyTorch, TensorFlow, LangChain, RAG Systems, LLM Fine-tuning (QLoRA), GGUF Inference, Mistral-7B",
+    "Databases:, PostgreSQL, MySQL, ChromaDB, Pinecone, Vector Databases",
+    "Web Technologies:, React.js, Next.js, Node.js, Express.js, FastAPI, Tailwind CSS, REST APIs",
+    "Cloud:, AWS (EC2, S3, Lambda), Google Cloud (Vertex AI, Gemini), Docker, Kubernetes, CI/CD",
     "Quant Analytics"
   ],
   "links": {

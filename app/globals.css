@@ -270,3 +270,53 @@ button:hover ~ .custom-cursor-ring,
   flex-shrink: 0;
   text-align: center;
 }
+
+/* ─── Task 1-4: Screenshot Rendering System ────────────────────────────── */
+.screenshot-section {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 4rem 1rem;
+}
+
+.screenshot-row {
+  display: flex !important;
+  gap: 16px !important;
+  overflow-x: auto !important;
+  padding: 10px 0 !important;
+  scroll-snap-type: x mandatory !important;
+}
+
+.screenshot-card {
+  width: 320px !important;
+  height: 200px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  background: #0B0F1A !important;
+  position: relative !important;
+  scroll-snap-align: start !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.screenshot-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(108, 140, 255, 0.4);
+}
+
+.screenshot-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* GitHub project specific image fix */
+.github-card img,
+.github-card-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}

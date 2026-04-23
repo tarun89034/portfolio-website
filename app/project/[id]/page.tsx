@@ -133,36 +133,28 @@ export default function ProjectPage() {
             </section>
           )}
 
-          {/* ── SCREENSHOTS ROW (snap scroll + hover zoom) ──────────────── */}
-          <section className="py-16 overflow-hidden">
-            <div className="px-8 md:px-16 mb-8">
+          {/* ── SCREENSHOTS ROW (Task 1-4 Enforcement) ──────────────────── */}
+          <section className="screenshot-section">
+            <div className="mb-8 px-4">
               <h2 className="text-3xl font-bold tracking-tight text-white/90">Visual <span className="text-indigo-400">Library</span></h2>
               <div className="mt-2 h-1 w-20 bg-indigo-500 rounded-full" />
             </div>
             
-            <div className="flex gap-6 overflow-x-auto px-8 md:px-16 no-scrollbar pb-8"
-              style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
-            >
+            <div className="screenshot-row no-scrollbar px-4">
               {project.images.map((img, idx) => (
                 <motion.div
                   key={idx}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
                   onClick={() => setSelectedImage(img)}
-                  className="flex-none w-[420px] aspect-video relative rounded-2xl overflow-hidden border border-white/5 bg-[#171b27] group cursor-pointer"
-                  style={{ scrollSnapAlign: "start" }}
+                  className="screenshot-card group cursor-pointer"
                 >
-                  <img src={img} alt={`${project.title} screenshot ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={img} alt={`${project.title} screenshot ${idx + 1}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f131e]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-3 left-3 text-xs uppercase tracking-widest text-white/0 group-hover:text-white/60 transition-colors duration-300">
-                    Screenshot {idx + 1}
-                  </div>
                 </motion.div>
               ))}
               {project.images.length === 0 && (
                 [1, 2, 3].map((idx) => (
-                  <div key={idx} className="flex-none w-[420px] aspect-video rounded-2xl bg-indigo-500/5 border border-white/5 flex items-center justify-center text-indigo-300/30 font-display italic">
-                    Cinematic Placeholder {idx}
+                  <div key={idx} className="screenshot-card flex items-center justify-center text-indigo-300/20 font-display italic text-xs">
+                    Screenshot Pending
                   </div>
                 ))
               )}
