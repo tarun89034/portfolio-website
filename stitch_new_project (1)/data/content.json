@@ -211,15 +211,11 @@
     }
   ],
   "skills": [
-    "Languages:, Python, TypeScript, JavaScript",
-    "Large Language Models",
-    "RAG Systems",
-    "MLOps",
-    "AI & ML:, PyTorch, TensorFlow, LangChain, RAG Systems, LLM Fine-tuning (QLoRA), GGUF Inference, Mistral-7B",
-    "Databases:, PostgreSQL, MySQL, ChromaDB, Pinecone, Vector Databases",
-    "Web Technologies:, React.js, Next.js, Node.js, Express.js, FastAPI, Tailwind CSS, REST APIs",
-    "Cloud:, AWS (EC2, S3, Lambda), Google Cloud (Vertex AI, Gemini), Docker, Kubernetes, CI/CD",
-    "Quant Analytics"
+    "AI Systems Engineering: Designing intelligent systems using modern AI architectures. | LLMs, RAG, Fine-tuning, Inference Optimization, LangChain",
+    "Backend & Data Systems: Building resilient, high-performance server-side architectures and data pipelines. | FastAPI, PostgreSQL, Vector Databases (ChromaDB, Pinecone), gRPC",
+    "Frontend & Product UI: Crafting immersive, high-performance user experiences with modern frameworks. | React.js, Next.js, Tailwind CSS, Framer Motion",
+    "Cloud & Infrastructure: Architecting scalable, containerized deployments and automated CI/CD pipelines. | AWS, Google Cloud, Docker, Kubernetes, Terraform",
+    "Quant & ML Operations: Lifecycle management of ML models and quantitative financial analysis. | MLOps, Quant Analytics, Python, PyTorch, TensorFlow"
   ],
   "links": {
     "linkedin": "https://www.linkedin.com/in/tarun-yadav-a5b538251/",

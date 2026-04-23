@@ -19,42 +19,74 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="section-cinema relative overflow-hidden bg-[#0f131e]">
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[800px] rounded-full bg-indigo-500/5 blur-[120px]" />
+    <section id="skills" className="py-24 relative overflow-hidden bg-[#0f131e]">
+      {/* Decorative backdrop */}
+      <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-indigo-500/5 blur-[120px]" />
+      <div className="pointer-events-none absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[120px]" />
       
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="mb-12">
-          <p className="text-xs uppercase tracking-[0.2em] text-indigo-400/80">Expertise</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-5xl">
-            Core <span className="gradient-text">Strengths</span>
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
+        <div className="mb-16">
+          <p className="text-xs uppercase tracking-[0.3em] text-indigo-400 font-bold">Engineering Portfolio</p>
+          <h2 className="mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            Technical <span className="text-indigo-400">Capabilities</span>
           </h2>
-          <div className="mt-4 h-1 w-24 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div className="mt-6 h-1 w-20 rounded-full bg-indigo-500" />
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {portfolioSkills.map((skill, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card group relative p-8 transition-all hover:-translate-y-1 hover:border-white/20"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="relative z-10">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 transition-transform">
-                  {iconMap[skill] || <Zap className="text-slate-400" />}
+        {/* Task 1: Capability Grid */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {portfolioSkills.map((skillString, index) => {
+            // Parsing Task 6 format
+            const [titlePart, techPart] = skillString.split('|');
+            const [title, description] = titlePart.split(':');
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative"
+              >
+                {/* Task 3: Capability Card Styling */}
+                <div className="h-full rounded-2xl bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 transition-all duration-300 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-indigo-500/30 hover:shadow-[0_20px_50px_rgba(108,140,255,0.15)]">
+                  <div className="flex items-start justify-between mb-6">
+                    {/* Task 4: Typography Hierarchy */}
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-100 tracking-tight group-hover:text-indigo-300 transition-colors">
+                        {title.trim()}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                        {description.trim()}
+                      </p>
+                    </div>
+                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
+                      {index === 0 && <Cpu size={20} />}
+                      {index === 1 && <Database size={20} />}
+                      {index === 2 && <Globe size={20} />}
+                      {index === 3 && <Layers size={20} />}
+                      {index === 4 && <Zap size={20} />}
+                    </div>
+                  </div>
+
+                  <div className="pt-6 border-t border-white/5">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 font-bold mb-3">Core Technologies</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techPart.split(',').map((tech, tIdx) => (
+                        <span 
+                          key={tIdx}
+                          className="px-3 py-1 rounded-md bg-white/5 border border-white/5 text-[12px] text-slate-300 font-medium group-hover:border-indigo-500/20 group-hover:text-slate-200 transition-all"
+                        >
+                          {tech.trim()}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-slate-100 mb-2">
-                  {skill.split(',')[0]}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  {skill.includes(',') ? skill.split(',').slice(1).join(',').trim() : "Advanced implementation and architectural design."}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
