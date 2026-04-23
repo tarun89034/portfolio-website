@@ -18,97 +18,107 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function SkillsSection() {
+  // Task 2: Refined Stagger Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
+    show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.12,
+        delayChildren: 0.1
       }
     }
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.98 },
-    visible: {
-      opacity: 1,
-      y: 0,
+  const cardVariant = {
+    hidden: { 
+      opacity: 0, 
+      y: 40, 
+      scale: 0.96 
+    },
+    show: { 
+      opacity: 1, 
+      y: 0, 
       scale: 1,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.5,
+        ease: "easeOut"
       }
     }
   };
 
   return (
-    // Task 5: Section Spacing (80px 40px -> py-20 px-10)
-    <section id="skills" className="py-20 px-5 md:px-10 relative overflow-hidden bg-[#0f131e]">
+    <section id="skills" className="py-24 px-5 md:px-10 relative overflow-hidden bg-[#0f131e]">
       {/* Decorative backdrop */}
       <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-indigo-500/5 blur-[120px]" />
       <div className="pointer-events-none absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[120px]" />
       
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 md:px-2">
-          <p className="text-xs uppercase tracking-[0.3em] text-indigo-400 font-bold">Engineering Portfolio</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-indigo-400 font-bold">Expertise Architecture</p>
           <h2 className="mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
             Technical <span className="text-indigo-400">Capabilities</span>
           </h2>
           <div className="mt-6 h-1 w-20 rounded-full bg-indigo-500" />
         </div>
 
-        {/* Task 4: Grid Spacing (gap: 28px -> gap-7) */}
+        {/* Task 3: Apply to Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
+          whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-7 md:grid-cols-2"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2"
         >
           {portfolioSkills.map((skillString, index) => {
             const [titlePart, techPart] = skillString.split('|');
             const [title, description] = titlePart.split(':');
+            const techStack = techPart.split(',').map(t => t.trim());
             
             return (
               <motion.div
                 key={index}
-                variants={cardVariants}
-                className="group relative"
+                variants={cardVariant}
+                className="group relative will-change-transform"
               >
-                {/* Task 1 & 6: Card Styling (padding: 28px, border/bg refinement) */}
-                <div className="h-full rounded-[18px] bg-white/[0.035] backdrop-blur-xl border border-white/[0.08] p-[28px] transition-all duration-300 hover:-translate-y-[6px] hover:bg-white/[0.06] hover:border-indigo-500/40 hover:shadow-[0_10px_40px_rgba(108,140,255,0.25)]">
-                  <div className="flex items-start justify-between mb-8">
-                    {/* Task 3: Typography Scale */}
-                    <div className="flex-1 pr-4">
-                      <h3 className="text-[20px] font-semibold text-slate-100 tracking-tight leading-tight group-hover:text-indigo-300 transition-colors mb-[10px]">
-                        {title.trim()}
-                      </h3>
-                      <p className="text-[15px] leading-[1.6] text-slate-400 mb-[14px]">
-                        {description.trim()}
-                      </p>
-                    </div>
-                    <div className="h-11 w-11 flex-shrink-0 flex items-center justify-center rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">
-                      {index === 0 && <Cpu size={22} />}
-                      {index === 1 && <Database size={22} />}
-                      {index === 2 && <Globe size={22} />}
-                      {index === 3 && <Layers size={22} />}
-                      {index === 4 && <Zap size={22} />}
-                    </div>
-                  </div>
+                {/* Task 1, 4 & 5: Card Styling with Tech Pills and Glow */}
+                <div className="relative h-full overflow-hidden rounded-[20px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-8 transition-all duration-300 hover:-translate-y-[6px] hover:scale-[1.01] hover:bg-white/[0.05] hover:border-indigo-500/40 hover:shadow-[0_15px_50px_rgba(108,140,255,0.2)]">
+                  
+                  {/* Task 5: Subtle Background Glow Depth */}
+                  <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(108,140,255,0.08),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* Task 2: Vertical Rhythm & Task 8: Text Wrapping */}
-                  <div className="pt-7 border-t border-white/[0.05]">
-                    <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500 font-bold mb-4">Core Technologies</p>
-                    <div className="flex flex-wrap gap-2.5 word-wrap-break">
-                      {techPart.split(',').map((tech, tIdx) => (
-                        <span 
-                          key={tIdx}
-                          className="px-3.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/5 text-[14px] text-slate-300 font-medium group-hover:border-indigo-500/20 group-hover:text-slate-200 transition-all leading-[1.6]"
-                        >
-                          {tech.trim()}
-                        </span>
-                      ))}
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-8">
+                      <div className="flex-1 pr-6">
+                        <h3 className="text-[22px] font-bold text-slate-100 tracking-tight leading-tight group-hover:text-indigo-300 transition-colors mb-3">
+                          {title.trim()}
+                        </h3>
+                        <p className="text-[15px] leading-relaxed text-slate-400 mb-6">
+                          {description.trim()}
+                        </p>
+                      </div>
+                      <div className="h-12 w-12 flex-shrink-0 flex items-center justify-center rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform duration-300">
+                        {index === 0 && <Cpu size={24} />}
+                        {index === 1 && <Database size={24} />}
+                        {index === 2 && <Globe size={24} />}
+                        {index === 3 && <Layers size={24} />}
+                        {index === 4 && <Zap size={24} />}
+                      </div>
+                    </div>
+
+                    {/* Task 1: Tech Pills */}
+                    <div className="pt-7 border-t border-white/[0.05]">
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-4">Core Stack</p>
+                      <div className="flex flex-wrap gap-2.5">
+                        {techStack.map((tech, tIdx) => (
+                          <span 
+                            key={tIdx}
+                            className="px-3.5 py-1.5 rounded-full bg-indigo-500/[0.08] border border-indigo-500/20 text-[12px] text-slate-200 font-medium backdrop-blur-md transition-all duration-200 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:shadow-[0_0_15px_rgba(108,140,255,0.25)] hover:text-white"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
