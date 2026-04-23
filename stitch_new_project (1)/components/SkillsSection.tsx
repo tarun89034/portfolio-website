@@ -106,14 +106,14 @@ export default function SkillsSection() {
                       </div>
                     </div>
 
-                    {/* Task 1: Tech Pills */}
+                    {/* Task 1-8: Refined Tech Pills */}
                     <div className="pt-7 border-t border-white/[0.05]">
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-4">Core Stack</p>
-                      <div className="flex flex-wrap gap-2.5">
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-5">Core Stack</p>
+                      <div className="flex flex-wrap gap-[10px]">
                         {techStack.map((tech, tIdx) => (
                           <span 
                             key={tIdx}
-                            className="px-3.5 py-1.5 rounded-full bg-indigo-500/[0.08] border border-indigo-500/20 text-[12px] text-slate-200 font-medium backdrop-blur-md transition-all duration-200 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:shadow-[0_0_15px_rgba(108,140,255,0.25)] hover:text-white"
+                            className="px-[14px] py-[8px] rounded-full bg-indigo-500/[0.18] border border-indigo-500/[0.35] text-[13px] text-[#E5E7EB] font-medium backdrop-blur-[8px] transition-all duration-250 hover:bg-indigo-500/[0.3] hover:shadow-[0_0_10px_rgba(108,140,255,0.35)] whitespace-nowrap tracking-[0.3px]"
                           >
                             {tech}
                           </span>
