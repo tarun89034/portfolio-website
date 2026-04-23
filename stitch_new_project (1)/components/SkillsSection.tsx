@@ -5,36 +5,36 @@ import { motion } from "framer-motion";
 import { portfolioSkills } from "../utils/siteContent";
 import { Code2, Cpu, Database, Globe, Layers, Zap, Cloud } from "lucide-react";
 
-const techIcons: Record<string, any> = {
-  // AI & ML
-  "LLMs": Cpu,
-  "RAG": Cpu,
-  "Fine-tuning": Cpu,
-  "Inference Optimization": Cpu,
-  "MLOps": Cpu,
-  "PyTorch": Cpu,
-  "TensorFlow": Cpu,
-  // Data
-  "PostgreSQL": Database,
-  "Vector Databases (ChromaDB, Pinecone)": Database,
-  // Backend & Languages
-  "FastAPI": Code2,
-  "gRPC": Code2,
-  "Python": Code2,
-  // Frontend
-  "React.js": Globe,
-  "Next.js": Globe,
-  "Framer Motion": Globe,
-  "Tailwind CSS": Layers,
-  // Cloud & Infra
-  "AWS": Cloud,
-  "Google Cloud": Cloud,
-  "Docker": Layers,
-  "Kubernetes": Layers,
-  "Terraform": Layers,
-  // Specialized
-  "Quant Analytics": Zap,
-  "LangChain": Zap
+const techIcons: Record<string, { icon: any, color: string }> = {
+  // AI & ML (Muted Purple)
+  "LLMs": { icon: Cpu, color: "#C084FC" },
+  "RAG": { icon: Cpu, color: "#C084FC" },
+  "Fine-tuning": { icon: Cpu, color: "#C084FC" },
+  "Inference Optimization": { icon: Cpu, color: "#C084FC" },
+  "MLOps": { icon: Cpu, color: "#C084FC" },
+  "PyTorch": { icon: Cpu, color: "#C084FC" },
+  "TensorFlow": { icon: Cpu, color: "#C084FC" },
+  // Data (Muted Cyan)
+  "PostgreSQL": { icon: Database, color: "#7DD3FC" },
+  "Vector Databases (ChromaDB, Pinecone)": { icon: Database, color: "#7DD3FC" },
+  // Backend & Languages (Muted Blue)
+  "FastAPI": { icon: Code2, color: "#60A5FA" },
+  "gRPC": { icon: Code2, color: "#60A5FA" },
+  "Python": { icon: Code2, color: "#60A5FA" },
+  // Frontend (Muted Emerald)
+  "React.js": { icon: Globe, color: "#6EE7B7" },
+  "Next.js": { icon: Globe, color: "#6EE7B7" },
+  "Framer Motion": { icon: Globe, color: "#6EE7B7" },
+  "Tailwind CSS": { icon: Layers, color: "#6EE7B7" },
+  // Cloud & Infra (Muted Orange)
+  "AWS": { icon: Cloud, color: "#FDBA74" },
+  "Google Cloud": { icon: Cloud, color: "#FDBA74" },
+  "Docker": { icon: Layers, color: "#FDBA74" },
+  "Kubernetes": { icon: Layers, color: "#FDBA74" },
+  "Terraform": { icon: Layers, color: "#FDBA74" },
+  // Specialized (Muted Rose)
+  "Quant Analytics": { icon: Zap, color: "#FDA4AF" },
+  "LangChain": { icon: Zap, color: "#C084FC" } // ML aligned
 };
 
 export default function SkillsSection() {
@@ -125,7 +125,10 @@ export default function SkillsSection() {
                       <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-5">Core Stack</p>
                       <div className="flex flex-wrap gap-[10px]">
                         {techStack.map((tech, tIdx) => {
-                          const Icon = techIcons[tech];
+                          const iconData = techIcons[tech];
+                          const Icon = iconData?.icon;
+                          const iconColor = iconData?.color || "#A5B4FC";
+                          
                           return (
                             <span 
                               key={tIdx}
@@ -134,7 +137,8 @@ export default function SkillsSection() {
                               {Icon && (
                                 <Icon 
                                   size={14} 
-                                  className="text-[#A5B4FC] opacity-80 group-hover/pill:opacity-100 group-hover/pill:scale-110 transition-all duration-200" 
+                                  style={{ color: iconColor }}
+                                  className="opacity-80 group-hover/pill:opacity-100 group-hover/pill:scale-110 transition-all duration-200" 
                                 />
                               )}
                               {tech}
