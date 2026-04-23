@@ -21,7 +21,7 @@ export const mapProjectToUi = (project: PortfolioProject): UiProject => ({
   description: project.description,
   image: project.image,
   video: project.video,
-  images: project.images,
+  screenshots: project.screenshots,
   github: project.github,
   live: project.live,
   tech: project.tech,

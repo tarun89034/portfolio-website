@@ -16,6 +16,9 @@ export default function ProjectPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = useMemo(() => featuredProjects.find((p) => p.id === id), [id]);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
+  
+  console.log("Project Data:", project);
+  console.log("Screenshots:", project?.screenshots);
 
   if (!project || !parsed) {
     return (
@@ -141,17 +144,18 @@ export default function ProjectPage() {
             </div>
             
             <div className="screenshot-row no-scrollbar px-4">
-              {project.images.map((img, idx) => (
-                <motion.div
-                  key={idx}
-                  onClick={() => setSelectedImage(img)}
-                  className="screenshot-card group cursor-pointer"
-                >
-                  <img src={img} alt={`${project.title} screenshot ${idx + 1}`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f131e]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
-              ))}
-              {project.images.length === 0 && (
+              {project.screenshots && project.screenshots.length > 0 ? (
+                project.screenshots.map((img, idx) => (
+                  <motion.div
+                    key={idx}
+                    onClick={() => setSelectedImage(img)}
+                    className="screenshot-card group cursor-pointer"
+                  >
+                    <img src={img} alt={`${project.title} screenshot ${idx + 1}`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f131e]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </motion.div>
+                ))
+              ) : (
                 [1, 2, 3].map((idx) => (
                   <div key={idx} className="screenshot-card flex items-center justify-center text-indigo-300/20 font-display italic text-xs">
                     Screenshot Pending

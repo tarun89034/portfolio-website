@@ -15,6 +15,9 @@ export default function GitHubProjectPage() {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = useMemo(() => openSourceProjects.find((p) => p.id === id), [id]);
+
+  console.log("GitHub Project Data:", project);
+  console.log("GitHub Screenshots:", project?.screenshots);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
   if (!project || !parsed) {
@@ -110,10 +113,10 @@ export default function GitHubProjectPage() {
               <h2 className="text-3xl font-bold tracking-tight">Project <span className="text-violet-400">Preview</span></h2>
               <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
             </div>
-            <div className="flex justify-center px-4">
+            <div className="flex justify-center px-4 mb-16">
               <button 
                 onClick={() => setSelectedImage(project.image)}
-                className="screenshot-card !w-[600px] !h-[375px] group" // Larger for main preview but still constrained
+                className="screenshot-card !w-[600px] !h-[375px] group"
               >
                 <img 
                   src={project.image} 
@@ -123,6 +126,27 @@ export default function GitHubProjectPage() {
                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors" />
               </button>
             </div>
+
+            {/* ── SCREENSHOT GALLERY (Task 6 Enforcement) ────────────────── */}
+            {project.screenshots && project.screenshots.length > 0 && (
+              <div className="px-4">
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-white/80">Visual <span className="text-violet-400">Gallery</span></h3>
+                </div>
+                <div className="screenshot-row no-scrollbar">
+                  {project.screenshots.map((img, index) => (
+                    <div 
+                      key={index} 
+                      className="screenshot-card cursor-pointer group"
+                      onClick={() => setSelectedImage(img)}
+                    >
+                      <img src={img} alt="screenshot" />
+                      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           {/* ── STRUCTURED DESCRIPTION ───────────────────────────────────── */}

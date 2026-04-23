@@ -10,7 +10,7 @@ export type PortfolioProject = {
   description: string;
   image: string;
   video: string;
-  images: string[];
+  screenshots: string[];
   github: string;
   live: string;
   tech: string[];
@@ -45,7 +45,7 @@ export type UiProject = {
   description: string;
   image: string;
   video: string;
-  images: string[];
+  screenshots: string[];
   github: string;
   live: string;
   tech: string[];
