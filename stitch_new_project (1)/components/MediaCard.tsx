@@ -52,9 +52,9 @@ export default function MediaCard({ item, type, index, onOpenLightbox }: MediaCa
   const videoSrc = (item as any).video;
 
   return (
-    <div className="w-[240px] flex-shrink-0 group">
+    <div className="card-wrapper group">
       <motion.article
-        className="relative aspect-[2/3] w-full cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-[#171b27] transition-all duration-300 hover:border-indigo-400/50 hover:shadow-[0_0_40px_rgba(108,140,255,0.3)]"
+        className="project-card interactive"
         onMouseEnter={() => {
           onMouseEnter();
           setIsFocused(true);
@@ -67,8 +67,8 @@ export default function MediaCard({ item, type, index, onOpenLightbox }: MediaCa
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        {/* Media Content */}
-        <div className="absolute inset-0 z-0">
+        {/* Media Content - Enforce 100% Fill */}
+        <div className="absolute inset-0 z-0 h-full w-full">
           <AnimatePresence mode="wait">
             {!shouldShowVideo || !videoSrc ? (
               <motion.img
@@ -78,7 +78,7 @@ export default function MediaCard({ item, type, index, onOpenLightbox }: MediaCa
                 exit={{ opacity: 0 }}
                 src={item.image}
                 alt={item.title}
-                className="h-full w-full object-cover object-center"
+                className="project-card-img"
               />
             ) : (
               <motion.video
@@ -91,26 +91,26 @@ export default function MediaCard({ item, type, index, onOpenLightbox }: MediaCa
                 muted
                 loop
                 playsInline
-                className="h-full w-full object-cover object-center"
+                className="project-card-img"
               />
             )}
           </AnimatePresence>
         </div>
 
         {/* Overlay Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-100" />
         <div className="card-vignette" />
         
         {/* Subtle tag overlay */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="rounded-sm bg-black/40 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-slate-300 backdrop-blur-md border border-white/5">
+          <span className="rounded-sm bg-black/60 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-slate-100 backdrop-blur-md border border-white/10">
             {category || type}
           </span>
         </div>
       </motion.article>
 
       {/* Title BELOW card - Requirement #2 & Task 4 */}
-      <div className="mt-4 px-1 text-center transition-all duration-300 group-hover:translate-y-1">
+      <div className="mt-4 px-1 text-center transition-all duration-300">
         <h3 className="text-sm font-semibold tracking-tight text-slate-200 group-hover:text-white">
           {item.title}
         </h3>
@@ -118,9 +118,9 @@ export default function MediaCard({ item, type, index, onOpenLightbox }: MediaCa
           <motion.p 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
-            className="mt-1 text-[10px] text-indigo-300/80 uppercase tracking-widest font-bold"
+            className="mt-1 text-[10px] text-indigo-400 uppercase tracking-widest font-bold"
           >
-            View Details
+            Explore Detail
           </motion.p>
         )}
       </div>

@@ -75,21 +75,16 @@ export default function ProjectRow({ title, items = [], type = "project", onOpen
 
       <div
         ref={rowRef}
-        className={styles.track}
+        className="row-netflix no-scrollbar"
       >
         {visibleItems.map((item, index) => (
-          <div
+          <MediaCard
             key={item.id || `${item.title}-${index}`}
-            className={`${styles.item} ${isActive ? styles.itemEnter : ""}`}
-            style={{ animationDelay: `${index * 90}ms` }}
-          >
-            <MediaCard
-              item={item}
-              type={type}
-              index={index}
-              onOpenLightbox={onOpenLightbox}
-            />
-          </div>
+            item={item}
+            type={type}
+            index={index}
+            onOpenLightbox={onOpenLightbox}
+          />
         ))}
       </div>
 

@@ -29,7 +29,7 @@ export default function ProjectShowcase({ showAll = false }: ProjectShowcaseProp
         )}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
         {featuredProjects.slice(0, showAll ? featuredProjects.length : 3).map((project, index) => (
           <MediaCard key={project.id} item={project} type="project" index={index} />
         ))}

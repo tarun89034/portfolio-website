@@ -228,3 +228,45 @@ button:hover ~ .custom-cursor-ring,
   background: radial-gradient(circle at center, transparent 30%, rgba(11, 15, 26, 0.4) 100%);
   pointer-events: none;
 }
+
+/* ─── Task 2 & 3: Card System Enforcement ──────────────────────────────── */
+.project-card {
+  width: 240px !important;
+  height: 360px !important; /* Force 2:3 ratio (240 * 1.5) */
+  aspect-ratio: 2 / 3 !important;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #0B0F1A;
+  display: flex;
+  flex-direction: column;
+}
+
+/* THE HAMMER: Ensure NO image or video escapes the container dimensions */
+.project-card img,
+.project-card video,
+.project-card-img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.row-netflix {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding: 2rem 0;
+}
+
+.card-wrapper {
+  width: 240px !important;
+  flex-shrink: 0;
+  text-align: center;
+}
