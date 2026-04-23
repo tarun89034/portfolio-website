@@ -84,8 +84,8 @@ export default function SkillsSection() {
                 {/* Task 1, 4 & 5: Card Styling with Tech Pills and Glow */}
                 <div className="relative h-full overflow-hidden rounded-[20px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-8 transition-all duration-300 hover:-translate-y-[6px] hover:scale-[1.01] hover:bg-white/[0.05] hover:border-indigo-500/40 hover:shadow-[0_15px_50px_rgba(108,140,255,0.2)]">
                   
-                  {/* Task 5: Subtle Background Glow Depth */}
-                  <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(108,140,255,0.08),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  {/* Task 5: Subtle Background Glow Depth (with 0.2s activation delay to prevent jitter) */}
+                  <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(108,140,255,0.08),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pointer-events-none" />
 
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-8">
