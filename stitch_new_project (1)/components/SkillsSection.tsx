@@ -18,6 +18,30 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function SkillsSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-[#0f131e]">
       {/* Decorative backdrop */}
@@ -34,7 +58,13 @@ export default function SkillsSection() {
         </div>
 
         {/* Task 1: Capability Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2"
+        >
           {portfolioSkills.map((skillString, index) => {
             // Parsing Task 6 format
             const [titlePart, techPart] = skillString.split('|');
@@ -43,10 +73,7 @@ export default function SkillsSection() {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                variants={cardVariants}
                 className="group relative"
               >
                 {/* Task 3: Capability Card Styling */}
@@ -87,7 +114,7 @@ export default function SkillsSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
