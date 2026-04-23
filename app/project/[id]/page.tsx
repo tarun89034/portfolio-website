@@ -1,17 +1,19 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { featuredProjects } from "@/stitch_new_project (1)/utils/siteContent";
 import { parseDescription } from "@/stitch_new_project (1)/utils/descriptionParser";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
+import Lightbox from "@/stitch_new_project (1)/components/Lightbox";
 import { Play, ExternalLink, ArrowLeft, Layers, Shield, Cpu, Code, Zap, Target } from "lucide-react";
 
 export default function ProjectPage() {
   const { id } = useParams();
   const router = useRouter();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = useMemo(() => featuredProjects.find((p) => p.id === id), [id]);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
@@ -146,6 +148,7 @@ export default function ProjectPage() {
                   key={idx}
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
+                  onClick={() => setSelectedImage(img)}
                   className="flex-none w-[420px] aspect-video relative rounded-2xl overflow-hidden border border-white/5 bg-[#171b27] group cursor-pointer"
                   style={{ scrollSnapAlign: "start" }}
                 >
@@ -284,6 +287,10 @@ export default function ProjectPage() {
       </AnimatePresence>
 
       <SiteFooter />
+      <Lightbox 
+        image={selectedImage} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </div>
   );
 }

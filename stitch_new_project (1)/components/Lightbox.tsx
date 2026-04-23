@@ -1,5 +1,4 @@
-"use client";
-
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -9,6 +8,14 @@ type LightboxProps = {
 };
 
 export default function Lightbox({ image, onClose }: LightboxProps) {
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [onClose]);
+
   return (
     <AnimatePresence>
       {image && (

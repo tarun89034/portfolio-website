@@ -8,6 +8,7 @@ import SiteFooter from "../components/SiteFooter";
 import SiteNavbar from "../components/SiteNavbar";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
+import SkillsSection from "../components/SkillsSection";
 import Lightbox from "../components/Lightbox";
 import { featuredProjects, openSourceProjects, allCertificates, portfolioLinks } from "../utils/siteContent";
 
@@ -42,6 +43,7 @@ export default function LandingPage() {
         </div>
 
         <AboutSection />
+        <SkillsSection />
         <ContactSection personal={portfolioLinks} />
 
         <Lightbox 

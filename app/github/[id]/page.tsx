@@ -1,17 +1,19 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { openSourceProjects } from "@/stitch_new_project (1)/utils/siteContent";
 import { parseDescription } from "@/stitch_new_project (1)/utils/descriptionParser";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
+import Lightbox from "@/stitch_new_project (1)/components/Lightbox";
 import { ExternalLink, ArrowLeft, Code, Code2, Layers, Zap, Target } from "lucide-react";
 
 export default function GitHubProjectPage() {
   const { id } = useParams();
   const router = useRouter();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = useMemo(() => openSourceProjects.find((p) => p.id === id), [id]);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
@@ -110,13 +112,17 @@ export default function GitHubProjectPage() {
                 <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
               </div>
               <div className="mx-auto" style={{ maxWidth: "75%" }}>
-                <div className="relative rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
+                <button 
+                  onClick={() => setSelectedImage(project.image)}
+                  className="relative block w-full rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)] group"
+                >
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                </div>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors" />
+                </button>
               </div>
             </div>
           </section>
@@ -238,6 +244,10 @@ export default function GitHubProjectPage() {
       </AnimatePresence>
 
       <SiteFooter />
+      <Lightbox 
+        image={selectedImage} 
+        onClose={() => setSelectedImage(null)} 
+      />
     </div>
   );
 }

@@ -10,10 +10,13 @@ export const metadata: Metadata = {
   keywords: ["AI Engineer", "Machine Learning", "GenAI", "Portfolio", "Tarun Yadav"],
 };
 
+import CustomCursor from "@/stitch_new_project (1)/components/CustomCursor";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
       <body className="film-grain">
+        <CustomCursor />
         <Script
           id="project-route-map"
           strategy="beforeInteractive"

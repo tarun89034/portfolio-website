@@ -24,9 +24,9 @@ export default function SiteNavbar() {
             </Link>
           ))}
         </div>
-        <ResumeDownloadButton
-          className="rounded-full bg-gradient-to-r from-[#6c8cff] to-[#a855f7] px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-white shadow-[0_0_24px_rgba(108,140,255,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(108,140,255,0.55)] md:px-4 md:text-xs"
-        />
+        <div className="flex items-center gap-4">
+          {/* Action buttons could go here in future */}
+        </div>
       </nav>
     </header>
   );
