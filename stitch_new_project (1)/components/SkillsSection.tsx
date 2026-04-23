@@ -3,22 +3,41 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { portfolioSkills } from "../utils/siteContent";
-import { Code2, Cpu, Database, Globe, Layers, Zap } from "lucide-react";
+import { Code2, Cpu, Database, Globe, Layers, Zap, Cloud } from "lucide-react";
 
-const iconMap: Record<string, React.ReactNode> = {
-  "Python, TypeScript, JavaScript": <Code2 className="text-blue-400" />,
-  "Large Language Models": <Cpu className="text-purple-400" />,
-  "RAG Systems": <Zap className="text-amber-400" />,
-  "MLOps": <Layers className="text-emerald-400" />,
-  "PyTorch, TensorFlow, LangChain, RAG Systems, LLM Fine-tuning (QLoRA), GGUF Inference, Mistral-7B": <Cpu className="text-indigo-400" />,
-  "PostgreSQL, MySQL": <Database className="text-cyan-400" />,
-  "React.js, Next.js, Node.js, Express.js, FastAPI, Tailwind CSS, REST APIs": <Globe className="text-sky-400" />,
-  "AWS (EC2, S3, Lambda), Google Cloud (Vertex AI, Gemini), Docker, Kubernetes, CI/CD": <Layers className="text-orange-400" />,
-  "Quant Analytics": <Zap className="text-rose-400" />,
+const techIcons: Record<string, any> = {
+  // AI & ML
+  "LLMs": Cpu,
+  "RAG": Cpu,
+  "Fine-tuning": Cpu,
+  "Inference Optimization": Cpu,
+  "MLOps": Cpu,
+  "PyTorch": Cpu,
+  "TensorFlow": Cpu,
+  // Data
+  "PostgreSQL": Database,
+  "Vector Databases (ChromaDB, Pinecone)": Database,
+  // Backend & Languages
+  "FastAPI": Code2,
+  "gRPC": Code2,
+  "Python": Code2,
+  // Frontend
+  "React.js": Globe,
+  "Next.js": Globe,
+  "Framer Motion": Globe,
+  "Tailwind CSS": Layers,
+  // Cloud & Infra
+  "AWS": Cloud,
+  "Google Cloud": Cloud,
+  "Docker": Layers,
+  "Kubernetes": Layers,
+  "Terraform": Layers,
+  // Specialized
+  "Quant Analytics": Zap,
+  "LangChain": Zap
 };
 
 export default function SkillsSection() {
-  // Task 2: Refined Stagger Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -62,7 +81,6 @@ export default function SkillsSection() {
           <div className="mt-6 h-1 w-20 rounded-full bg-indigo-500" />
         </div>
 
-        {/* Task 3: Apply to Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -81,10 +99,7 @@ export default function SkillsSection() {
                 variants={cardVariant}
                 className="group relative will-change-transform"
               >
-                {/* Task 1, 4 & 5: Card Styling with Tech Pills and Glow */}
                 <div className="relative h-full overflow-hidden rounded-[20px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-8 transition-all duration-300 hover:-translate-y-[6px] hover:scale-[1.01] hover:bg-white/[0.05] hover:border-indigo-500/40 hover:shadow-[0_15px_50px_rgba(108,140,255,0.2)]">
-                  
-                  {/* Task 5: Subtle Background Glow Depth (with 0.2s activation delay to prevent jitter) */}
                   <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(108,140,255,0.08),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pointer-events-none" />
 
                   <div className="relative z-10">
@@ -106,18 +121,26 @@ export default function SkillsSection() {
                       </div>
                     </div>
 
-                    {/* Task 1-8: Refined Tech Pills */}
                     <div className="pt-7 border-t border-white/[0.05]">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-5">Core Stack</p>
                       <div className="flex flex-wrap gap-[10px]">
-                        {techStack.map((tech, tIdx) => (
-                          <span 
-                            key={tIdx}
-                            className="px-[14px] py-[8px] rounded-full bg-indigo-500/[0.18] border border-indigo-500/[0.35] text-[13px] text-[#E5E7EB] font-medium backdrop-blur-[8px] transition-all duration-250 hover:bg-indigo-500/[0.3] hover:shadow-[0_0_10px_rgba(108,140,255,0.35)] whitespace-nowrap tracking-[0.3px]"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                        {techStack.map((tech, tIdx) => {
+                          const Icon = techIcons[tech];
+                          return (
+                            <span 
+                              key={tIdx}
+                              className="inline-flex items-center gap-1.5 px-[14px] py-[8px] rounded-full bg-indigo-500/[0.18] border border-indigo-500/[0.35] text-[13px] text-[#E5E7EB] font-medium backdrop-blur-[8px] transition-all duration-250 hover:bg-indigo-500/[0.3] hover:shadow-[0_0_10px_rgba(108,140,255,0.35)] whitespace-nowrap tracking-[0.3px] group/pill"
+                            >
+                              {Icon && (
+                                <Icon 
+                                  size={14} 
+                                  className="text-[#A5B4FC] opacity-80 group-hover/pill:opacity-100 group-hover/pill:scale-110 transition-all duration-200" 
+                                />
+                              )}
+                              {tech}
+                            </span>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
