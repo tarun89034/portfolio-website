@@ -30,7 +30,7 @@ export default function CertificatePage() {
   }
 
   return (
-    <div className="min-h-screen font-body selection:bg-indigo-500/30">
+    <div className="min-h-screen font-body selection:bg-indigo-500/30 pt-20">
       
       <AnimatePresence mode="wait">
         <motion.div

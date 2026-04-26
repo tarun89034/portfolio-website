@@ -4,7 +4,7 @@ import { navItems } from "../utils/siteContent";
 
 export default function SiteNavbar() {
   return (
-    <header className="fixed top-0 left-0 w-full h-16 z-50 bg-red-500 border-b border-white/10 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 w-full h-16 z-50 border-b border-white/10 backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(108,140,255,0.16),transparent_60%)] opacity-80" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-indigo-300/35 to-transparent" />
       <nav className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 md:px-8">

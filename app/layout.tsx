@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         <SiteNavbar />
-        <main className="pt-16 relative bg-green-500">
+        <main className="pt-16 relative">
           {children}
         </main>
       </body>
