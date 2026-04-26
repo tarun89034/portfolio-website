@@ -30,11 +30,10 @@ export default function CertificatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f131e] text-[#dfe2f2] font-body selection:bg-indigo-500/30">
-      <SiteNavbar />
+    <div className="min-h-screen font-body selection:bg-indigo-500/30">
       
       <AnimatePresence mode="wait">
-        <motion.main
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -88,15 +87,15 @@ export default function CertificatePage() {
                   </div>
                 </div>
 
-                <div className="mt-10 flex flex-wrap gap-6">
+                <div className="hero-links">
                   {certificate.link && (
                     <a
                       href={certificate.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 px-8 py-4 font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(108,140,255,0.4)]"
+                      className="hero-link primary group"
                     >
-                      <ExternalLink size={20} /> View Certificate
+                      <ExternalLink size={18} className="icon" /> View Certificate
                     </a>
                   )}
                 </div>
@@ -174,7 +173,7 @@ export default function CertificatePage() {
                     href={certificate.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors"
+                    className="flex items-center gap-2 transition-colors"
                   >
                     <ExternalLink size={20} />
                     <span>Verify Certificate</span>
@@ -201,7 +200,7 @@ export default function CertificatePage() {
               </button>
             </motion.div>
           </section>
-        </motion.main>
+        </motion.div>
       </AnimatePresence>
 
       <SiteFooter />

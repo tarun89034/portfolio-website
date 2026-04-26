@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
 import Lightbox from "@/stitch_new_project (1)/components/Lightbox";
+import TechStack from "@/stitch_new_project (1)/components/TechStack";
 import { Play, ExternalLink, ArrowLeft, Layers, Shield, Cpu, Code, Zap, Target } from "lucide-react";
 
 export default function ProjectPage() {
@@ -17,8 +18,8 @@ export default function ProjectPage() {
   const project = useMemo(() => featuredProjects.find((p) => p.id === id), [id]);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
   
-  console.log("Project Data:", project);
-  console.log("Screenshots:", project?.screenshots);
+  console.log("PROJECT:", project);
+  console.log("HERO VIDEO:", project?.heroVideo);
 
   if (!project || !parsed) {
     return (
@@ -37,77 +38,67 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f131e] text-[#dfe2f2] font-body selection:bg-indigo-500/30">
-      <SiteNavbar />
+    <div key={project.id} className="min-h-screen font-body selection:bg-indigo-500/30">
       
       <AnimatePresence mode="wait">
-        <motion.main
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          {/* ── HERO: Title + Tag + Buttons only ────────────────────────── */}
-          <section className="relative h-[75vh] w-full flex items-center overflow-hidden">
-            <div className="absolute inset-0 z-0 bg-[#0f131e]">
-              <img 
-                src={project.image} 
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-40"
+          {/* ── HERO: Fixed Layering and Height ─────────�          {/* ── COMPACT HERO HEADER ────────────────────────── */}
+          <section className="relative w-full py-16 px-8 bg-blue-500">
+            {project.heroVideo ? (
+              <video
+                key={project.heroVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-25"
+                onError={() => console.error("VIDEO FAILED")}
+              >
+                <source src={project.heroVideo} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-25"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f131e] via-[#0f131e]/80 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0f131e] to-transparent" />
-            </div>
+            )}
+            
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/60 to-[#0B0F1A]/95 pointer-events-none z-0" />
 
-            <div className="relative z-10 px-8 md:px-24 max-w-5xl">
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => router.back()}
-                className="mb-8 flex items-center gap-2 text-sm uppercase tracking-widest text-indigo-300 transition-colors hover:text-indigo-100"
-              >
-                <ArrowLeft size={16} /> Back to Projects
-              </motion.button>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <span className="mb-4 inline-block rounded-full border border-indigo-400/20 bg-indigo-400/10 px-4 py-1 text-[10px] uppercase tracking-[0.2em] text-indigo-200">
-                  {project.category}
-                </span>
-                <h1 className="mb-8 font-display text-6xl font-black tracking-tighter md:text-8xl">
-                  {project.title.split(' ').map((word, i) => (
-                    <span key={i} className={i % 2 === 1 ? "text-indigo-400" : ""}>{word} </span>
-                  ))}
-                </h1>
-
-                <div className="mt-10 flex flex-wrap gap-5">
+            <div className="max-w-5xl mx-auto flex flex-col gap-4 relative z-10 w-full">
+              
+              <span className="text-xs border border-indigo-500/30 bg-indigo-500/20 px-3 py-1 rounded-full w-fit uppercase tracking-wider text-indigo-300">
+                {project.category}
+              </span>
+              
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white drop-shadow-2xl">
+                {project.title}
+              </h1>
+              
+              <div className="flex flex-wrap gap-4 mt-2">
                   {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-600 px-8 py-4 font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(108,140,255,0.4)]"
-                    >
-                      <Play size={20} fill="currentColor" /> Live Demo
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="hero-link primary">
+                      <Play size={18} className="icon" /> Live Demo
                     </a>
                   )}
                   {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-8 py-4 font-bold text-white backdrop-blur-md transition-all hover:bg-white/10"
-                    >
-                      <Code size={20} /> GitHub Repository
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="hero-link secondary">
+                      <Code size={18} className="icon" /> GitHub Repository
                     </a>
                   )}
-                </div>
-              </motion.div>
+              </div>
+            </div>
+          </section>
+                    </a>
+                  )}
+              </div>
             </div>
           </section>
 
@@ -226,34 +217,25 @@ export default function ProjectPage() {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="p-6 rounded-2xl glass-card">
-                  <h3 className="mb-5 flex items-center gap-2 text-lg font-bold">
+                <div className="p-6 rounded-2xl glass-card tech-stack-section">
+                  <h3 className="mb-2 flex items-center gap-2 text-lg font-bold">
                     <Layers className="text-indigo-400" size={20} /> Tech Stack
                   </h3>
-                  <div className="flex flex-wrap gap-2.5">
-                    {project.tech.map((t, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 transition-colors hover:border-indigo-400/40 hover:text-indigo-400"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+                  <TechStack tech={project.tech} />
                 </div>
 
                 {/* Quick Links */}
                 <div className="p-6 rounded-2xl glass-card">
-                  <h3 className="mb-3 text-lg font-bold">Quick Links</h3>
-                  <div className="flex flex-col gap-3">
+                  <h3 className="mb-4 text-lg font-bold">Quick Links</h3>
+                  <div className="hero-links">
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-indigo-400 transition-colors">
-                        <Code size={16} /> GitHub Repository
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="hero-link secondary w-full justify-center">
+                        <Code size={16} className="icon" /> GitHub
                       </a>
                     )}
                     {project.live && (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-400 hover:text-indigo-400 transition-colors">
-                        <ExternalLink size={16} /> Live Demo
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="hero-link secondary w-full justify-center">
+                        <ExternalLink size={16} className="icon" /> Demo
                       </a>
                     )}
                   </div>
@@ -279,7 +261,7 @@ export default function ProjectPage() {
               </button>
             </motion.div>
           </section>
-        </motion.main>
+        </motion.div>
       </AnimatePresence>
 
       <SiteFooter />

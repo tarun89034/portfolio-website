@@ -17,8 +17,7 @@ export default function LandingPage() {
 
   return (
     <AudioProvider>
-      <SiteNavbar />
-      <main className="relative overflow-hidden bg-[#0f131e] text-[#dfe2f2]">
+      <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute left-1/4 top-[28rem] h-80 w-80 rounded-full bg-indigo-400/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-24 top-[52rem] h-96 w-96 rounded-full bg-violet-400/10 blur-3xl" />
         
@@ -50,7 +49,7 @@ export default function LandingPage() {
           image={selectedImage} 
           onClose={() => setSelectedImage(null)} 
         />
-      </main>
+      </div>
       <SiteFooter />
     </AudioProvider>
   );

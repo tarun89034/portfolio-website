@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import "../stitch_new_project (1)/styles/stitch.css";
 import { allCertificates, featuredProjects, openSourceProjects } from "@/stitch_new_project (1)/utils/siteContent";
+import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 
 export const metadata: Metadata = {
   title: "TARUN YADAV | AI Engineer",
@@ -15,7 +16,7 @@ import CustomCursor from "@/stitch_new_project (1)/components/CustomCursor";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className="film-grain">
+      <body className="film-grain bg-[#0f131e] text-[#dfe2f2]">
         <CustomCursor />
         <Script
           id="project-route-map"
@@ -35,7 +36,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               `
             }}
           />
-        {children}
+        <SiteNavbar />
+        <main className="pt-16 relative bg-green-500">
+          {children}
+        </main>
       </body>
     </html>
   );

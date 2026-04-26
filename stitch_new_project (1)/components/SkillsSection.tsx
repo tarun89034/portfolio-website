@@ -3,42 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { portfolioSkills } from "../utils/siteContent";
-import { Code2, Cpu, Database, Globe, Layers, Zap, Cloud } from "lucide-react";
-
-const techIcons: Record<string, { icon: any, color: string }> = {
-  // AI & ML (Muted Purple)
-  "LLMs": { icon: Cpu, color: "#C084FC" },
-  "RAG": { icon: Cpu, color: "#C084FC" },
-  "Fine-tuning": { icon: Cpu, color: "#C084FC" },
-  "Inference Optimization": { icon: Cpu, color: "#C084FC" },
-  "MLOps": { icon: Cpu, color: "#C084FC" },
-  "PyTorch": { icon: Cpu, color: "#C084FC" },
-  "TensorFlow": { icon: Cpu, color: "#C084FC" },
-  // Data (Muted Cyan)
-  "PostgreSQL": { icon: Database, color: "#7DD3FC" },
-  "Vector Databases (ChromaDB, Pinecone)": { icon: Database, color: "#7DD3FC" },
-  // Backend & Languages (Muted Blue)
-  "FastAPI": { icon: Code2, color: "#60A5FA" },
-  "gRPC": { icon: Code2, color: "#60A5FA" },
-  "Python": { icon: Code2, color: "#60A5FA" },
-  // Frontend (Muted Emerald)
-  "React.js": { icon: Globe, color: "#6EE7B7" },
-  "Next.js": { icon: Globe, color: "#6EE7B7" },
-  "Framer Motion": { icon: Globe, color: "#6EE7B7" },
-  "Tailwind CSS": { icon: Layers, color: "#6EE7B7" },
-  // Cloud & Infra (Muted Orange)
-  "AWS": { icon: Cloud, color: "#FDBA74" },
-  "Google Cloud": { icon: Cloud, color: "#FDBA74" },
-  "Docker": { icon: Layers, color: "#FDBA74" },
-  "Kubernetes": { icon: Layers, color: "#FDBA74" },
-  "Terraform": { icon: Layers, color: "#FDBA74" },
-  // Specialized (Muted Rose)
-  "Quant Analytics": { icon: Zap, color: "#FDA4AF" },
-  "LangChain": { icon: Zap, color: "#C084FC" } // ML aligned
-};
+import { techIcons } from "../utils/techIcons";
+import { Cpu, Database, Globe, Layers, Zap } from "lucide-react";
 
 export default function SkillsSection() {
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -49,7 +18,7 @@ export default function SkillsSection() {
     }
   };
 
-  const cardVariant = {
+  const cardVariant: any = {
     hidden: { 
       opacity: 0, 
       y: 40, 
@@ -61,7 +30,7 @@ export default function SkillsSection() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };

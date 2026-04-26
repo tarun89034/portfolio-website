@@ -20,6 +20,7 @@ export const mapProjectToUi = (project: PortfolioProject): UiProject => ({
   category: categoryFromProject(project),
   description: project.description,
   image: project.image,
+  heroVideo: project.heroVideo,
   video: project.video,
   screenshots: project.screenshots,
   github: project.github,

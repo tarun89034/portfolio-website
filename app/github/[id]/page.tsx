@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
 import Lightbox from "@/stitch_new_project (1)/components/Lightbox";
+import TechStack from "@/stitch_new_project (1)/components/TechStack";
 import { ExternalLink, ArrowLeft, Code, Code2, Layers, Zap, Target } from "lucide-react";
 
 export default function GitHubProjectPage() {
@@ -16,8 +17,8 @@ export default function GitHubProjectPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = useMemo(() => openSourceProjects.find((p) => p.id === id), [id]);
 
-  console.log("GitHub Project Data:", project);
-  console.log("GitHub Screenshots:", project?.screenshots);
+  console.log("DEBUG: GitHub Project Data:", project);
+  console.log("DEBUG: Hero Video URL:", project?.heroVideo);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
   if (!project || !parsed) {
@@ -37,73 +38,71 @@ export default function GitHubProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f131e] text-[#dfe2f2] font-body selection:bg-indigo-500/30">
-      <SiteNavbar />
+    <div key={project.id} className="min-h-screen font-body selection:bg-indigo-500/30">
       
       <AnimatePresence mode="wait">
-        <motion.main
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          {/* ── HERO: Title + Tag + Buttons only ────────────────────────── */}
-          <section className="relative h-[75vh] w-full flex items-center overflow-hidden">
-            <div className="absolute inset-0 z-0 bg-[#0f131e]">
-              <img 
-                src={project.image} 
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-40"
+          {/* ── HERO: Fixed Layering and Height ────────────────────────── */}
+          {/* ── COMPACT HERO HEADER ────────────────────────── */}
+          <section className="relative w-full overflow-hidden flex items-start py-16 px-8">
+            {project.heroVideo ? (
+              <video
+                key={project.heroVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-25"
+                onError={() => console.error("VIDEO FAILED")}
+              >
+                <source src={project.heroVideo} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-25"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0f131e] via-[#0f131e]/80 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#0f131e] to-transparent" />
-            </div>
+            )}
+            
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F1A]/60 to-[#0B0F1A]/95 pointer-events-none z-0" />
 
-            <div className="relative z-10 px-8 md:px-24 max-w-5xl">
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
+            <div className="max-w-5xl flex flex-col gap-4 relative z-10 w-full">
+              <button
                 onClick={() => router.back()}
-                className="mb-8 flex items-center gap-2 text-sm uppercase tracking-widest text-violet-300 transition-colors hover:text-violet-100"
+                className="text-sm opacity-80 hover:opacity-100 transition flex items-center gap-2 w-fit text-violet-300 uppercase tracking-widest"
               >
                 <ArrowLeft size={16} /> Back to Projects
-              </motion.button>
+              </button>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <span className="mb-4 inline-block rounded-full border border-violet-400/20 bg-violet-400/10 px-4 py-1 text-[10px] uppercase tracking-[0.2em] text-violet-200">
-                  Open Source
-                </span>
-                <h1 className="mb-6 font-display text-6xl font-black tracking-tighter md:text-8xl">
-                  {project.title.split(' ').map((word, i) => (
-                    <span key={i} className={i % 2 === 1 ? "text-violet-400" : ""}>{word} </span>
-                  ))}
-                </h1>
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <Code2 size={20} className="text-violet-400" />
-                    <span className="text-lg">{project.category}</span>
-                  </div>
-                </div>
+              <span className="text-xs border border-violet-500/30 bg-violet-500/20 px-3 py-1 rounded-full w-fit uppercase tracking-wider text-violet-300">
+                Open Source
+              </span>
+              
+              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white drop-shadow-2xl mt-2">
+                {project.title.split(' ').map((word, i) => (
+                  <span key={i} className={i % 2 === 1 ? "text-violet-400" : ""}>{word} </span>
+                ))}
+              </h1>
 
-                <div className="mt-10 flex flex-wrap gap-5">
+              <div className="flex items-center gap-2 text-slate-300 mb-2 mt-1">
+                <Code2 size={20} className="text-violet-400" />
+                <span className="text-lg">{project.category}</span>
+              </div>
+              
+              <div className="flex flex-wrap gap-4 mt-2">
                   {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-500 to-violet-600 px-8 py-4 font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]"
-                    >
-                      <Code size={20} /> View on GitHub
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="hero-link primary">
+                      <Code size={18} className="icon" /> View on GitHub
                     </a>
                   )}
-                </div>
-              </motion.div>
+              </div>
             </div>
           </section>
 
@@ -210,35 +209,28 @@ export default function GitHubProjectPage() {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="p-6 rounded-2xl glass-card">
-                  <h3 className="mb-5 flex items-center gap-2 text-lg font-bold">
+                <div className="p-6 rounded-2xl glass-card tech-stack-section">
+                  <h3 className="mb-2 flex items-center gap-2 text-lg font-bold">
                     <Layers className="text-violet-400" size={20} /> Tech Stack
                   </h3>
-                  <div className="flex flex-wrap gap-2.5">
-                    {project.tech.map((tech, i) => (
-                      <span
-                        key={tech}
-                        className="px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-300 transition-colors hover:border-violet-400/40 hover:text-violet-400"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <TechStack tech={project.tech} />
                 </div>
 
                 {/* Repository Link */}
                 {project.github && (
                   <div className="p-6 rounded-2xl glass-card">
-                    <h3 className="mb-3 text-lg font-bold">Repository</h3>
-                    <p className="text-sm text-slate-500 mb-4">View the source code and contribute.</p>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 transition-colors"
-                    >
-                      <ExternalLink size={16} /> View on GitHub
-                    </a>
+                    <h3 className="mb-4 text-lg font-bold text-violet-400">Repository</h3>
+                    <p className="text-sm text-slate-500 mb-6 leading-relaxed">View the source code and contribute.</p>
+                    <div className="hero-links">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hero-link secondary w-full justify-center group"
+                      >
+                        <Code size={16} className="icon" /> Source Code
+                      </a>
+                    </div>
                   </div>
                 )}
               </aside>
@@ -262,7 +254,7 @@ export default function GitHubProjectPage() {
               </button>
             </motion.div>
           </section>
-        </motion.main>
+        </motion.div>
       </AnimatePresence>
 
       <SiteFooter />

@@ -71,34 +71,33 @@ function extractHighlights(raw: string): { title: string; detail: string }[] {
   return highlights;
 }
 
-/**
- * Extract quantified impact metrics (numbers, percentages, "x" multipliers)
- */
 function extractImpact(raw: string): string[] {
   const cleaned = cleanMarkdown(raw);
   const impacts: string[] = [];
 
-  // Match sentences or phrases containing quantified metrics
-  const metricPatterns = [
-    /[^.!?\n]*\d+\.?\d*x[^.!?\n]*[.!?]/gi,
-    /[^.!?\n]*\d+%[^.!?\n]*[.!?]/gi,
-    /[^.!?\n]*reduced[^.!?\n]*[.!?]/gi,
-    /[^.!?\n]*improved[^.!?\n]*[.!?]/gi,
-    /[^.!?\n]*achieved[^.!?\n]*[.!?]/gi,
-    /[^.!?\n]*under \d+[^.!?\n]*[.!?]/gi,
-  ];
+  // Split into sentences, handling newlines and punctuation
+  const sentences = cleaned.match(/[^.!?\n]+[.!?]+/g) || [];
 
   const seen = new Set<string>();
-  for (const pattern of metricPatterns) {
-    const matches = cleaned.match(pattern);
-    if (matches) {
-      for (const m of matches) {
-        const trimmed = m.trim();
-        if (!seen.has(trimmed) && trimmed.length > 10) {
-          seen.add(trimmed);
-          impacts.push(trimmed);
-        }
-      }
+  for (const sentence of sentences) {
+    let trimmed = sentence.trim();
+    
+    // Clean up leading list characters like "- "
+    trimmed = trimmed.replace(/^[-*]\s*/, "").trim();
+
+    if (trimmed.length < 10 || seen.has(trimmed)) continue;
+    
+    // Check if it's an impact sentence
+    if (
+      /\d+\.?\d*x/i.test(trimmed) || 
+      /\d+%/i.test(trimmed) || 
+      /\breduced\b/i.test(trimmed) || 
+      /\bimproved\b/i.test(trimmed) || 
+      /\bachieved\b/i.test(trimmed) || 
+      /under \d+/i.test(trimmed)
+    ) {
+      impacts.push(trimmed);
+      seen.add(trimmed);
     }
   }
 
