@@ -23,7 +23,7 @@ export default function LandingPage() {
         
         <HeroSection />
         
-        <div id="work" className="py-12">
+        <div id="work" className="py-12 relative z-10">
           <ProjectRow 
             title="Featured Projects" 
             items={featuredProjects} 
@@ -37,7 +37,6 @@ export default function LandingPage() {
             title="Certificates" 
             items={allCertificates} 
             type="certificate" 
-            onOpenLightbox={(image) => setSelectedImage(image)}
           />
         </div>
 
