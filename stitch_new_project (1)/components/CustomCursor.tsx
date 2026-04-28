@@ -5,6 +5,7 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -18,26 +19,24 @@ export default function CustomCursor() {
       cursorY.set(e.clientY);
     };
 
-    const handleHoverStart = (e: MouseEvent) => {
+    const handleHoverState = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest('[role="button"]') ||
-        target.classList.contains("interactive")
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      
+      // Interactive Check
+      const interactive = target.closest("a, button, [role='button'], .interactive");
+      setIsHovering(!!interactive);
+
+      // Hidden Check (Screenshots & Modal)
+      const hideSource = target.closest(".screenshot-card, .lightbox-modal, [data-hide-cursor='true']");
+      setIsHidden(!!hideSource);
     };
 
     window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleHoverStart);
+    window.addEventListener("mouseover", handleHoverState);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleHoverStart);
+      window.removeEventListener("mouseover", handleHoverState);
     };
   }, [cursorX, cursorY]);
 
@@ -48,6 +47,7 @@ export default function CustomCursor() {
         style={{
           left: springX,
           top: springY,
+          display: isHidden ? "none" : "block"
         }}
       />
       <motion.div
@@ -55,6 +55,7 @@ export default function CustomCursor() {
         style={{
           left: springX,
           top: springY,
+          display: isHidden ? "none" : "block"
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,

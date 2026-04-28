@@ -1,16 +1,18 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { allCertificates } from "@/stitch_new_project (1)/utils/siteContent";
 import { motion, AnimatePresence } from "framer-motion";
 import SiteNavbar from "@/stitch_new_project (1)/components/SiteNavbar";
 import SiteFooter from "@/stitch_new_project (1)/components/SiteFooter";
+import Lightbox from "@/stitch_new_project (1)/components/Lightbox";
 import { ExternalLink, ArrowLeft, Award, Calendar, Building2 } from "lucide-react";
 
 export default function CertificatePage() {
   const { id } = useParams();
   const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const certificate = useMemo(() => allCertificates.find((c) => c.id === id), [id]);
 
   if (!certificate) {
@@ -83,7 +85,8 @@ export default function CertificatePage() {
                 <img 
                   src={certificate.image} 
                   alt={certificate.title}
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => setActiveIndex(0)}
                 />
               </div>
             </section>
@@ -157,6 +160,13 @@ export default function CertificatePage() {
       </div>
 
       <SiteFooter />
+      <Lightbox 
+        images={[certificate.image]} 
+        activeIndex={activeIndex} 
+        onClose={() => setActiveIndex(null)} 
+        onNext={() => {}}
+        onPrev={() => {}}
+      />
     </div>
   );
 }

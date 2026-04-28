@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { openSourceProjects } from "@/stitch_new_project (1)/utils/siteContent";
 import { parseDescription } from "@/stitch_new_project (1)/utils/descriptionParser";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,7 +14,7 @@ import { ExternalLink, ArrowLeft, Code, Code2, Layers, Zap, Target } from "lucid
 export default function GitHubProjectPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const project = useMemo(() => openSourceProjects.find((p) => p.id === id), [id]);
 
   console.log("DEBUG: GitHub Project Data:", project);
@@ -92,7 +92,8 @@ export default function GitHubProjectPage() {
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-auto object-cover" 
+                    className="w-full h-auto object-cover cursor-pointer hover:opacity-90 transition-opacity" 
+                    onClick={() => setActiveIndex(-1)}
                   />
                 </div>
               </div>
@@ -107,11 +108,13 @@ export default function GitHubProjectPage() {
                     {project.screenshots.map((img, index) => (
                       <div 
                         key={index} 
-                        className="screenshot-card cursor-pointer group"
-                        onClick={() => setSelectedImage(img)}
+                        className="screenshot-card cursor-pointer group relative z-10"
+                        onClick={() => {
+                          setActiveIndex(index);
+                        }}
                       >
-                        <img src={img} alt="screenshot" />
-                        <div className="bg-white/0 group-hover:bg-white/5 transition-colors" />
+                        <img src={img} alt="screenshot" className="relative z-0" />
+                        <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors pointer-events-none" />
                       </div>
                     ))}
                   </div>
@@ -198,8 +201,17 @@ export default function GitHubProjectPage() {
 
       <SiteFooter />
       <Lightbox 
-        image={selectedImage} 
-        onClose={() => setSelectedImage(null)} 
+        images={activeIndex === -1 ? [project.image] : (project.screenshots || [])} 
+        activeIndex={activeIndex === -1 ? 0 : activeIndex} 
+        onClose={() => setActiveIndex(null)} 
+        onNext={() => {
+          if (activeIndex === -1) return;
+          setActiveIndex((prev) => (prev! + 1) % (project.screenshots?.length || 1));
+        }}
+        onPrev={() => {
+          if (activeIndex === -1) return;
+          setActiveIndex((prev) => (prev! - 1 + (project.screenshots?.length || 1)) % (project.screenshots?.length || 1));
+        }}
       />
     </div>
   );

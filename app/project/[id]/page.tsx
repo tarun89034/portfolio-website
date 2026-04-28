@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { featuredProjects } from "@/stitch_new_project (1)/utils/siteContent";
 import { parseDescription } from "@/stitch_new_project (1)/utils/descriptionParser";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,12 +14,15 @@ import { Play, ExternalLink, ArrowLeft, Layers, Shield, Cpu, Code, Zap, Target }
 export default function ProjectPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const project = useMemo(() => featuredProjects.find((p) => p.id === id), [id]);
   const parsed = useMemo(() => project ? parseDescription(project.description) : null, [project]);
 
   console.log("PROJECT:", project);
-  console.log("HERO VIDEO:", project?.heroVideo);
+
+  useEffect(() => {
+    console.log("ACTIVE INDEX CHANGED:", activeIndex);
+  }, [activeIndex]);
 
   if (!project || !parsed) {
     return (
@@ -84,14 +87,8 @@ export default function ProjectPage() {
 
       {/* REST OF PAGE */}
       <div className="px-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
+        <div>
+          <div key={project.id}>
             {/* DEMO VIDEO */}
             {project.video && (
               <section className="py-16">
@@ -101,7 +98,7 @@ export default function ProjectPage() {
                     <div className="mt-2 h-1 w-20 bg-indigo-500 rounded-full" />
                   </div>
                   <div className="mx-auto" style={{ maxWidth: "75%" }}>
-                    <div className="relative aspect-video rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
+                    <div className="relative aspect-video rounded-2xl border border-white/10 bg-[#171b27] shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
                       <video
                         controls
                         className="w-full h-full object-cover"
@@ -128,11 +125,13 @@ export default function ProjectPage() {
                   project.screenshots.map((img, idx) => (
                     <motion.div
                       key={idx}
-                      onClick={() => setSelectedImage(img)}
-                      className="screenshot-card group cursor-pointer"
+                      onClick={() => {
+                        setActiveIndex(idx);
+                      }}
+                      className="screenshot-card group cursor-pointer relative z-10"
                     >
-                      <img src={img} alt={`${project.title} screenshot ${idx + 1}`} />
-                      <div className="bg-gradient-to-t from-[#0f131e]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <img src={img} alt={`${project.title} screenshot ${idx + 1}`} className="relative z-0" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0f131e]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </motion.div>
                   ))
                 ) : (
@@ -219,14 +218,17 @@ export default function ProjectPage() {
                 </aside>
               </div>
             </section>
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        </div>
       </div>
 
       <SiteFooter />
       <Lightbox
-        image={selectedImage}
-        onClose={() => setSelectedImage(null)}
+        images={project.screenshots || []}
+        activeIndex={activeIndex}
+        onClose={() => setActiveIndex(null)}
+        onNext={() => setActiveIndex((prev) => (prev! + 1) % (project.screenshots?.length || 1))}
+        onPrev={() => setActiveIndex((prev) => (prev! - 1 + (project.screenshots?.length || 1)) % (project.screenshots?.length || 1))}
       />
     </div>
   );

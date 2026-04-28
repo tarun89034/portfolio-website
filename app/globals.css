@@ -33,6 +33,22 @@
   cursor: none !important;
 }
 
+/* ─── CURSOR OVERRIDES (Visibility for screenshots/modal) ────────────────── */
+.screenshot-card, 
+.screenshot-card * {
+  cursor: zoom-in !important;
+}
+
+.lightbox-modal,
+.lightbox-modal img {
+  cursor: zoom-out !important;
+}
+
+.lightbox-modal button,
+.lightbox-modal button * {
+  cursor: pointer !important;
+}
+
 /* FIX #4 (cursor): Always show pointer on interactive elements as safe fallback */
 /* ─── Global Link System ────────────────────────────────────────────────── */
 a, a:visited {
