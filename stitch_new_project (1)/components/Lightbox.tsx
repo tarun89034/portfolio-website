@@ -31,6 +31,15 @@ export default function Lightbox({
 
   console.log("LIGHTBOX RENDER ATTEMPT:", { mounted, activeIndex, imagesLength: images.length });
 
+  // KEYBOARD SUPPORT (ESC to close)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   if (!mounted || activeIndex === null || images.length === 0) return null;
 
   return createPortal(
@@ -46,46 +55,45 @@ export default function Lightbox({
           position: "fixed",
           inset: 0,
           zIndex: 999999,
-          backgroundColor: "rgba(0, 0, 0, 0.9)",
-          backdropFilter: "blur(8px)",
+          backgroundColor: "rgba(0, 0, 0, 0.95)",
+          backdropFilter: "blur(16px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "20px"
         }}
       >
-        {/* CLOSE BUTTON */}
+        {/* CLOSE BUTTON — VIEWPORT FIXED ANCHOR */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             onClose();
           }}
-          className="absolute top-8 right-8 z-[1000000] bg-white/10 backdrop-blur-md px-6 py-2 rounded-lg hover:bg-white/20 text-white font-medium transition-all"
+          className="fixed top-6 right-6 z-[1000001] bg-white/5 backdrop-blur-2xl px-6 py-2.5 rounded-2xl border border-white/10 text-white/90 text-sm font-semibold tracking-wide transition-all hover:bg-white/15 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] active:scale-95"
+          style={{ position: 'fixed' }}
         >
           ✕ Close
         </button>
 
-        {/* IMAGE — FULLSCREEN STYLE */}
+        {/* IMAGE WRAPPER — CENTERED CONTENT */}
         <div 
-          className="relative flex items-center justify-center" 
           onClick={(e) => e.stopPropagation()}
-          style={{ width: '100%', height: '100%' }}
+          className="relative flex flex-col items-center justify-center p-12"
         >
           <img
             src={images[activeIndex]}
             alt={`Preview ${activeIndex + 1}`}
             style={{
-              maxWidth: "95vw",
-              maxHeight: "90vh",
+              maxWidth: "70vw",
+              maxHeight: "70vh",
               objectFit: "contain",
-              borderRadius: "8px",
-              boxShadow: "0 0 50px rgba(0,0,0,0.5)"
+              borderRadius: "20px",
+              boxShadow: "0 40px 120px rgba(0,0,0,1)"
             }}
           />
           
           {/* SUBTLE COUNTER */}
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-white/50 text-xs font-mono tracking-widest">
-            {activeIndex + 1} / {images.length}
+          <div className="mt-10 text-white/30 text-[10px] font-mono tracking-[0.3em] uppercase">
+            Frame {activeIndex + 1} / {images.length}
           </div>
         </div>
       </motion.div>
