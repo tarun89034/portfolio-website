@@ -88,7 +88,7 @@ export default function GitHubProjectPage() {
                 <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
               </div>
               <div className="flex justify-center px-4 mb-16">
-                <div className="relative rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-2xl max-w-[800px] w-full">
+                <div className="relative rounded-2xl border border-white/10 bg-[#171b27] overflow-hidden shadow-2xl w-full max-w-[75vw]">
                   <img 
                     src={project.image} 
                     alt={project.title}
