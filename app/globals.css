@@ -17,6 +17,11 @@
   --cursor-color: rgba(108, 140, 255, 0.85);
 }
 
+.custom-cursor-dot,
+.custom-cursor-ring {
+  pointer-events: none !important;
+}
+
 /* ─── FIX #1: cursor: none ─────────────────────────────────────────────────
    BEFORE: * { cursor: none !important; }
    This globally killed cursor visibility. If your custom JS cursor component

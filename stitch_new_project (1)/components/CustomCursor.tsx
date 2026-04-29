@@ -47,7 +47,8 @@ export default function CustomCursor() {
         style={{
           left: springX,
           top: springY,
-          display: isHidden ? "none" : "block"
+          display: isHidden ? "none" : "block",
+          pointerEvents: "none"
         }}
       />
       <motion.div
@@ -55,7 +56,8 @@ export default function CustomCursor() {
         style={{
           left: springX,
           top: springY,
-          display: isHidden ? "none" : "block"
+          display: isHidden ? "none" : "block",
+          pointerEvents: "none"
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 type LightboxProps = {
@@ -14,22 +13,17 @@ type LightboxProps = {
   image?: string | null;
 };
 
-export default function Lightbox({ 
-  images: propImages, 
-  activeIndex: propActiveIndex, 
+export default function Lightbox({
+  images: propImages,
+  activeIndex: propActiveIndex,
   onClose,
-  image: propImage 
+  image: propImage,
 }: LightboxProps) {
   const [mounted, setMounted] = useState(false);
-  
+
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const images = propImages || (propImage ? [propImage] : []);
-  const activeIndex = propActiveIndex !== undefined ? propActiveIndex : (propImage ? 0 : null);
-
-  console.log("LIGHTBOX RENDER ATTEMPT:", { mounted, activeIndex, imagesLength: images.length });
 
   // KEYBOARD SUPPORT (ESC to close)
   useEffect(() => {
@@ -40,64 +34,105 @@ export default function Lightbox({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  if (!mounted || activeIndex === null || images.length === 0) return null;
+  const images = propImages || (propImage ? [propImage] : []);
+  const activeIndex =
+    propActiveIndex !== undefined
+      ? propActiveIndex
+      : propImage
+        ? 0
+        : null;
+
+  // Don't render anything server-side
+  if (!mounted) return null;
+
+  const isOpen = activeIndex !== null && images.length > 0;
+
+  // If not open, render NOTHING — no portal, no AnimatePresence, no ghost elements
+  if (!isOpen) return null;
 
   return createPortal(
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="lightbox-modal"
-        data-hide-cursor="true"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 999999,
-          backgroundColor: "rgba(0, 0, 0, 0.95)",
-          backdropFilter: "blur(16px)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+    <div
+      onClick={onClose}
+      className="lightbox-modal"
+      data-hide-cursor="true"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 999999,
+        backgroundColor: "rgba(0, 0, 0, 0.95)",
+        backdropFilter: "blur(16px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {/* CENTERING ENGINE */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        {/* CLOSE BUTTON — VIEWPORT FIXED ANCHOR */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-          className="fixed top-6 right-6 z-[1000001] bg-white/5 backdrop-blur-2xl px-6 py-2.5 rounded-2xl border border-white/10 text-white/90 text-sm font-semibold tracking-wide transition-all hover:bg-white/15 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] active:scale-95"
-          style={{ position: 'fixed' }}
-        >
-          ✕ Close
-        </button>
+        {/* SHRINK-WRAP CONTAINER */}
+        <div style={{ position: "relative", display: "inline-block", lineHeight: 0 }}>
+          {/* CLOSE BUTTON — ANCHORED TO IMAGE CORNER */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            style={{
+              position: "absolute",
+              top: "12px",
+              right: "12px",
+              zIndex: 1000001,
+              background: "rgba(0, 0, 0, 0.5)",
+              backdropFilter: "blur(16px)",
+              padding: "8px",
+              borderRadius: "9999px",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              color: "white",
+              cursor: "pointer",
+              transition: "all 0.2s",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            title="Close"
+          >
+            <X size={18} />
+          </button>
 
-        {/* IMAGE WRAPPER — CENTERED CONTENT */}
-        <div 
-          onClick={(e) => e.stopPropagation()}
-          className="relative flex flex-col items-center justify-center p-12"
-        >
           <img
             src={images[activeIndex]}
             alt={`Preview ${activeIndex + 1}`}
             style={{
-              maxWidth: "70vw",
-              maxHeight: "70vh",
+              display: "block",
+              maxWidth: "75vw",
+              maxHeight: "75vh",
               objectFit: "contain",
-              borderRadius: "20px",
-              boxShadow: "0 40px 120px rgba(0,0,0,1)"
+              borderRadius: "16px",
+              boxShadow: "0 30px 100px rgba(0,0,0,0.9)",
             }}
           />
-          
-          {/* SUBTLE COUNTER */}
-          <div className="mt-10 text-white/30 text-[10px] font-mono tracking-[0.3em] uppercase">
-            Frame {activeIndex + 1} / {images.length}
-          </div>
         </div>
-      </motion.div>
-    </AnimatePresence>,
+
+        {/* SUBTLE COUNTER */}
+        <div
+          style={{
+            marginTop: "32px",
+            color: "rgba(255, 255, 255, 0.3)",
+            fontSize: "10px",
+            fontFamily: "monospace",
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+          }}
+        >
+          Frame {activeIndex + 1} / {images.length}
+        </div>
+      </div>
+    </div>,
     document.body
   );
 }
