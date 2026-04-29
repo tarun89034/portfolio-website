@@ -50,6 +50,18 @@ A premium, Netflix-style cinematic portfolio built for high-impact visual storyt
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## ☁️ Deployment (Vercel)
+
+The easiest way to deploy your cinematic portfolio is with **[Vercel](https://vercel.com/)**.
+
+1. **Push your code** to a GitHub repository.
+2. **Log in to Vercel** and click **"Add New" > "Project"**.
+3. **Import** your repository.
+4. Vercel will automatically detect **Next.js** and configure the build settings (`npm run build`).
+5. Click **"Deploy"**.
+
+Once the build finishes, your portfolio will be live on a custom `.vercel.app` URL.
+
 ## 📁 Project Structure
 
 ```text

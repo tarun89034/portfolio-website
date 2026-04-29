@@ -97,7 +97,7 @@ export default function ProjectPage() {
                     <h2 className="text-3xl font-bold tracking-tight text-white">Interactive <span className="text-indigo-400">Walkthrough</span></h2>
                     <div className="mt-2 h-1 w-20 bg-indigo-500 rounded-full" />
                   </div>
-                  <div className="mx-auto w-full max-w-[75vw]">
+                  <div className="mx-auto w-full max-w-[80vw]">
                     <div className="relative aspect-video rounded-2xl border border-white/10 bg-[#171b27] shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
                       <video
                         controls
