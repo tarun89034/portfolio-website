@@ -254,7 +254,7 @@
       "id": "ibm-introduction-generative-ai",
       "title": "Introduction to Generative AI",
       "issuer": "IBM SkillsBuild",
-      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/af8677580ca9de84c82ec24d1ed75c0b77111651/asset/certificates/Screenshot%202026-04-29%20194037.png",
       "description": "Introductory certification covering the fundamentals of Generative AI, including large language models (LLMs), prompt engineering basics, and real-world applications. Focuses on understanding how generative models create text, images, and other content, along with ethical considerations and industry use cases.",
       "link": "https://skillsbuild.org/",
       "date": "2025-11"
@@ -263,7 +263,7 @@
       "id": "google-computer-networking",
       "title": "The Bits and Bytes of Computer Networking",
       "issuer": "Google (Coursera)",
-      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/af8677580ca9de84c82ec24d1ed75c0b77111651/asset/certificates/Screenshot%202026-04-29%20193949.png",
       "description": "Comprehensive course covering computer networking fundamentals, including network protocols, TCP/IP model, DNS, HTTP, and routing concepts. Provides practical insights into how data is transmitted across the internet and introduces troubleshooting techniques for real-world networking scenarios. :contentReference[oaicite:0]{index=0}",
       "link": "https://coursera.org/verify/JXJTXIV35DF1",
       "date": "2024-11"
@@ -272,7 +272,7 @@
       "id": "great-learning-nlp",
       "title": "Introduction to Natural Language Processing",
       "issuer": "Great Learning",
-      "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/af8677580ca9de84c82ec24d1ed75c0b77111651/asset/certificates/Screenshot%202026-04-29%20194056.png",
       "description": "Foundational course in Natural Language Processing (NLP) covering text preprocessing, tokenization, vectorization techniques, and basic machine learning applications for text data. Explores real-world use cases such as sentiment analysis and text classification. :contentReference[oaicite:1]{index=1}",
       "link": "https://www.mygreatlearning.com/certificate/EKMMPHCK",
       "date": "2025-08"
@@ -281,7 +281,7 @@
       "id": "hackerrank-sql-basic",
       "title": "SQL (Basic)",
       "issuer": "HackerRank",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/16eb7819930d620d8813329366eed3180d406a6e/asset/certificates/Screenshot%202024-08-16%20113716.png",
       "description": "Skill certification validating foundational SQL proficiency, including querying relational databases, filtering and sorting data, performing joins, and using aggregate functions. Demonstrates the ability to solve real-world data problems using structured query language.",
       "link": "https://www.hackerrank.com/certificates",
       "date": "2024-08"
@@ -290,7 +290,7 @@
       "id": "great-learning-text-classification-nlp",
       "title": "Text Classification in NLP",
       "issuer": "Great Learning",
-      "image": "https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/af8677580ca9de84c82ec24d1ed75c0b77111651/asset/certificates/Screenshot%202026-04-29%20194113.png",
       "description": "Applied NLP course focusing on text classification techniques, including preprocessing, feature extraction, and supervised machine learning models for categorizing text data. Covers practical implementations for tasks like sentiment analysis and document classification. :contentReference[oaicite:0]{index=0}",
       "link": "https://www.mygreatlearning.com/certificate/MXUOHDXC",
       "date": "2025-08"
@@ -299,7 +299,7 @@
       "id": "ibm-cybersecurity-analyst",
       "title": "Cyber Security Analyst",
       "issuer": "IBM",
-      "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/af8677580ca9de84c82ec24d1ed75c0b77111651/asset/certificates/Screenshot%202026-04-29%20194014.png",
       "description": "Comprehensive certification covering cybersecurity fundamentals, including threat detection, risk management, network security, and incident response. Focuses on real-world security practices, tools, and frameworks used to protect systems and data from cyber threats. :contentReference[oaicite:1]{index=1}",
       "link": "https://skillsbuild.org/",
       "date": "2025-04"
