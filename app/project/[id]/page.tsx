@@ -44,8 +44,8 @@ export default function ProjectPage() {
     <div style={{ paddingTop: '140px' }} className="mt-8 relative z-10 font-body selection:bg-indigo-500/30">
 
       {/* HERO SECTION */}
-      <section className="relative w-full px-8 pb-16">
-        <div className="max-w-5xl mx-auto flex flex-col gap-6">
+      <section className="relative w-full px-6 sm:px-8 lg:px-12 xl:px-20 pb-12 lg:pb-16">
+        <div className="max-w-5xl mx-auto flex flex-col gap-5 sm:gap-6">
 
           {/* CATEGORY */}
           <span className="text-xs border px-3 py-1 rounded-full w-fit uppercase tracking-wider opacity-80">
@@ -86,14 +86,14 @@ export default function ProjectPage() {
       </section>
 
       {/* REST OF PAGE */}
-      <div className="px-8">
+      <div className="px-6 sm:px-8 lg:px-12 xl:px-20">
         <div>
           <div key={project.id}>
             {/* DEMO VIDEO */}
             {project.video && (
-              <section className="py-16">
+              <section className="py-12 lg:py-16">
                 <div className="mx-auto max-w-7xl">
-                  <div className="mb-10 px-2">
+                  <div className="mb-8 lg:mb-10 px-2">
                     <h2 className="text-3xl font-bold tracking-tight text-white">Interactive <span className="text-indigo-400">Walkthrough</span></h2>
                     <div className="mt-2 h-1 w-20 bg-indigo-500 rounded-full" />
                   </div>
@@ -114,7 +114,7 @@ export default function ProjectPage() {
             )}
 
             {/* SCREENSHOTS */}
-            <section className="py-16">
+            <section className="py-12 lg:py-16">
               <div className="mb-8 px-4">
                 <h2 className="text-3xl font-bold tracking-tight text-white/90">Visual <span className="text-indigo-400">Library</span></h2>
                 <div className="mt-2 h-1 w-20 bg-indigo-500 rounded-full" />
@@ -145,9 +145,9 @@ export default function ProjectPage() {
             </section>
 
             {/* STRUCTURED DESCRIPTION */}
-            <section className="py-16">
-              <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-16">
-                <div className="lg:col-span-2 prose-cinema space-y-2">
+            <section className="py-12 lg:py-16">
+              <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
+                <div className="lg:col-span-2 prose-cinema space-y-2 max-w-2xl">
                   <div>
                     <h3 className="text-2xl font-bold !mt-0 text-white">Project <span className="text-indigo-400">Overview</span></h3>
                     <p className="text-lg leading-relaxed text-slate-300">{parsed.summary}</p>
@@ -181,7 +181,7 @@ export default function ProjectPage() {
                     </div>
                   )}
                 </div>
-                <aside className="space-y-8">
+                <aside className="space-y-6 lg:space-y-8">
                   <div className="space-y-4">
                     <div className="highlight-card p-6 rounded-xl bg-white/5 border-l-4 border-indigo-500">
                       <Shield className="mb-3 text-indigo-400" size={24} />
@@ -194,7 +194,7 @@ export default function ProjectPage() {
                       <p className="text-sm text-slate-400 leading-relaxed">Zero-latency inference paths and specialized model architectures.</p>
                     </div>
                   </div>
-                  <div className="p-6 rounded-2xl glass-card border border-white/10 bg-white/5">
+                  <div className="p-6 sm:p-7 rounded-2xl glass-card border border-white/10 bg-white/5">
                     <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
                       <Layers className="text-indigo-400" size={20} /> Tech Stack
                     </h3>

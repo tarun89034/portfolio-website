@@ -36,18 +36,18 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-24 px-5 md:px-10 relative overflow-hidden bg-[#0f131e]">
+    <section id="skills" className="py-16 lg:py-24 px-6 sm:px-8 lg:px-12 xl:px-20 relative overflow-hidden bg-[#0f131e]">
       {/* Decorative backdrop */}
       <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-indigo-500/5 blur-[120px]" />
       <div className="pointer-events-none absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[120px]" />
       
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 md:px-2">
+        <div className="mb-12 lg:mb-16 md:px-2">
           <p className="text-xs uppercase tracking-[0.4em] text-indigo-400 font-bold">Expertise Architecture</p>
           <h2 className="mt-3 text-4xl font-bold tracking-tight text-white md:text-5xl">
             Technical <span className="text-indigo-400">Capabilities</span>
           </h2>
-          <div className="mt-6 h-1 w-20 rounded-full bg-indigo-500" />
+          <div className="mt-5 h-1 w-20 rounded-full bg-indigo-500" />
         </div>
 
         <motion.div 
@@ -55,7 +55,7 @@ export default function SkillsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 gap-8 md:grid-cols-2"
+          className="grid grid-cols-1 gap-6 md:gap-8 lg:gap-10 md:grid-cols-2"
         >
           {portfolioSkills.map((skillString, index) => {
             const [titlePart, techPart] = skillString.split('|');
@@ -68,16 +68,16 @@ export default function SkillsSection() {
                 variants={cardVariant}
                 className="group relative will-change-transform"
               >
-                <div className="relative h-full overflow-hidden rounded-[20px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-8 transition-all duration-300 hover:-translate-y-[6px] hover:scale-[1.01] hover:bg-white/[0.05] hover:border-indigo-500/40 hover:shadow-[0_15px_50px_rgba(108,140,255,0.2)]">
+                <div className="relative h-full overflow-hidden rounded-[20px] bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] p-6 sm:p-8 transition-all duration-300 hover:-translate-y-[6px] hover:scale-[1.01] hover:bg-white/[0.05] hover:border-indigo-500/40 hover:shadow-[0_15px_50px_rgba(108,140,255,0.2)]">
                   <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,rgba(108,140,255,0.08),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 pointer-events-none" />
 
                   <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-8">
+                    <div className="flex items-start justify-between mb-6 sm:mb-8">
                       <div className="flex-1 pr-6">
                         <h3 className="text-[22px] font-bold text-slate-100 tracking-tight leading-tight group-hover:text-indigo-300 transition-colors mb-3">
                           {title.trim()}
                         </h3>
-                        <p className="text-[15px] leading-relaxed text-slate-400 mb-6">
+                        <p className="text-[15px] leading-relaxed text-slate-400 mb-4 sm:mb-6 max-w-md">
                           {description.trim()}
                         </p>
                       </div>
@@ -90,9 +90,9 @@ export default function SkillsSection() {
                       </div>
                     </div>
 
-                    <div className="pt-7 border-t border-white/[0.05]">
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-5">Core Stack</p>
-                      <div className="flex flex-wrap gap-[10px]">
+                    <div className="pt-6 sm:pt-7 border-t border-white/[0.05]">
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-4 sm:mb-5">Core Stack</p>
+                      <div className="flex flex-wrap gap-2 sm:gap-[10px]">
                         {techStack.map((tech, tIdx) => {
                           const iconData = techIcons[tech];
                           const Icon = iconData?.icon;

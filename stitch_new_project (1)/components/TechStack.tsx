@@ -12,7 +12,7 @@ export default function TechStack({ tech, className = "" }: TechStackProps) {
   if (!tech || tech.length === 0) return null;
 
   return (
-    <div className={`flex flex-wrap gap-x-3 gap-y-3 mt-4 ${className}`}>
+    <div className={`flex flex-wrap gap-x-2.5 gap-y-2.5 sm:gap-x-3 sm:gap-y-3 mt-5 ${className}`}>
       {tech.map((item, index) => {
         const iconData = techIcons[item];
         const Icon = iconData?.icon;

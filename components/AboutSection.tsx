@@ -10,8 +10,8 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 md:px-16 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section id="about" className="py-16 lg:py-24 px-6 sm:px-8 lg:px-12 xl:px-20 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Left — Text */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -24,12 +24,12 @@ export default function AboutSection() {
             <span className="font-mono text-xs tracking-[0.3em] uppercase text-[#6C8CFF]/70">About</span>
           </div>
 
-          <h2 className="font-display text-4xl md:text-5xl text-white mb-8 leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl text-white mb-6 leading-tight">
             Engineer by mind,<br />
             <span className="gradient-text">storyteller by code</span>
           </h2>
 
-          <div className="space-y-4 font-body text-white/50 leading-relaxed text-base">
+          <div className="space-y-4 font-body text-white/50 leading-relaxed text-base max-w-xl">
             <p>
               I&apos;m Tarun — an AI Engineer focused on building production-grade ML systems, GenAI applications, and intelligent backends that create real impact.
             </p>
@@ -59,7 +59,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 gap-4"
+          className="grid grid-cols-2 gap-5 sm:gap-6"
         >
           {stats.map((stat, i) => (
             <motion.div
@@ -69,7 +69,7 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 + i * 0.1 }}
               whileHover={{ scale: 1.04 }}
-              className="glass-card rounded-2xl p-8 flex flex-col gap-3 group cursor-default"
+              className="glass-card rounded-2xl p-6 sm:p-8 flex flex-col gap-3 group cursor-default transition-all duration-300 hover:scale-[1.01]"
             >
               <span
                 className="font-display text-4xl md:text-5xl gradient-text"
@@ -89,7 +89,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
-            className="col-span-2 glass-card rounded-2xl p-6 relative overflow-hidden"
+            className="col-span-2 glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden"
           >
             <div
               className="absolute inset-0 opacity-40"

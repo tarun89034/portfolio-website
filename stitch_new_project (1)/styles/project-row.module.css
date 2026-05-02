@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding: 2rem 0;
+  padding: 2.5rem 0;
 }
 
 .section::before {
@@ -15,11 +15,12 @@
 }
 
 .header {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 1rem;
+  padding: 0 0.5rem;
 }
 
 .title {
@@ -99,9 +100,9 @@
 
 .fadeEdge {
   position: absolute;
-  top: 4.1rem;
+  top: 4.8rem;
   bottom: 0;
-  width: 5.5rem;
+  width: 6rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity 240ms ease;

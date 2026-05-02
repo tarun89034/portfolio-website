@@ -41,8 +41,8 @@ export default function GitHubProjectPage() {
     <div style={{ paddingTop: '140px' }} className="mt-8 relative z-10 font-body selection:bg-indigo-500/30">
 
       {/* HERO SECTION */}
-      <section className="relative w-full px-8 pb-16">
-        <div className="max-w-5xl mx-auto flex flex-col gap-6">
+      <section className="relative w-full px-6 sm:px-8 lg:px-12 xl:px-20 pb-12 lg:pb-16">
+        <div className="max-w-5xl mx-auto flex flex-col gap-5 sm:gap-6">
 
           {/* CATEGORY */}
           <span className="text-xs border border-violet-500/30 bg-violet-500/20 px-3 py-1 rounded-full w-fit uppercase tracking-wider text-violet-300">
@@ -72,7 +72,7 @@ export default function GitHubProjectPage() {
       </section>
 
       {/* REST OF PAGE */}
-      <div className="px-8">
+      <div className="px-6 sm:px-8 lg:px-12 xl:px-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={project.id}
@@ -82,8 +82,8 @@ export default function GitHubProjectPage() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* PROJECT PREVIEW */}
-            <section className="py-16">
-              <div className="mb-10 px-4">
+            <section className="py-12 lg:py-16">
+              <div className="mb-8 lg:mb-10 px-4">
                 <h2 className="text-3xl font-bold tracking-tight text-white">Project <span className="text-violet-400">Preview</span></h2>
                 <div className="mt-2 h-1 w-20 bg-violet-500 rounded-full" />
               </div>
@@ -123,9 +123,9 @@ export default function GitHubProjectPage() {
             </section>
 
             {/* STRUCTURED DESCRIPTION */}
-            <section className="py-16">
-              <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-16">
-                <div className="lg:col-span-2 prose-cinema space-y-2">
+            <section className="py-12 lg:py-16">
+              <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
+                <div className="lg:col-span-2 prose-cinema space-y-2 max-w-2xl">
                   <div>
                     <h3 className="text-2xl font-bold !mt-0 text-white">Project <span className="text-violet-400">Overview</span></h3>
                     <p className="text-lg leading-relaxed text-slate-300">{parsed.summary}</p>
@@ -159,7 +159,7 @@ export default function GitHubProjectPage() {
                     </div>
                   )}
                 </div>
-                <aside className="space-y-8">
+                <aside className="space-y-6 lg:space-y-8">
                   <div className="space-y-4">
                     <div className="highlight-card p-6 rounded-xl bg-white/5 border-l-4 border-violet-500">
                       <Code className="mb-3 text-violet-400" size={24} />
@@ -172,7 +172,7 @@ export default function GitHubProjectPage() {
                       <p className="text-sm text-slate-400 leading-relaxed">Built with modern tools and production-grade frameworks.</p>
                     </div>
                   </div>
-                  <div className="p-6 rounded-2xl glass-card border border-white/10 bg-white/5">
+                  <div className="p-6 sm:p-7 rounded-2xl glass-card border border-white/10 bg-white/5">
                     <h3 className="mb-2 flex items-center gap-2 text-lg font-bold text-white">
                       <Layers className="text-violet-400" size={20} /> Tech Stack
                     </h3>

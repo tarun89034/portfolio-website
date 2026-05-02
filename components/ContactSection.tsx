@@ -9,7 +9,7 @@ interface Personal {
 
 export default function ContactSection({ personal }: { personal: Personal }) {
   return (
-    <section id="contact" className="py-32 px-6 md:px-16 relative overflow-hidden">
+    <section id="contact" className="py-20 lg:py-32 px-6 sm:px-8 lg:px-12 xl:px-20 relative overflow-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
@@ -17,7 +17,7 @@ export default function ContactSection({ personal }: { personal: Personal }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(108,140,255,0.2)] to-transparent" />
       </div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+      <div className="max-w-4xl mx-auto text-center relative z-10 space-y-0">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,23 +25,23 @@ export default function ContactSection({ personal }: { personal: Personal }) {
           transition={{ duration: 0.8 }}
         >
           {/* Label */}
-          <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
             <div className="w-8 h-px bg-gradient-to-r from-transparent to-[#6C8CFF]" />
             <span className="font-mono text-xs tracking-[0.3em] uppercase text-[#6C8CFF]/70">Get in Touch</span>
             <div className="w-8 h-px bg-gradient-to-l from-transparent to-[#6C8CFF]" />
           </div>
 
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-none">
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-none">
             Let&apos;s Build the<br />
             <span className="gradient-text">Future Together</span>
           </h2>
 
-          <p className="font-body text-white/40 text-lg max-w-lg mx-auto mb-14 leading-relaxed">
+          <p className="font-body text-white/40 text-lg max-w-xl mx-auto mb-10 sm:mb-14 leading-relaxed">
             Currently open to AI engineering roles and high-impact collaborations.
             If you&apos;re building something meaningful, let&apos;s talk.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-16">
             <motion.a
               href={`mailto:${personal.email}`}
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(108,140,255,0.3)" }}

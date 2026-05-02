@@ -23,25 +23,30 @@ export default function LandingPage() {
         
         <HeroSection />
         
-        <div id="work" className="py-12 relative z-10">
-          <ProjectRow 
-            title="Featured Projects" 
-            items={featuredProjects} 
-          />
-          <ProjectRow 
-            title="Projects on GitHub" 
-            items={openSourceProjects} 
-            type="github" 
-          />
-          <ProjectRow 
-            title="Certificates" 
-            items={allCertificates} 
-            type="certificate" 
-          />
+        <div id="work" className="py-16 lg:py-24 relative z-10">
+          <div className="space-y-6">
+            <ProjectRow 
+              title="Featured Projects" 
+              items={featuredProjects} 
+            />
+            <ProjectRow 
+              title="Projects on GitHub" 
+              items={openSourceProjects} 
+              type="github" 
+            />
+            <ProjectRow 
+              title="Certificates" 
+              items={allCertificates} 
+              type="certificate" 
+            />
+          </div>
         </div>
 
+        <div className="border-t border-white/[0.06]" />
         <AboutSection />
+        <div className="border-t border-white/[0.06]" />
         <SkillsSection />
+        <div className="border-t border-white/[0.06]" />
         <ContactSection personal={portfolioLinks} />
 
         <Lightbox 
