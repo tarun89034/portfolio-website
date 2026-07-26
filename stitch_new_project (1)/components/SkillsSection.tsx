@@ -92,7 +92,7 @@ export default function SkillsSection() {
 
                     <div className="pt-6 sm:pt-7 border-t border-white/[0.05]">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-4 sm:mb-5">Core Stack</p>
-                      <div className="flex flex-wrap gap-3 sm:gap-4">
+                      <div className="flex flex-wrap gap-3 sm:gap-[14px]">
                         {techStack.map((tech, tIdx) => {
                           const iconData = techIcons[tech];
                           const Icon = iconData?.icon;
@@ -101,7 +101,7 @@ export default function SkillsSection() {
                           return (
                             <span 
                               key={tIdx}
-                              className="inline-flex items-center gap-1.5 px-[14px] py-[8px] rounded-full bg-indigo-500/[0.18] border border-indigo-500/[0.35] text-[13px] text-[#E5E7EB] font-medium backdrop-blur-[8px] transition-all duration-250 hover:bg-indigo-500/[0.3] hover:shadow-[0_0_10px_rgba(108,140,255,0.35)] whitespace-nowrap tracking-[0.3px] group/pill"
+                              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-indigo-500/[0.18] border border-indigo-500/[0.35] text-[13px] text-[#E5E7EB] font-medium backdrop-blur-[8px] transition-all duration-250 hover:bg-indigo-500/[0.3] hover:shadow-[0_0_10px_rgba(108,140,255,0.35)] whitespace-nowrap tracking-[0.3px] group/pill"
                             >
                               {Icon && (
                                 <Icon 

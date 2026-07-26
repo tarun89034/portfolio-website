@@ -31,12 +31,12 @@ export default function ContactSection({ personal }: { personal: Personal }) {
             <div className="w-8 h-px bg-gradient-to-l from-transparent to-[#6C8CFF]" />
           </div>
 
-          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-none">
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl text-white mb-6 sm:mb-8 leading-[1.1] pb-1">
             Let&apos;s Build the<br />
             <span className="gradient-text">Future Together</span>
           </h2>
 
-          <p className="font-body text-white/40 text-lg max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed">
+          <p className="font-body text-white/40 text-lg md:text-xl max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed">
             Currently open to AI engineering roles and high-impact collaborations.
             If you&apos;re building something meaningful, let&apos;s talk.
           </p>

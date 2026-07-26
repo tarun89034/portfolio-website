@@ -11,7 +11,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-16 lg:py-24 px-8 sm:px-12 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Left — Text */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -29,7 +29,7 @@ export default function AboutSection() {
             <span className="gradient-text">storyteller by code</span>
           </h2>
 
-          <div className="space-y-5 font-body text-white/50 leading-relaxed text-base max-w-xl">
+          <div className="space-y-6 font-body text-white/60 text-[17px] leading-8 max-w-xl">
             <p>
               I&apos;m Tarun — an AI Engineer focused on building production-grade ML systems, GenAI applications, and intelligent backends that create real impact.
             </p>
