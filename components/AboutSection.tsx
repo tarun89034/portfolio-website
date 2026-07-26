@@ -10,7 +10,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-16 lg:py-24 px-6 sm:px-8 lg:px-12 xl:px-20 max-w-7xl mx-auto">
+    <section id="about" className="py-16 lg:py-24 px-8 sm:px-12 lg:px-16 xl:px-24 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Left — Text */}
         <motion.div
@@ -19,17 +19,17 @@ export default function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-8">
             <div className="w-1 h-8 rounded-full bg-gradient-to-b from-[#6C8CFF] to-[#A855F7]" />
             <span className="font-mono text-xs tracking-[0.3em] uppercase text-[#6C8CFF]/70">About</span>
           </div>
 
-          <h2 className="font-display text-4xl md:text-5xl text-white mb-6 leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl text-white mb-8 leading-tight">
             Engineer by mind,<br />
             <span className="gradient-text">storyteller by code</span>
           </h2>
 
-          <div className="space-y-4 font-body text-white/50 leading-relaxed text-base max-w-xl">
+          <div className="space-y-5 font-body text-white/50 leading-relaxed text-base max-w-xl">
             <p>
               I&apos;m Tarun — an AI Engineer focused on building production-grade ML systems, GenAI applications, and intelligent backends that create real impact.
             </p>
@@ -41,11 +41,11 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3 mt-8">
+          <div className="flex flex-wrap gap-3 sm:gap-4 mt-10">
             {["LLMs", "RAG", "MLOps", "Quant Finance", "Backend Systems"].map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1.5 rounded-full font-mono text-xs tracking-wider uppercase glass-card text-white/50 border-[rgba(108,140,255,0.15)]"
+                className="px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase glass-card text-white/50 border-[rgba(108,140,255,0.15)]"
               >
                 {tag}
               </span>
@@ -59,7 +59,7 @@ export default function AboutSection() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 gap-5 sm:gap-6"
+          className="grid grid-cols-2 gap-5 sm:gap-8"
         >
           {stats.map((stat, i) => (
             <motion.div

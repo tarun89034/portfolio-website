@@ -36,7 +36,7 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-16 lg:py-24 px-6 sm:px-8 lg:px-12 xl:px-20 relative overflow-hidden bg-[#0f131e]">
+    <section id="skills" className="py-16 lg:py-24 px-8 sm:px-12 lg:px-16 xl:px-24 relative overflow-hidden bg-[#0f131e]">
       {/* Decorative backdrop */}
       <div className="pointer-events-none absolute left-1/4 top-0 h-[500px] w-[500px] rounded-full bg-indigo-500/5 blur-[120px]" />
       <div className="pointer-events-none absolute right-1/4 bottom-0 h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-[120px]" />
@@ -92,7 +92,7 @@ export default function SkillsSection() {
 
                     <div className="pt-6 sm:pt-7 border-t border-white/[0.05]">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-4 sm:mb-5">Core Stack</p>
-                      <div className="flex flex-wrap gap-2 sm:gap-[10px]">
+                      <div className="flex flex-wrap gap-3 sm:gap-4">
                         {techStack.map((tech, tIdx) => {
                           const iconData = techIcons[tech];
                           const Icon = iconData?.icon;

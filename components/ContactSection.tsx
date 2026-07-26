@@ -9,7 +9,7 @@ interface Personal {
 
 export default function ContactSection({ personal }: { personal: Personal }) {
   return (
-    <section id="contact" className="py-20 lg:py-32 px-6 sm:px-8 lg:px-12 xl:px-20 relative overflow-hidden">
+    <section id="contact" className="py-20 lg:py-32 px-8 sm:px-12 lg:px-16 xl:px-24 relative overflow-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
@@ -17,7 +17,7 @@ export default function ContactSection({ personal }: { personal: Personal }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(108,140,255,0.2)] to-transparent" />
       </div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10 space-y-0">
+      <div className="max-w-5xl mx-auto text-center relative z-10 space-y-0">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export default function ContactSection({ personal }: { personal: Personal }) {
             <span className="gradient-text">Future Together</span>
           </h2>
 
-          <p className="font-body text-white/40 text-lg max-w-xl mx-auto mb-10 sm:mb-14 leading-relaxed">
+          <p className="font-body text-white/40 text-lg max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed">
             Currently open to AI engineering roles and high-impact collaborations.
             If you&apos;re building something meaningful, let&apos;s talk.
           </p>
