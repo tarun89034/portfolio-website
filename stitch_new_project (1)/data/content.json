@@ -29,25 +29,31 @@
       ]
     },
     {
-      "id": "ragbot-merlin",
+      "id": "ai-fitness-coach",
       "type": "featured",
-      "title": "Ragbot Merlin",
-      "description": "RAG-powered assistant for domain knowledge retrieval with context-grounded answers and semantic search.",
-      "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      "title": "AI Fitness Coach",
+      "description": "Getting reliable, safe fitness guidance from AI shouldn't mean risking downtime, cost overruns, or dangerous advice slipping through. To solve this, I built **AI Fitness Coach**, a resilient multi-agent platform that orchestrates fitness advice through Langflow while gracefully degrading under failure at every layer.\n Here are a few highlights of what I built:\n- ***Resilient LLM Orchestration:*** Engineered a 3-model chain (free → paid → emergency) across Langflow flows with automatic OpenRouter fallback, protected by thread-safe circuit breakers (closed/open/half-open) guarding 3 external services independently.\n- ***AI Safety Guard:*** Built input filtering with 15 compiled regex patterns to detect prompt injection and off-topic queries, plus output scanning to catch dangerous dosage or exercise advice before it reaches the user.\n- ***Graceful Degradation Everywhere:*** Designed a SafeCollectionProxy pattern wrapping AstraDB operations with per-call in-memory fallback, and separated Langflow into its own container so the app stays functional on just 512MB RAM if Langflow goes down.\nContainerizing this as a 4-service Docker Compose stack with an Nginx WebSocket proxy, non-root execution, health checks, and zero exposed ports — deployed behind a Cloudflare Tunnel with WAF — was a deep dive into building production-grade, hidden-origin infrastructure.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_19joa819joa819jo.png",
       "heroVideo": "",
-      "video": "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1784119929/ai-workout-multiagent_nhbbn2.mp4",
       "screenshots": [
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=70",
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=70"
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180223.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180134.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180201.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180148.png"
       ],
-      "github": "",
-      "live": "https://huggingface.co/spaces/ty8890/Ragbot-Merlin",
+      "github": "https://github.com/tarun89034/Advanced-Multi-Agent-Workout-App",
+      "live": "PLACEHOLDER_LIVE_URL",
       "tech": [
-        "RAG",
-        "Embeddings",
+        "Python",
+        "Streamlit",
+        "Langflow",
         "LangChain",
-        "HuggingFace"
+        "OpenRouter",
+        "AstraDB",
+        "Docker",
+        "Nginx",
+        "Cloudflare Tunnel"
       ]
     },
     {
@@ -131,6 +137,29 @@
         "Pandas",
         "Chart.js",
         "JavaScript"
+      ]
+    },
+    {
+      "id": "algolab",
+      "type": "github",
+      "title": "AlgoLab — High-Performance Graph Algorithm Library",
+      "description": "Designed a generic Algorithm[TContext, TResult] framework with PEP 695 type parameters, frozen dataclass results, and execution tracing achieving 792 tests/second throughput. Implemented 20 algorithms processing 565k+ edges/second (BFS on 50k nodes), with Dinic's max-flow delivering 40x throughput over Edmonds-Karp on parallel networks. \n **Key Features:** \n - ***Blazing-Fast Graph Traversal:*** BFS traversal processing 565,000+ edges/second on 50k-node directed graphs with full execution tracing, alongside Dinic's algorithm achieving 40x throughput over Edmonds-Karp on 500-path parallel flow networks (10.8ms vs 426.8ms).\n - ***High-Performance Data Structures:*** Built a Union-Find structure with path compression and union by rank achieving 0.19μs amortized find operations on 1M-element datasets, plus Binary Lifting LCA preprocessing 65k-node trees in 253ms with 3.1μs average query time.\n - ***Strict Type Safety:*** Enforced strict static typing with mypy across 7,091 lines of source code in 65 modules — zero type-ignore comments, zero errors.\n - ***Rigorous Testing:*** Created 970 automated tests (7,052 lines) covering correctness, determinism, immutability, execution metrics, and edge cases, executing the full suite in 1.2 seconds.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_peidq2peidq2peid.png",
+      "heroVideo": "",
+      "video": "",
+      "screenshots": [
+        "PLACEHOLDER_SCREENSHOT_URL_1",
+        "PLACEHOLDER_SCREENSHOT_URL_2"
+      ],
+      "github": "https://github.com/tarun89034/AlgoLab",
+      "live": "",
+      "tech": [
+        "Python",
+        "PEP 695 Generics",
+        "mypy",
+        "pytest",
+        "GitHub Actions",
+        "MkDocs"
       ]
     },
     {
