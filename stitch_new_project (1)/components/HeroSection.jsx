@@ -71,7 +71,7 @@ export default function HeroSection() {
         <h1 className={styles.title}>
           TARUN <span>YADAV</span>
         </h1>
-        <p className={`${styles.subtitle} ${isReady ? styles.reveal2 : ""}`}>AI Engineer | ML Systems | GenAI</p>
+        <p className={`${styles.subtitle} ${isReady ? styles.reveal2 : ""}`}>Backend Engineer | SDE-1 | Distributed Systems</p>
         <p className={`${styles.tagline} ${isReady ? styles.reveal3 : ""}`}>&ldquo;Building intelligent systems that feel like magic&rdquo;</p>
 
         <div className={`${styles.actions} ${isReady ? styles.reveal4 : ""}`}>

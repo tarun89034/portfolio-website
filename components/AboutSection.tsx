@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   const stats = [
-    { value: "8+", label: "AI Projects Shipped" },
-    { value: "5+", label: "ML Models in Production" },
-    { value: "3+", label: "Years Building" },
+    { value: "12+", label: "End-to-end Projects Completed" },
+    { value: "4+", label: "ML Models Deployed" },
     { value: "∞", label: "Coffee Consumed" },
   ];
 
@@ -31,18 +30,18 @@ export default function AboutSection() {
 
           <div className="space-y-6 font-body text-white/60 text-[17px] leading-8 max-w-xl">
             <p>
-              I&apos;m Tarun — an AI Engineer focused on building production-grade ML systems, GenAI applications, and intelligent backends that create real impact.
+              I&apos;m Tarun — a backend engineer focused on building distributed systems that hold up under real load: high concurrency, race conditions, and the kind of scale that breaks naive implementations.
             </p>
             <p>
-              My work spans the full AI stack: from fine-tuning LLMs and designing RAG pipelines to building quantitative finance tools and real-time ML observability systems.
+              My work spans backend APIs, distributed systems, and data pipelines — including a coordination-free web crawler, high-concurrency transaction processing, and applied LLM engineering (fine-tuning, RAG) for quantitative finance tools.
             </p>
             <p>
-              I believe the best AI systems aren&apos;t just technically sound — they feel intuitive and almost magical to use. That&apos;s the standard I build toward.
+              I believe the best systems aren't the ones that just work in a demo — they're the ones that hold up when things get hard: concurrent load, edge cases, failure states. That's the standard I build toward.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-3 sm:gap-4 mt-10">
-            {["LLMs", "RAG", "MLOps", "Quant Finance", "Backend Systems"].map((tag) => (
+            {["Backend Systems", "Distributed Systems", "FastAPI", "Redis & Kafka", "Quant Finance", "Applied LLM Engineering"].map((tag) => (
               <span
                 key={tag}
                 className="px-4 py-2 rounded-full font-mono text-xs tracking-wider uppercase glass-card text-white/50 border-[rgba(108,140,255,0.15)]"
@@ -102,7 +101,7 @@ export default function AboutSection() {
                 Current Focus
               </p>
               <p className="font-display text-xl text-white/80">
-                Agentic AI Systems & LLM Infrastructure
+                Distributed Systems & High-Concurrency Backend Architecture
               </p>
             </div>
           </motion.div>
