@@ -28,7 +28,7 @@
     },
     {
       "id": "algolab",
-      "type": "github",
+      "type": "featured",
       "title": "AlgoLab — High-Performance Graph Algorithm Library",
       "description": "Designed a generic Algorithm[TContext, TResult] framework with PEP 695 type parameters, frozen dataclass results, and execution tracing achieving 792 tests/second throughput. Implemented 20 algorithms processing 565k+ edges/second (BFS on 50k nodes), with Dinic's max-flow delivering 40x throughput over Edmonds-Karp on parallel networks. \n **Key Features:** \n - ***Blazing-Fast Graph Traversal:*** BFS traversal processing 565,000+ edges/second on 50k-node directed graphs with full execution tracing, alongside Dinic's algorithm achieving 40x throughput over Edmonds-Karp on 500-path parallel flow networks (10.8ms vs 426.8ms).\n - ***High-Performance Data Structures:*** Built a Union-Find structure with path compression and union by rank achieving 0.19μs amortized find operations on 1M-element datasets, plus Binary Lifting LCA preprocessing 65k-node trees in 253ms with 3.1μs average query time.\n - ***Strict Type Safety:*** Enforced strict static typing with mypy across 7,091 lines of source code in 65 modules — zero type-ignore comments, zero errors.\n - ***Rigorous Testing:*** Created 970 automated tests (7,052 lines) covering correctness, determinism, immutability, execution metrics, and edge cases, executing the full suite in 1.2 seconds.",
       "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_peidq2peidq2peid.png",
