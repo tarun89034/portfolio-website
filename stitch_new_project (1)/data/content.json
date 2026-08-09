@@ -204,14 +204,15 @@
       "type": "github",
       "title": "Customer Shopping Behavior Analysis",
       "description": "An end-to-end retail analytics project built around a simple question: what actually drives customer spending, and does the data back up common assumptions about discounts and subscriptions? I took a raw dataset of 3,900 customer records through the full pipeline — cleaning, database migration, SQL analysis, and dashboarding — the way a real analytics team would.\n **Key Features:**\n - ***Careful Data Cleaning:*** Instead of filling missing review ratings with a single global average, I imputed them by category median so ratings stayed realistic within each product type. Also standardized every column to snake_case and engineered new features like age-group segmentation and a purchase-frequency-in-days mapping.\n - ***Real SQL, Not Just SELECT *:*** Migrated the cleaned data into PostgreSQL and wrote 10+ queries using CTEs and window functions (ROW_NUMBER, PARTITION BY) to rank top products per category and dig into revenue, discount effectiveness, and subscription behavior.\n - ***Customer Segmentation Logic:*** Built a New/Returning/Loyal classification straight into SQL using CASE statements based on purchase history, which is the kind of segmentation a marketing team could actually act on.\n - ***Power BI Dashboards:*** Turned the SQL output into two interactive dashboards covering customer demographics, category performance, and subscriber vs. non-subscriber spending comparisons.\nIt's a smaller project than some of my others, but it was a good exercise in doing the unglamorous parts of analytics properly — the cleaning and imputation decisions end up mattering just as much as the final dashboard.",
-      "image": "PLACEHOLDER_IMAGE_URL",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_qi8wiwqi8wiwqi8w.png",
       "heroVideo": "",
       "video": "",
       "screenshots": [
-      "PLACEHOLDER_SCREENSHOT_URL_1",
-      "PLACEHOLDER_SCREENSHOT_URL_2"
+      "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/546706549-d5673844-430c-47a4-b7b1-2ec14d74067a.png",
+      "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/546706535-88cabc7b-0117-4e34-ae9b-6da48851f1b4.png",
+      "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/546706519-7d9ecda1-2d28-405b-8a36-f8323a109da2.png"
       ],
-      "github": "PLACEHOLDER_GITHUB_URL",
+      "github": "https://github.com/tarun89034/Customer-Behavior-Analysis",
       "live": "",
       "tech": [
       "Python",
