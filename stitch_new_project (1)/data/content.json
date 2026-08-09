@@ -1,142 +1,29 @@
 {
   "projects": [
     {
-      "id": "barista-ai",
+      "id": "distributed-web-crawler",
       "type": "featured",
-      "title": "Barista AI",
-      "description": "Navigating financial markets requires more than just raw data; it requires synthesizing macro-economics, global trends, and mathematical risk metrics into actionable insights. To solve this, I built **Barista AI**, a platform that leverages multi-agent AI architecture to act as a personal, highly analytical financial advisor.\n Here are a few highlights of what I built:\n- ***High-Performance Data Ingestion:*** Engineered a robust multi-source data pipeline (Finnhub, Alpha Vantage, yfinance, FRED) with intelligent fallbacks. By implementing async batching and parallel threading, I reduced market data latency by up to **22.8x** (down to under 300ms)! \n-***Agentic AI Analysis:*** Integrated Google Gemini to power specialized AI agents (Market Monitor, Risk Analyzer, Rebalancing Advisor) that digest real-time metrics (VaR, CVaR, Sharpe) to provide clear, actionable portfolio strategies.\n - ***Sleek & Unified UI:*** Built a highly responsive, dark-mode-first dashboard using Next.js and Tailwind, served entirely from a unified FastAPI Python backend.\nDeploying this to **HuggingFace Spaces** using a custom multi-stage **Docker** pipeline was a massive learning experience in modern CI/CD and containerization.",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/206efd94-94d9-4008-a1a9-408d0c3d6f31.jpg",
+      "title": "Distributed Web Crawler",
+      "description": "Most crawler projects fall over the moment you try to run more than one instance — two nodes end up hitting the same domain, nobody knows who owns what, and you need a coordinator babysitting everything. I wanted to see if I could avoid that entirely, so I built a crawler where every node figures out what it should be doing on its own, using nothing but Redis for shared state and consistent hashing for domain ownership. No leader election, no consensus protocol, no single point of failure.\n Here are a few highlights of what I built:\n- ***Coordination-Free Ownership:*** Each node computes domain ownership locally from consistent hashing (128 virtual nodes per physical node), so lookups run in ~2µs and the cluster keeps crawling even if Redis goes down. Rebalancing on node changes only moves 15.5% of domains, versus 83% with naive modulo hashing.\n- ***Cluster-Wide Deduplication:*** Built a Redis-backed Bloom filter that stores 10 million crawled URLs in 17 MiB — about 72x smaller than keeping the raw strings — while holding a measured false-positive rate of 0.00956, just under the 0.01 target.\n- ***Adaptive, Polite Crawling:*** Implemented an AIMD-based rate controller per domain instead of a fixed crawl rate. Against servers with tight limits, it held a 94% request acceptance rate where fixed-rate crawling got rejected outright (0%).\n- ***Crash Recovery Without Losing the Design:*** Added a SQLite-backed durable frontier that wraps the in-memory frontier rather than reimplementing its logic, so a crash costs ~10µs per URL to recover instead of losing the queue entirely.\nThe whole thing runs as a 3-node Docker Compose cluster with Prometheus metrics wired in, and sits on 2,143 tests at 93.4% coverage with strict mypy across the codebase — getting the test suite that solid was honestly as much work as the crawler itself.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Screenshot%202026-08-09%20150154.png",
       "heroVideo": "",
-      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251087/barista_ai_ih1dzm.mp4",
+      "video": "PLACEHOLDER_VIDEO_URL",
       "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193911.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193933.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193944.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194007.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194024.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194051.png"
+      "PLACEHOLDER_SCREENSHOT_URL_1",
+      "PLACEHOLDER_SCREENSHOT_URL_2"
       ],
-      "github": "https://github.com/tarun89034/barista-ai",
-      "live": "https://huggingface.co/spaces/ty8890/barista-ai",
+      "github": "https://github.com/tarun89034/Distributed-Web-Crawler-with-Cluster-Wide-Adaptive-Politeness-Enforcement",
+      "live": "",
       "tech": [
-        "FastAPI",
-        "Google Gemini (LLM)",
-        "Next.js",
-        "Pandas",
-        "yfinance",
-        "Python",
-        "Docker & HuggingFace Spaces"
-      ]
-    },
-    {
-      "id": "ai-fitness-coach",
-      "type": "featured",
-      "title": "AI Fitness Coach",
-      "description": "Getting reliable, safe fitness guidance from AI shouldn't mean risking downtime, cost overruns, or dangerous advice slipping through. To solve this, I built **AI Fitness Coach**, a resilient multi-agent platform that orchestrates fitness advice through Langflow while gracefully degrading under failure at every layer.\n Here are a few highlights of what I built:\n- ***Resilient LLM Orchestration:*** Engineered a 3-model chain (free → paid → emergency) across Langflow flows with automatic OpenRouter fallback, protected by thread-safe circuit breakers (closed/open/half-open) guarding 3 external services independently.\n- ***AI Safety Guard:*** Built input filtering with 15 compiled regex patterns to detect prompt injection and off-topic queries, plus output scanning to catch dangerous dosage or exercise advice before it reaches the user.\n- ***Graceful Degradation Everywhere:*** Designed a SafeCollectionProxy pattern wrapping AstraDB operations with per-call in-memory fallback, and separated Langflow into its own container so the app stays functional on just 512MB RAM if Langflow goes down.\nContainerizing this as a 4-service Docker Compose stack with an Nginx WebSocket proxy, non-root execution, health checks, and zero exposed ports — deployed behind a Cloudflare Tunnel with WAF — was a deep dive into building production-grade, hidden-origin infrastructure.",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_19joa819joa819jo.png",
-      "heroVideo": "",
-      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1784119929/ai-workout-multiagent_nhbbn2.mp4",
-      "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180223.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180134.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180201.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180148.png"
-      ],
-      "github": "https://github.com/tarun89034/Advanced-Multi-Agent-Workout-App",
-      "live": "PLACEHOLDER_LIVE_URL",
-      "tech": [
-        "Python",
-        "Streamlit",
-        "Langflow",
-        "LangChain",
-        "OpenRouter",
-        "AstraDB",
-        "Docker",
-        "Nginx",
-        "Cloudflare Tunnel"
-      ]
-    },
-    {
-      "id": "financial-llm",
-      "type": "featured",
-      "title": "Financial LLM Copilot",
-      "description": "Finance-focused copilot for analysis, summarization, and decision support over market and report data. \n Using Streamlit and Mistral-7B (QLoRA), an AI-driven financial copilot was designed that uses concentrated GGUF model inference to provide real-time macroeconomic insights for over 80 countries and 12 key indicators.\n -Created a reliable data triangulation engine that combines economic data from the World Bank, OECD, and FRED and uses a unique validation algorithm to guarantee data consensus and assign confidence scores.\n-In order to dynamically inject multi-source financial data into LLM prompts and enable advanced regional analysis and comparative metrics for seven global regions, a Retrieval-Augmented Generation (RAG) pipeline was engineered.",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Financial_LLM_Copil-0.jpg",
-      "heroVideo": "",
-      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252546/financial_llm_ak5ndu.mp4",
-      "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160319.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160344.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160402.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160424.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160445.png"
-      ],
-      "github": "https://github.com/tarun89034/finance-llm-researcher",
-      "live": "https://huggingface.co/spaces/ty8890/financial-llm-copilot",
-      "tech": [
-        "Pandas",
-        "Plotly",
-        "Llama-cpp-python",
-        "Streamlit",
-        "Mistral-7B / QLoRA",
-        "Python"
-      ]
-    },
-    {
-      "id": "stock-prediction",
-      "type": "featured",
-      "title": "Stock Prediction Platform",
-      "description": "QuantEdge is a comprehensive stock prediction and backtesting engine designed for global markets. The platform enables traders and investors to:\n - **Validate tickers** from 30+ international exchanges with automatic regional benchmark mapping. \n - **Track real-time prices** for 6 global indices (S&P 500, STOXX Europe 600, ASX 200, CSI 300, NIFTY 50, JSE All Share). \n- **Run backtests** with customizable strategies using vectorbt, calculating Sharpe ratio, max drawdown, and Alpha/Beta vs regional benchmarks. \n - **Generate predictions** using LSTM neural networks trained on historical OHLCV data. \n - **Convert currencies** across 17 supported currencies with live exchange rates.\n **Key Technical Achievements:\n -Implemented TwelveData API fallback for cloud deployments where yfinance is blocked (Yahoo IP restrictions).\n - Built rate-limiting system to respect free-tier API limits (8 calls/minute).\n - Achieved sub-second API response times with multi-tier caching strategy.\n- Configured multi-stage Docker build for seamless HuggingFace Spaces deployment",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output.jpg",
-      "heroVideo": "https://res.cloudinary.com/dgbobo43l/video/upload/v1777123547/Cyberpunk_Financial_Visualization_Video_s8hupx.mp4",
-      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252567/stock-prediction_backtesting_jv4mcm.mp4",
-      "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160505.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160544.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160711.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160731.png"
-      ],
-      "github": "https://github.com/tarun89034/stock-prediction-vercel",
-      "live": "https://huggingface.co/spaces/ty8890/stock-prediction-platform",
-      "tech": [
-        "Next.js 14",
-        "TypeScript",
-        "yfinance",
-        "TwelveData API (fallback)",
-        "Vectorbt",
-        "Plotly",
-        "FastAPI",
-        "uvicorn",
-        "Pandas",
-        "NumPy"
-      ]
-    },
-    {
-      "id": "option-pricing",
-      "type": "featured",
-      "title": "Option Pricing",
-      "description": "-Using Python and Flask, I designed a professional-grade quantitative analysis platform that uses Black-Scholes, Monte Carlo (GBM), and Binomial Tree models to price European, American, and path-dependent options (Asian, Barrier, and Lookback).\n- Developed a high-performance real-time options chain engine that offers instantaneous Greeks analysis (Delta, Gamma, Theta, and Vega) and implied volatility metrics for more than 30 countries worldwide. This engine uses optimized endpoint fetching to reduce data load times by 50 times.\n-Using Chart.js, a dynamic multi-currency visualization dashboard was created that incorporates real-time FX rate conversion for over eight major currencies, allowing for historical performance tracking across tens of thousands of global tickers and localized risk assessment.",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output%20(2).jpg",
-      "heroVideo": "",
-      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251046/clideo_editor_c8855c153f4c4de7b7a66d1f10175b66_tadihp.mp4",
-      "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160054.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160117.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160137.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160157.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160211.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160241.png"
-      ],
-      "github": "https://github.com/tarun89034/Option-Pricing-",
-      "live": "https://option-pricing-snowy.vercel.app/",
-      "tech": [
-        "Python",
-        "NumPy",
-        "Pandas",
-        "Chart.js",
-        "JavaScript"
+      "Python 3.13",
+      "asyncio",
+      "aiohttp",
+      "Redis",
+      "SQLite",
+      "Docker & Docker Compose",
+      "Prometheus",
+      "BeautifulSoup4"
+  
       ]
     },
     {
@@ -163,32 +50,182 @@
       ]
     },
     {
-      "id": "nids",
+      "id": "barista-ai",
+      "type": "featured",
+      "title": "Barista AI",
+      "description": "Most portfolio dashboards either give you raw numbers or an AI chatbot bolted on top — rarely both working together properly. I wanted Barista AI to actually combine the two: real quantitative finance underneath (VaR, Monte Carlo, Sharpe/Sortino) with an LLM layer that can reason about what those numbers mean for your portfolio.\n Here are a few highlights of what I built:\n- ***Six Agents, One Orchestrator:*** Built a multi-agent system — portfolio reader, risk analyzer, market monitor, rebalancing advisor, memory agent, and a central orchestrator tying them together — all sharing a singleton data fetcher and cache so nothing gets duplicated across requests.\n- ***Data Pipeline That Doesn't Fall Over:*** Chained Finnhub, Alpha Vantage, and yfinance with automatic fallback and thread-safe rate limiting, plus batch downloads pulling 15+ tickers in a single call. The system still works with zero API keys configured — it just quietly falls back to yfinance.\n- ***Real Risk Math:*** Implemented parametric, historical, and Monte Carlo VaR (10,000 simulations, vectorized in NumPy), alongside Sharpe, Sortino, CVaR, and correlation analysis — then handed those numbers to Google Gemini to generate natural-language rebalancing insights instead of just displaying charts.\n- ***Live Dashboard:*** Built a 5-page React/Next.js frontend with real-time WebSocket market streaming, FRED macro indicators, coverage across 11 global indices, and currency conversion — all served as a static export directly from FastAPI, so there's no separate reverse proxy to manage.\nGetting this packaged into a single Docker container and deployed on HuggingFace Spaces, with the frontend and backend both running from one process, taught me a lot about keeping deployment simple without sacrificing the multi-agent complexity underneath.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/206efd94-94d9-4008-a1a9-408d0c3d6f31.jpg",
+      "heroVideo": "",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251087/barista_ai_ih1dzm.mp4",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193911.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193933.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20193944.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194007.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194024.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-22%20194051.png"
+      ],
+      "github": "https://github.com/tarun89034/barista-ai",
+      "live": "https://huggingface.co/spaces/ty8890/barista-ai",
+      "tech": [
+        "FastAPI",
+        "Google Gemini (LLM)",
+        "Next.js",
+        "Pandas",
+        "yfinance / Finnhub / Alpha Vantage",
+        "FRED API",
+        "WebSockets",
+        "Python",
+        "Docker & HuggingFace Spaces"
+      ]
+    },
+    
+    {
+      "id": "financial-llm",
+      "type": "featured",
+      "title": "Financial LLM Copilot",
+      "description": "Macro research usually means pulling the same indicator from FRED, the World Bank, and OECD and finding out they don't quite agree with each other. I built Financial LLM Copilot to fold that whole process into a single chat interface — ask a question about any of 102 countries across 12 economic indicators and get an answer that's reconciled across sources, not just pulled from one.\n Here are a few highlights of what I built:\n- ***A 7B Model Running on Free CPU Hardware:*** Fine-tuned Mistral-7B with QLoRA, quantized it to GGUF Q4_K_M (4.37GB), and served it through llama-cpp-python entirely on CPU. Getting a 7-billion parameter model to run acceptably on Hugging Face's free-tier CPU meant tuning context length, batch size, and thread count until it actually held up.\n- ***Source Triangulation with Confidence Grading:*** Built a layer that reconciles FRED, World Bank, and OECD values into a consensus figure, then grades confidence (high/medium/low) based on how much the sources actually agree — so an answer comes with a sense of how trustworthy it is, not just a bare number.\n- ***A Reproducible Training Pipeline:*** Instead of hand-writing training data, I built a generator that produces 4,304 instruction-tuning samples from 52 question templates and 42 curated comparison pairs, fully reproducible from a fixed seed and split into train/validation sets.\n- ***Four Workspaces:*** Built out a Streamlit frontend with streaming chat, regional analysis, global rankings, and multi-country comparison, all rendered with Plotly.\nWorth being upfront about: the live FRED and World Bank API clients exist in the offline data pipeline, but the deployed app currently answers from a seeded synthetic dataset behind the same data contract rather than hitting those APIs live — wiring that up end-to-end is the natural next step. What I'm most proud of here is just getting a real 7B model to run acceptably on free CPU hardware at all; nearly every design choice in the app was shaped by that constraint.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Financial_LLM_Copil-0.jpg",
+      "heroVideo": "",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252546/financial_llm_ak5ndu.mp4",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160319.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160344.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160402.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160424.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160445.png"
+      ],
+      "github": "https://github.com/tarun89034/finance-llm-researcher",
+      "live": "https://huggingface.co/spaces/ty8890/financial-llm-copilot",
+      "tech": [
+        "Pandas",
+        "Plotly",
+        "Llama-cpp-python",
+        "Streamlit",
+        "Mistral-7B / QLoRA",
+        "FRED / World Bank APIs / OECD",
+        "Python",
+        "Docker & Hugging Face Spaces"
+      ]
+    },
+    {
+      "id": "stock-prediction",
+      "type": "featured",
+      "title": "Stock Prediction Platform",
+      "description": "Most retail trading tools I looked at either backtest without realistic costs or spit out a price prediction with zero explanation of why. I built QuantEdge to close both gaps — a strategy backtester that actually models slippage, commission, and stop-loss, paired with a direction classifier that shows its reasoning instead of acting like a black box.\n Here are a few highlights of what I built:\n- ***Cost-Aware Backtesting:*** Built a vectorbt-powered engine running SMA-crossover, RSI, and MACD strategies with slippage, commission, and a 5% stop-loss baked in, reporting Sharpe, max drawdown, win rate, profit factor, alpha, and beta against exchange-specific benchmarks across 31 mapped global exchanges.\n- ***Explainable Predictions, Not Black-Box Ones:*** Trained an XGBoost classifier over 10 lagged technical features (all properly shift(1)'d to avoid lookahead bias), validated with 6-split expanding-window walk-forward testing instead of a naive random split. Every prediction ships with a SHAP TreeExplainer breakdown of its top 8 contributing features.\n- ***Data Layer That Handles Real-World Rate Limits:*** Chained yfinance as primary with a TwelveData REST fallback behind a thread-safe token-bucket limiter, plus layered TTL caching — so the platform stays usable across 31 exchanges and 17 currencies even when a provider throttles you.\n- ***One Container, Full Stack:*** Built a 15-endpoint rate-limited FastAPI backend plus a WebSocket price stream, paired with a Next.js 14 dashboard (6 routes, 71 components) that gets statically exported and served directly by the same Uvicorn process — a single Docker image, deployable to HuggingFace Spaces' single-port constraint.\nThe walk-forward validation and SHAP explainability were the parts I cared most about getting right — it's easy to build an ML model that looks good on a random train/test split and then falls apart on real time-series data, and I wanted to actually avoid that trap.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output.jpg",
+      "heroVideo": "https://res.cloudinary.com/dgbobo43l/video/upload/v1777123547/Cyberpunk_Financial_Visualization_Video_s8hupx.mp4",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776252567/stock-prediction_backtesting_jv4mcm.mp4",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160505.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160544.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160632.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160711.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160731.png"
+      ],
+      "github": "https://github.com/tarun89034/stock-prediction-vercel",
+      "live": "https://huggingface.co/spaces/ty8890/stock-prediction-platform",
+      "tech": [
+        "Next.js 14",
+        "TypeScript",
+        "yfinance",
+        "TwelveData API (fallback)",
+        "Vectorbt",
+        "Plotly",
+        "FastAPI",
+        "Pandas",
+        "Zustand & Recharts",
+        "SQLAlchemy (async)",
+        "XGBoost & SHAP",
+        "NumPy"
+      ]
+    },
+    {
+      "id": "option-pricing",
+      "type": "featured",
+      "title": "Option Pricing",
+      "description": "Pricing options properly means juggling a handful of different models depending on what you're actually pricing — European options don't need the same machinery as a Barrier option with early exercise. I built this platform to bring all three major pricing approaches into one place: Black-Scholes for the analytical cases, Monte Carlo simulation for path-dependent exotics, and a Cox-Ross-Rubinstein binomial tree for American-style early exercise.\n Here are a few highlights of what I built:\n- ***Three Pricing Models, Eight Option Types:*** Implemented Black-Scholes, Monte Carlo (with antithetic variates for variance reduction), and Binomial Tree models covering European, American, Asian (arithmetic/geometric), Lookback, and Barrier options — including full Greeks (Delta, Gamma, Theta, Vega, Rho) computed from scratch, without relying on SciPy for the normal distribution functions.\n- ***Live Global Market Data:*** Wired in a real-time options chain engine pulling from Yahoo Finance across 30+ countries and 6 regions, with historical volatility calculation, dividend yield adjustment, and risk-free rate pulled straight from 13-week Treasury data.\n- ***Multi-Currency, Multi-Region:*** Built a Chart.js dashboard with live FX conversion across 8 currencies and 180+ pre-configured tickers spanning NYSE, NASDAQ, LSE, NSE, BSE, TSE, HKEX and more, plus moneyness classification (ITM/ATM/OTM) and model convergence analysis so you can sanity-check the numbers across methods.\nRunning this as a serverless Flask backend on Vercel, with a vanilla JS frontend and no heavy frameworks, kept the whole thing fast and simple to deploy.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/output%20(2).jpg",
+      "heroVideo": "",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1776251046/clideo_editor_c8855c153f4c4de7b7a66d1f10175b66_tadihp.mp4",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160054.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160117.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160137.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160157.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160211.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20160241.png"
+      ],
+      "github": "https://github.com/tarun89034/Option-Pricing-",
+      "live": "https://option-pricing-snowy.vercel.app/",
+      "tech": [
+        "Python",
+        "Flask",
+        "NumPy",
+        "Pandas",
+        "yfinance API",
+        "Chart.js",
+        "JavaScript",
+        "Vercel Serverless"
+      ]
+    },
+    {
+      "id": "ai-fitness-coach",
       "type": "github",
-      "title": "AI Powered NIDS",
-      "description": "Developed a production-grade AI-NIDS that modernizes legacy Deep Packet Inspection (DPI) into a modular, real-time intelligence platform. The system captures live network traffic, extracts complex statistical flow features aligned with industry-standard benchmarks, and employs dual-layer Machine Learning (Isolation Forest for zero-day anomalies and Random Forest for known attack patterns). \n **Key Features:** \n - ***Real-World Training:*** Integrated kagglehub for automated, memory-safe ingestion and training on 250,000+ records of cleaned CICIDS2017 data.\n - ***Live Observability:*** Built a responsive React/Vite dashboard featuring protocol distribution charts, live traffic volume tracking, and prioritized security alert tables.\n - ***Privacy-First Design:*** Implemented a custom IP-hashing utility on the frontend to anonymize sensitive internal addresses, making the project safe for public portfolio galleries and LinkedIn demos.\n - ***Modular Pipeline:*** Decoupled architecture with a FastAPI backend, SQLite persistence, and a standalone packet-sniffing orchestrated via background threads.",
-      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_AI-NIDS_._Scene_Dar-0.jpg",
+      "title": "AI Fitness Coach",
+      "description": "Most AI wrapper apps fall apart the moment a single API call fails. I wanted to build something that could actually survive that — a fitness coaching app where an LLM going down, a database timing out, or a rate limit getting hit doesn't take the whole thing offline. So I built AI Fitness Coach around a stack of production-grade resilience patterns most portfolio projects skip entirely.\n Here are a few highlights of what I built:\n- ***Multi-Agent Orchestration with Real Fallback:*** Built 2 Langflow flows for workout and macro generation, backed by a custom OpenRouter component that chains 3 models (GLM-4.5 → DeepSeek → GPT-4o-mini) so the app keeps answering even if the free-tier model gets rate-limited or goes down.\n- ***Circuit Breakers, Not Just Try/Except:*** Implemented a thread-safe circuit breaker with closed/open/half-open states protecting OpenRouter, AstraDB, and Langflow independently, plus a sliding-window rate limiter (5/min, 30/hour, 200/day per user) to stop abuse before it becomes a bill.\n- ***AI Safety Guard:*** Added input filtering with 15 regex patterns to catch prompt injection and off-topic queries, and output scanning that catches unsafe dosage or exercise advice before it ever reaches the user — since a fitness app giving bad advice is a real risk, not a hypothetical one.\n- ***Graceful Degradation Everywhere:*** Wrapped AstraDB with a SafeCollectionProxy that falls back to in-memory storage per call, and split Langflow into its own container so the core app stays usable on just 512MB RAM even if Langflow is down entirely.\nRunning this as a 4-service Docker Compose stack — Nginx handling WebSocket proxying, non-root execution, health checks, zero exposed ports — behind a Cloudflare Tunnel was where most of the infrastructure learning happened. It's not deployed to a public server yet, but the whole thing runs and holds up locally exactly as designed.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/Gemini_Generated_Image_19joa819joa819jo.png",
+      "heroVideo": "",
+      "video": "https://res.cloudinary.com/dgbobo43l/video/upload/v1784119929/ai-workout-multiagent_nhbbn2.mp4",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180223.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180134.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180201.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-07-15%20180148.png"
+      ],
+      "github": "https://github.com/tarun89034/Advanced-Multi-Agent-Workout-App",
+      "live": "PLACEHOLDER_LIVE_URL",
+      "tech": [
+        "Python",
+        "Streamlit",
+        "Langflow",
+        "LangChain",
+        "OpenRouter",
+        "AstraDB",
+        "Docker and Docker Compose",
+        "Nginx",
+        "LangSmith",
+        "Cloudflare Tunnel"
+      ]
+    },
+    {
+      "id": "customer-shopping-behavior",
+      "type": "github",
+      "title": "Customer Shopping Behavior Analysis",
+      "description": "An end-to-end retail analytics project built around a simple question: what actually drives customer spending, and does the data back up common assumptions about discounts and subscriptions? I took a raw dataset of 3,900 customer records through the full pipeline — cleaning, database migration, SQL analysis, and dashboarding — the way a real analytics team would.\n **Key Features:**\n - ***Careful Data Cleaning:*** Instead of filling missing review ratings with a single global average, I imputed them by category median so ratings stayed realistic within each product type. Also standardized every column to snake_case and engineered new features like age-group segmentation and a purchase-frequency-in-days mapping.\n - ***Real SQL, Not Just SELECT *:*** Migrated the cleaned data into PostgreSQL and wrote 10+ queries using CTEs and window functions (ROW_NUMBER, PARTITION BY) to rank top products per category and dig into revenue, discount effectiveness, and subscription behavior.\n - ***Customer Segmentation Logic:*** Built a New/Returning/Loyal classification straight into SQL using CASE statements based on purchase history, which is the kind of segmentation a marketing team could actually act on.\n - ***Power BI Dashboards:*** Turned the SQL output into two interactive dashboards covering customer demographics, category performance, and subscriber vs. non-subscriber spending comparisons.\nIt's a smaller project than some of my others, but it was a good exercise in doing the unglamorous parts of analytics properly — the cleaning and imputation decisions end up mattering just as much as the final dashboard.",
+      "image": "PLACEHOLDER_IMAGE_URL",
       "heroVideo": "",
       "video": "",
       "screenshots": [
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20164926.png",
-        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20165230.png"
+      "PLACEHOLDER_SCREENSHOT_URL_1",
+      "PLACEHOLDER_SCREENSHOT_URL_2"
       ],
-      "github": "https://github.com/tarun89034/AI-Powered-Network-Intrusion-Detection-System-NIDS-with-Real-Time-ML-Observability",
+      "github": "PLACEHOLDER_GITHUB_URL",
       "live": "",
       "tech": [
-        "WebSockets",
-        "ML",
-        "React",
-        "Scapy",
-        "Python"
+      "Python",
+      "Pandas",
+      "PostgreSQL",
+      "Power BI",
+      "Git"
       ]
     },
     {
       "id": "vendor-perf",
       "type": "github",
       "title": "Vendor Performance Analysis",
-      "description": "Vendor Performance Analysis is a comprehensive, end-to-end Data Analytics project designed to simulate professional, company-standard workflows. The platform enables analysts and stakeholders to:\n - **Build ETL pipelines** by ingesting large CSV datasets into SQLite and performing data cleaning and transformation using Python for efficient processing.\n - **Perform advanced analysis** using Pandas, Matplotlib, and Seaborn, including EDA, inventory turnover calculation, hypothesis testing, and 95% confidence interval evaluation for vendor performance.\n - **Develop interactive dashboards** in Power BI to visualize KPIs such as total sales, gross profit, and unsold inventory capital using advanced DAX and filtering techniques.\n - **Generate actionable insights** by analyzing vendor performance, sales trends, and profitability metrics.\n - **Produce stakeholder reports** with clear, data-driven recommendations.\n **Key Technical Achievements:\n - Implemented scalable ETL workflow integrating SQL and Python for large dataset processing.\n - Applied statistical testing and confidence interval analysis to validate vendor performance differences.\n - Built dynamic Power BI dashboard with complex DAX measures and interactive filtering.\n - Identified high-impact business insights for vendor optimization and inventory efficiency.\n - Delivered a comprehensive business report aligned with real-world decision-making needs.",
+      "description": "A supply chain analytics project built around a real question: which vendors are actually worth the relationship, and where is money getting tied up unnecessarily? I processed close to 2GB of transactional data — 12.8 million sales records and 2.4 million purchase records — across 131 vendors and over 12,000 brands to find out.\n **Key Features:**\n - ***ETL Pipeline That Actually Scales:*** Built a Python-based pipeline ingesting sales, purchases, inventory, and vendor invoice CSVs into a normalized SQLite database across 6 tables, with the full ingestion running in under 8 minutes despite the data volume.\n - ***SQL-Driven Vendor Scorecards:*** Wrote multi-table JOIN queries to build out a vendor_sales_summary table covering 10,692 brand-vendor combinations, calculating gross profit, profit margin, stock turnover, and sales-to-purchase ratios along the way.\n - ***Statistical Validation, Not Just Eyeballing Trends:*** Ran hypothesis testing (t-tests) with SciPy to actually validate whether profitability differences between vendor segments were statistically significant, rather than assuming a pattern in the data was real.\n - ***Findings With Real Business Weight:*** The analysis surfaced 198 high-margin brands that were underperforming on volume, found the top 10 vendors account for roughly 65.69% of total purchases (a real concentration risk), quantified a 72% unit cost reduction from bulk purchasing, and flagged $2.71M in working capital sitting in unsold inventory.\n - ***Power BI Dashboard:*** Turned the SQL output into an interactive dashboard so the KPIs and vendor comparisons are actually usable by someone who isn't going to open a Jupyter notebook.\nThis one was less about fancy modeling and more about doing the analytics fundamentals — clean ETL, proper joins, actual hypothesis testing — well enough that the numbers hold up.",
       "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Vendor_Performance_-0.jpg",
       "heroVideo": "",
       "video": "",
@@ -199,19 +236,22 @@
       "live": "",
       "tech": [
         "Python",
+        "SQLAlchemy",
+        "SciPy",
         "SQL (SQLite)",
         "Power BI",
         "Pandas",
         "NumPy",
         "Matplotlib",
-        "Seaborn"
+        "Seaborn",
+        "Jupyter Notebook"
       ]
     },
     {
       "id": "portfolio-opt",
       "type": "github",
       "title": "Portfolio Optimization Using Python",
-      "description": "Portfolio Optimization in Python is a quantitative finance project focused on identifying the optimal combination of assets to maximize returns while minimizing risk using Modern Portfolio Theory. The implementation leverages the Sharpe Ratio as the primary performance metric to evaluate a diversified portfolio of stocks, bonds, and commodities. The platform enables users to:\n - **Source and prepare financial data** using the yFinance library, compute lognormal daily returns, and construct covariance matrices to analyze asset risk and correlations.\n - **Calculate key performance metrics** including expected return, portfolio volatility (standard deviation), and Sharpe Ratio through custom Python functions.\n - **Optimize portfolio allocation** using scipy minimization techniques by maximizing the Sharpe Ratio under constraints such as total weights summing to 1 and no short-selling bounds.\n - **Integrate external financial data** such as risk-free rates via APIs like the Federal Reserve (FRED).\n - **Analyze portfolio behavior** under different market conditions and time horizons.\n **Key Technical Achievements:\n - Implemented Modern Portfolio Theory with Sharpe Ratio based optimization.\n - Built constrained optimization model using scipy for efficient asset allocation.\n - Integrated real-time financial data from yFinance and FRED APIs.\n - Developed reusable functions for return, volatility, and correlation analysis.\n - Created a scalable framework for data-driven investment decision-making.",
+      "description": "A hands-on application of Modern Portfolio Theory: given a set of ETFs, what allocation actually maximizes risk-adjusted return, and can I get there with real math instead of guesswork? I built this to optimize allocation across 5 ETFs (SPY, BND, GLD, QQQ, VTI) using 8 years of historical pricing data and a proper constrained optimization approach.\n **Key Features:**\n - ***Real Optimization, Not a Heuristic:*** Used scipy's SLSQP algorithm to solve for the weights that maximize Sharpe Ratio, with an equality constraint (weights sum to 1) and a boundary constraint capping any single asset at 40% to force diversification instead of letting the optimizer pile into one ETF.\n - ***Lognormal Returns:*** Calculated returns using log returns rather than simple arithmetic returns, since they compound more accurately and have better statistical properties for this kind of analysis.\n - ***Live Data Pipeline:*** Pulled 2,010 trading days of adjusted close prices via yfinance and the current 10-year Treasury rate via the FRED API, so the risk-free rate baseline for the Sharpe calculation isn't a stale hardcoded number.\n - ***Real Output:*** On the data pulled during this run, the optimizer landed on a portfolio with a 0.7478 Sharpe Ratio, 14.36% expected annual return, and 13.67% expected volatility — numbers that'll shift as market data updates, but the pipeline itself is what mattered here.\nThis was a good exercise in taking the finance theory (covariance matrices, Sharpe ratio, constrained optimization) most people just read about and actually wiring it up end-to-end with live data.",
       "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_poster_for_a_project_titled_Portfolio_Optimization_._Scene_A_-0.jpg",
       "heroVideo": "",
       "video": "",
@@ -237,7 +277,7 @@
       "id": "credit-risk",
       "type": "github",
       "title": "Credit Risk Analysis",
-      "description": "Credit Risk Assessment System is a full-stack data science project focused on building an end-to-end machine learning pipeline for evaluating creditworthiness using the German Credit Data dataset. The project demonstrates a complete workflow from data analysis to deployment, enabling users to:\n - **Perform exploratory data analysis (EDA)** using Pandas, Matplotlib, and Seaborn to uncover relationships between credit risk and demographic/financial variables.\n - **Apply feature engineering and preprocessing** by handling missing values, removing irrelevant features, and encoding categorical variables using Label Encoding.\n - **Train and optimize machine learning models** by implementing Decision Tree, Random Forest, Extra Trees, and XGBoost, with hyperparameter tuning using Grid Search Cross-Validation.\n - **Deploy an interactive application** using Streamlit to allow users to input applicant data and receive real-time credit risk predictions.\n - **Evaluate model performance** and address real-world challenges such as class imbalance in financial datasets.\n **Key Technical Achievements:\n - Built end-to-end ML pipeline from EDA to deployment.\n - Implemented and compared multiple tree-based models for classification.\n - Optimized model performance using Grid Search Cross-Validation.\n - Developed a real-time prediction web app using Streamlit.\n - Addressed class imbalance and improved model reliability for financial decision-making.",
+      "description": "Built a supervised classifier on the German Credit dataset to score loan applicants as good or bad credit risk — the kind of problem where a wrong call actually costs someone money. Rather than just training one model and calling it done, I set up a proper benchmark: four tree-based classifiers under identical conditions so the comparison actually meant something.\n **Key Features:**\n - ***Controlled Model Benchmark:*** Ran Decision Tree, Random Forest, Extra Trees, and XGBoost through the same 5-fold GridSearchCV setup across 261 hyperparameter combinations on a stratified 80/20 split. XGBoost came out ahead at 67.6% test accuracy, with Extra Trees close behind at 64.8%.\n - ***Train/Serve Consistency:*** Persisted the trained model and all five fitted LabelEncoders as separate joblib artifacts, so the Streamlit app loads the exact transformers used during training instead of re-deriving encodings — a small detail that avoids a common source of bugs in deployed ML apps.\n - ***Handling Imbalance:*** The dataset skews about 70/30 toward good credit, so I applied class_weight='balanced' across the sklearn models and a computed scale_pos_weight for XGBoost rather than ignoring the skew.\n - ***Reproducible Retraining:*** Wrote a standalone retrain.py that reruns the cleaning, encoding, and grid search outside the notebook, so retraining isn't locked inside exploratory code.\n - ***Live Streamlit App:*** Built a simple interface where you plug in an applicant's details and get a real-time risk classification back.\nA few honest caveats: I shipped Extra Trees instead of the better-scoring XGBoost, dropped rows with missing account data rather than imputing (which cost about half the dataset), and only tracked accuracy — recall on the 'bad risk' class would've been the more meaningful metric here. Good project for the end-to-end pipeline experience; the model performance itself has clear room to improve.",
       "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_Credit_Risk_Analysi-0.jpg",
       "heroVideo": "",
       "video": "",
@@ -262,7 +302,30 @@
         "Matplotlib",
         "Seaborn",
         "Streamlit",
-        "Jupyter Notebook"
+        "Jupyter Notebook",
+        "joblib"
+      ]
+    },
+    {
+      "id": "nids",
+      "type": "github",
+      "title": "AI Powered NIDS",
+      "description": "Developed a production-grade AI-NIDS that modernizes legacy Deep Packet Inspection (DPI) into a modular, real-time intelligence platform. The system captures live network traffic, extracts complex statistical flow features aligned with industry-standard benchmarks, and employs dual-layer Machine Learning (Isolation Forest for zero-day anomalies and Random Forest for known attack patterns). \n **Key Features:** \n - ***Real-World Training:*** Integrated kagglehub for automated, memory-safe ingestion and training on 250,000+ records of cleaned CICIDS2017 data.\n - ***Live Observability:*** Built a responsive React/Vite dashboard featuring protocol distribution charts, live traffic volume tracking, and prioritized security alert tables.\n - ***Privacy-First Design:*** Implemented a custom IP-hashing utility on the frontend to anonymize sensitive internal addresses, making the project safe for public portfolio galleries and LinkedIn demos.\n - ***Modular Pipeline:*** Decoupled architecture with a FastAPI backend, SQLite persistence, and a standalone packet-sniffing orchestrated via background threads.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/ideogram-v3.0_Create_a_cinematic_Netflix-style_poster_for_a_project_titled_AI-NIDS_._Scene_Dar-0.jpg",
+      "heroVideo": "",
+      "video": "",
+      "screenshots": [
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20164926.png",
+        "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/screenshots/Screenshot%202026-04-15%20165230.png"
+      ],
+      "github": "https://github.com/tarun89034/AI-Powered-Network-Intrusion-Detection-System-NIDS-with-Real-Time-ML-Observability",
+      "live": "",
+      "tech": [
+        "WebSockets",
+        "ML",
+        "React",
+        "Scapy",
+        "Python"
       ]
     }
   ],
@@ -275,10 +338,28 @@
   ],
   "links": {
     "linkedin": "https://www.linkedin.com/in/tarun-yadav-a5b538251/",
-    "github": "https://github.com/tarun89034/tarun89034",
+    "github": "https://github.com/tarun89034",
     "email": "tarunya2311@gmail.com"
   },
   "certificates": [
+    {
+      "id": "nptel-cloud-computing",
+      "title": "Cloud Computing",
+      "issuer": "NPTEL (IIT Kharagpur)",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/certificates/Screenshot%202026-08-04%20170836.png",
+      "description": "A 12-week certification covering core cloud computing concepts, including virtualization, distributed systems, and cloud service models. Completed via SWAYAM as part of NPTEL's program run by IIT Kharagpur.",
+      "link": "https://archive.nptel.ac.in/content/noc/NOC24/SEM1/Ecertificates/106/noc24-cs17/Course/NPTEL24CS17S35290036730766867.pdf",
+      "date": "2024-04"
+    },
+    {
+      "id": "nptel-marketing-analytics",
+      "title": "Marketing Analytics",
+      "issuer": "NPTEL (IIT Kharagpur)",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/certificates/Screenshot%202026-08-04%20171215.png",
+      "description": "A 12-week certification covering data-driven marketing decision-making and analytics techniques. Completed via SWAYAM as part of NPTEL's program run by IIT Kharagpur.",
+      "link": "https://archive.nptel.ac.in/content/noc/NOC25/SEM1/Ecertificates/110/noc25-mg45/Course/NPTEL25MG45S124280246404713969.pdf",
+      "date": "2025-04"
+    },
     {
       "id": "ibm-introduction-generative-ai",
       "title": "Introduction to Generative AI",

@@ -37,8 +37,7 @@ export default function ContactSection({ personal }: { personal: Personal }) {
           </h2>
 
           <p className="font-body text-white/40 text-lg md:text-xl max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed">
-            Currently open to AI engineering roles and high-impact collaborations.
-            If you&apos;re building something meaningful, let&apos;s talk.
+            Currently open to full-time SDE-1 / backend engineering roles and high-impact collaborations. If you're building something that needs to hold up under real load, let's talk.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-16">
