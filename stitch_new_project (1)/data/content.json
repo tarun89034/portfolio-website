@@ -171,6 +171,30 @@
       ]
     },
     {
+      "id": "volbench",
+      "type": "github",
+      "title": "VolBench — Crypto Volatility Forecasting Benchmark",
+      "description": "Most volatility-forecasting comparisons quietly assume two things: that a more complex model will win, and that the day boundary used to aggregate the data doesn't matter. I wanted to actually test both assumptions instead of assuming them, so I built VolBench to compare five forecasting models — from a naive baseline up through HAR-RV, Ridge, LightGBM, and a GRU — on crypto markets, which don't have a real market close the way equities do, and then re-ran the entire benchmark at six different daily boundaries to see if the results held up.\n **Key Features:**\n - ***A Pre-Registered Protocol, Verifiable From Git History:*** I committed and tagged the evaluation protocol before writing a single forecasting model — the tagged commit's source tree provably contains no model code, no dataset builder, and no statistics module. Anyone can check this themselves from the git log rather than taking my word for it.\n - ***Checksum-Verified Data, Measured Not Repaired:*** Ingested 1-minute klines for four crypto assets from Binance's public archives, verifying every monthly file against its SHA-256 checksum. Data quality issues (duplicates, gaps, misaligned bars) were counted and reported rather than silently cleaned up, since fixing them would change the actual forecasting target.\n - ***Statistical Testing Built From Scratch:*** Implemented Diebold-Mariano with Newey-West HAC variance and the Harvey-Leybourne-Newbold correction, Holm-Bonferroni multiple-comparison correction, and a Hansen-Lunde-Nason Model Confidence Set with a stationary bootstrap — all from the original papers, using only NumPy and SciPy, no econometrics package doing the work for me.\n - ***Leakage Prevented Structurally:*** Fold generation lives in exactly one shared function, every model's scaler is fit only inside that model's own training fold, and a runtime guard literally refuses to evaluate the held-out period until every model's configuration is frozen.\n - ***The Actual Finding:*** Across 24 asset-boundary combinations, Ridge beat HAR-RV in 14, the GRU in 11, and LightGBM in just 1 — so more complexity didn't translate to a better model in any consistent way. And the ranking of models shifted depending on which daily boundary I used to aggregate the data, which was the whole question I set out to test.\nThis is a batch research pipeline, not a deployed app — there's no API, no database, no frontend. It's source code, config, and a written report. The part I'm most proud of isn't any single number; it's that the pre-registration is checkable by a stranger, and the conclusion I reported is the one the data actually gave me, not the one that would've made the project look more impressive.",
+      "image": "https://raw.githubusercontent.com/tarun89034/portfolio-website/main/asset/thumbnails/kling_20260823_IMAGE__Project_T_5572_0.png?utm_source=chatgpt.com",
+      "heroVideo": "",
+      "video": "",
+      "screenshots": [
+        "PLACEHOLDER_SCREENSHOT_URL_1",
+        "PLACEHOLDER_SCREENSHOT_URL_2"
+      ],
+      "github": "https://github.com/tarun89034/VolBench",
+      "live": "",
+      "tech": [
+        "Python 3.12",
+        "NumPy & SciPy",
+        "scikit-learn",
+        "LightGBM",
+        "PyTorch (GRU)",
+        "pandas & PyArrow",
+        "pytest"
+      ]
+    },
+    {
       "id": "ai-fitness-coach",
       "type": "github",
       "title": "AI Fitness Coach",
