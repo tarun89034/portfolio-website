@@ -11,7 +11,7 @@ export default function Footer() {
             <span className="gradient-text">TARUN</span> YADAV
           </div>
           <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-white/20">
-            © 2024 · AI Engineer · The Celestial Engineer
+            Backend Engineer | SDE-1 | Distributed Systems
           </p>
         </div>
 
